@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="InjectABL" default="build" basedir=".">
+	<property environment="env" />
+	<property file="build.properties" />	
+
+    <taskdef resource="PCT.properties"    />
+    <typedef resource="types.properties"  />
+    <taskdef resource="extras.properties" />
+    
+    <!-- Creates an archive for use with the PDSOE Samples page (iue). Contains code, doc and other artifacts. -->
+    <target name="package" description="Packages the project" 
+                           depends="build,createpl,createsourcepl" >
+        
+      <mkdir dir="iue"/>
+      <delete file="${iue.archiveName}"/>
+      
+       <!-- Mark directories & files as readonly  -->
+        <attrib readonly="false" type="both">
+            <zipfileset file="bin/**.pl" prefix="bin"></zipfileset>            
+            <zipfileset file="doc/README.txt" prefix="doc"></zipfileset>
+            <zipfileset file="resources/**.launch" prefix="resources"></zipfileset>
+            <zipfileset dir="src" prefix="src" excludes=" **/**.r" ></zipfileset>
+            <zipfileset dir="temp" prefix="temp" excludes="* preprocess/** "></zipfileset>            
+            <zipfileset file="LICENSE" ></zipfileset>
+            <zipfileset file="NOTICE" ></zipfileset>
+            <zipfileset file=".project" ></zipfileset>
+            <zipfileset file=".propath" ></zipfileset>
+        </attrib>
+        
+      <!-- Keep the line break before the closing echo tag to ensure its written into the version.txt file -->
+      <echo file="version.txt" force="true">Package-Name : ${project.description}
+Package-Version : ${project.version}
+Build-Date : ${ISO_DATETIME}
+OE-Version: ${dlcFull}
+</echo>     
+      
+        <!-- Add content to archive -->
+        <zip destfile="${iue.archiveName}" 
+             update="true" >
+            <zipfileset file="bin/**.pl" prefix="bin"></zipfileset>
+            <zipfileset file="lib/**.pl" prefix="lib"></zipfileset>
+            <zipfileset file="doc/README.txt" prefix="doc"></zipfileset>
+            <zipfileset file="resources/**.launch" prefix="resources"></zipfileset>
+            <zipfileset dir="src" prefix="src" excludes="**/**.r" ></zipfileset>
+            <zipfileset dir="temp" prefix="temp" excludes="* preprocess/** "></zipfileset>
+            <zipfileset file="tests/run_sample.p" prefix="tests" ></zipfileset>
+            <zipfileset file="LICENSE" ></zipfileset>
+            <zipfileset file="NOTICE" ></zipfileset>
+            <zipfileset file=".project" ></zipfileset>
+            <zipfileset file=".propath" ></zipfileset>
+            <zipfileset file="version.txt" ></zipfileset>
+        </zip>
+    </target>
+    
+    <!-- Create an OE Procedure Library of the r-code in this project -->
+    <target name="createpl" description="Creates a PL of r-code" 
+                           depends="build" >
+      <PCTLibrary destfile="bin/${project.PLName}" dlcHome="${env.DLC}" noCompress="yes">
+        <fileset dir="bin">
+          <include name="**/*.r" />
+          <exclude name=".pct/*" />
+        </fileset>
+      </PCTLibrary>      
+    </target>
+
+    <!-- Create an OE Procedure Library of the source code in this project -->
+    <target name="createsourcepl" description="Creates a PL of source code" >
+      <PCTLibrary destfile="src/${project.source.PLName}" dlcHome="${env.DLC}" noCompress="yes">
+        <fileset dir="src">
+          <include name="**/*.p" />
+          <include name="**/*.i" />
+          <include name="**/*.cls" />          
+        </fileset>
+      </PCTLibrary>
+    </target>
+    
+    <!-- Builds/compiles the sample -->
+    <target name="build" description="Builds source files">
+        <mkdir dir="bin" />        
+        <mkdir dir="temp/preprocess" />
+    
+        <PCTCompileExt dlcHome="${env.DLC}"
+              destDir="bin" 
+              graphicalMOde="true"
+              preprocessDir="temp/preprocess"
+              cpStream="UTF-8" 
+              multiCompile="true" 
+              forceCompile="true" >
+            
+            <propath>
+                <pathelement path="src"/>
+                <pathelement path="c:/devarea/views/pjudge_oe114/vobs_possenet/src/corelib"/> 
+                <pathelement path="${env.DLC}/src/corelib"/>
+                <pathelement path="tests"/>
+            </propath>
+            
+            <fileset dir="src">
+                <include name="**/*.p" />
+                <include name="**/*.cls" />
+            </fileset>
+        </PCTCompileExt>
+    </target>
+    
+    <!-- Creates documentation using PCT-->
+    <target name="gendoc"  description="Builds XML &amp; HTML documentation from source files"
+            depends="build">
+        <mkdir dir="doc/xml" />
+        <mkdir dir="doc/html" />
+        
+        <ClassDocumentation dlcHome="${env.DLC}"
+              destDir="doc/xml">            
+            <fileset
+                dir="temp/preprocess" 
+                includes="**/*.cls **/*.p" />
+                
+            <propath>
+                <pathelement path="src"/>
+                <pathelement path="c:/devarea/views/pjudge_oe114/vobs_possenet/src/corelib"/> 
+                <pathelement path="${env.DLC}/src/corelib"/>
+            </propath>
+                
+        </ClassDocumentation>
+        
+        <HtmlDocumentation dlcHome="${env.DLC}"
+          sourceDir="doc/xml"
+          destDir="doc/html" />
+               
+        <!-- Remove the preprocessed directory -->
+        <delete dir="temp/preprocess"/>
+    </target>
+    
+</project>
