@@ -10,16 +10,16 @@
     Created     : Tue Mar 02 10:56:02 EST 2010
     Notes       :
   ----------------------------------------------------------------------*/
-using   OpenEdge.Core.InjectABL.IKernel.
-using   OpenEdge.Lang.Collections.ICollection.
-using   OpenEdge.Lang.Collections.Collection.
-using   OpenEdge.Core.InjectABL.Binding.Modules.IInjectionModuleCollection.
-using OpenEdge.Test.*.
-using OpenEdge.Core.InjectABL.*.
-using OpenEdge.Core.InjectABL.Binding.Parameters.*.
-using OpenEdge.Core.InjectABL.Binding.Modules.*.
-using OpenEdge.Lang.*.
-using Progress.Lang.*.
+
+using OpenEdge.Core.Collections.ICollection from propath.
+using OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection from propath.
+using OpenEdge.InjectABL.Binding.Parameters.Routine from propath.
+using OpenEdge.InjectABL.IKernel from propath.
+using OpenEdge.InjectABL.StandardKernel from propath.
+using OpenEdge.Test.Samurai from propath.
+using OpenEdge.Test.WarriorModule from propath.
+using Progress.Lang.AppError from propath.
+using Progress.Lang.Error from propath.
 
 def var kernel as IKernel.
 def var modules as IInjectionModuleCollection.
@@ -33,7 +33,7 @@ modules:Add(new WarriorModule()).
 
 kernel = new StandardKernel(modules).
 
-warrior = cast(kernel:Get('OpenEdge.Test.Samurai'), Samurai). 
+warrior = cast(kernel:Get(get-class(Samurai)), Samurai). 
 
 message 
 'Dojo=' warrior:Dojo skip

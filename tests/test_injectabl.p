@@ -39,14 +39,14 @@ warrior:Attack("the evildoers").
 
 params = new Collection().
 
-routine = new Routine(Class:GetClass('OpenEdge.Test.Samurai'),
+routine = new Routine(get-class(OpenEdge.Test.Samurai),
                       'SetPrimaryWeapon',
                       RoutineTypeEnum:Method).
 extent(routine:Parameters) = 1.
-routine:Parameters[1] = new Parameter(Class:GetClass('OpenEdge.Test.Shuriken')).
+routine:Parameters[1] = new Parameter(get-class(OpenEdge.Test.Shuriken)).
 params:Add(routine).
            
-routine = new Routine(Class:GetClass('OpenEdge.Test.Samurai'),
+routine = new Routine(get-class(OpenEdge.Test.Samurai),
                       'UseAlternate',
                       RoutineTypeEnum:PropertySetter).
 extent(routine:Parameters) = 1.
