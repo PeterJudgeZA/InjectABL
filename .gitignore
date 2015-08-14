@@ -10,6 +10,11 @@ dlc-src
 *.r
 temp/
 .propath
+preprocess/
+bin/
+X-dlc-src/
+dlc-src/
+
 
 
 #################
