@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="OpenEdge InjectABL Library">
+    <property file="resources/build.properties" />
+    <property name="appRoot" value="${env.appRoot}" />
+    <property name="projectRoot" value="${appRoot}" />
+    
+    <!-- Common, property-driven tasks are in build-common.xml (eg. doc, package, bundle) -->
+    <import file="build-common-1.0.xml"/>
+	
+	<!-- Builds/compiles the library -->
+	<target name="build">
+		
+		<mkdir dir="${projectRoot}/bin/"/>
+		<mkdir dir="${projectRoot}/bin/preprocess"/>
+		
+		<!-- There are some dependencies on various interfaces etc -->
+		<ant target="unpackDlcLib-Core" antfile="resources/build.xml" />
+		
+		<PCTCompileExt dlcHome="${DLC}"
+                  graphicalMode="false"
+                  destDir="${projectRoot}/bin" 
+                  cpStream="UTF-8" 
+                  preprocessDir="${projectRoot}/bin/preprocess"
+                  forceCompile="true">
+			
+			<propath>
+				<pathelement path="${projectRoot}/src"/>
+				<pathelement path="${projectRoot}/dlc-src"/>
+				<!-- <pathelement location="${DLC}/tty/OpenEdge.Core.pl" /> -->
+			</propath>
+			
+			<fileset dir="${projectRoot}/src">
+				<include name="**/*.p" />
+				<include name="**/*.w" />
+				<include name="**/*.cls" />
+			</fileset>
+			
+			<!--
+			<fileset dir="${projectRoot}/tests">
+				<include name="**/*.p" />
+				<include name="**/*.w" />
+				<include name="**/*.cls" />
+			</fileset>
+			-->
+		</PCTCompileExt>
+	</target>
+	
+</project>

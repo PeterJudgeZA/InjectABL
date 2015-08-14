@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<property environment="env" />
+	<property name="appRoot" value="${env.appRoot}" />
+	<property name="DLC" value="${env.DLC}" />
+	
+	<taskdef resource="PCT.properties" />
+	<typedef resource="types.properties" />
+	<taskdef resource="extras.properties" />
+
+	<target name="unpackDlcLib-BusinessLogic">
+	    <mkdir dir="${projectRoot}/dlc-src" />
+		<copy todir="${projectRoot}/dlc-src">
+			<plfileset src="${DLC}/src/OpenEdge.BusinessLogic.pl" includes="**/**" />
+		</copy>
+	</target>
+
+	<target name="unpackDlcLib-Net">
+        <mkdir dir="${projectRoot}/dlc-src" />
+        <copy todir="${projectRoot}/dlc-src">
+            <plfileset src="${DLC}/src/netlib/OpenEdge.Net.pl" includes="**/**" />
+        </copy>
+	</target>
+	
+	<target name="unpackDlcLib-Core">
+        <mkdir dir="${projectRoot}/dlc-src" />
+        <copy todir="${projectRoot}/dlc-src">
+            <plfileset src="${DLC}/src/OpenEdge.Core.pl" includes="**/**" />
+        </copy>
+    </target>
+    
+	<target name="package" description="Creates a PL file from the r-code"
+		depends="build">
+
+		<delete file="${projectRoot}/bin/${library.PLName}" quiet="true" />
+		
+		<PCTLibrary destfile="${projectRoot}/bin/${library.PLName}"
+			dlcHome="${DLC}" noCompress="yes">
+			<fileset dir="${projectRoot}/bin/">
+				<include name="**/*.r" />
+				<exclude name=".pct/*" />
+			</fileset>
+		</PCTLibrary>
+
+		<PCTLibrary destfile="${projectRoot}/src/${library.PLName}"
+			dlcHome="${DLC}" noCompress="yes">
+			<fileset dir="${projectRoot}/src">
+				<include name="**/*.cls" />
+				<include name="**/*.p" />
+				<include name="**/*.w" />
+				<include name="**/*.i" />
+				<exclude name=".pct/*" />
+				<exclude name="**/*.r" />
+			</fileset>
+		</PCTLibrary>
+	</target>
+
+	<!-- Creates documentation using PCT -->
+	<target name="doc" depends="build">
+
+		<mkdir dir="${projectRoot}/doc/xml" />
+		<mkdir dir="${projectRoot}/doc/html" />
+
+		<ClassDocumentation dlcHome="${DLC}"
+			destDir="${projectRoot}/doc/xml">
+			<propath>
+				<pathelement path="${projectRoot}/src" />
+			</propath>
+
+			<fileset dir="${projectRoot}/bin/preprocess">
+				<!-- <include name="**/*.p" /> -->
+				<include name="**/*.cls" />
+				<!-- <include name="**/*.w" /> -->
+			</fileset>
+		</ClassDocumentation>
+
+		<HTMLDocumentation dlcHome="${DLC}" sourceDir="${projectRoot}/doc/xml"
+			destDir="${projectRoot}/doc/html" treeViewOverview="true" />
+
+		<!-- Remove the preprocessed directory -->
+		<delete dir="${projectRoot}/bin/preprocess" />
+	</target>
+	
+    <target name="cleanup">
+        <!-- Remove the preprocess directory -->
+        <delete dir="${projectRoot}/bin/preprocess" />
+        <!-- Remove the .pct directory -->
+        <delete dir="${projectRoot}/bin/.pct" />
+    </target>
+    
+	<target name="bundle" depends="build,package">
+
+		<property name="bundleFile"
+			value="${projectRoot}/${library.ArchiveName}_${library.Version}.zip" />
+
+		<delete file="${projectRoot}/${library.ArchiveName}" />
+
+		<ProgressVersion dlcHome="${DLC}" majorVersion="dlcMajor"
+			minorVersion="dlcMinor" reducedVersion="dlcReduced" fullVersion="dlcFull"
+			revision="dlcRevision" />
+		<tstamp>
+			<format property="ISO_DATETIME" pattern="yyyy-MM-dd'T'HH:mm:ss.SSSZ" />
+		</tstamp>
+
+		<!-- Keep the line break before the closing echo tag to ensure its written 
+			into the version.txt file -->
+		<echo file="${projectRoot}/version.txt" force="true">Library-Name : ${library.Description}
+Library-Version : ${library.Version}
+Build-date   	: ${ISO_DATETIME}
+OpenEdge-Version: ${dlcFull}
+</echo>
+
+		<!-- Add content to archive -->
+		<zip destfile="${bundleFile}" update="true">
+
+			<zipfileset file="${projectRoot}/bin/**.pl" prefix="bin" />
+			<zipfileset file="${projectRoot}/**.launch" />
+			<!-- Docgen not working yet. <zipfileset dir="${projectRoot}/doc" prefix="doc" 
+				/> -->
+			<zipfileset dir="${projectRoot}/src" prefix="src"
+				excludes="**/.copyarea.db **/**.r" />
+			<zipfileset dir="${projectRoot}/tests" prefix="tests"
+				excludes="**/.copyarea.db **/**.r" />
+
+			<zipfileset file="${projectRoot}/.project" />
+			<zipfileset file="${projectRoot}/.propath" />
+			<zipfileset file="${projectRoot}/version.txt" />
+		</zip>
+	</target>
+
+</project>
