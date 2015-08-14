@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Lifecycle" className="StandardScopeEnum" inherits="EnumMember" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : StandardScopeEnum&#xD;
+    Purpose     : Enumeration of InjectABL scopes. This is the standard/default set. &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Fri Jun 04 13:50:10 EDT 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="StandardScopeEnum()" modifier="STATIC"/>
+    <constructor signature="StandardScopeEnum(INPUT:character)" modifier="PROTECTED">
+        <parameter name="pcName" dataType="CHARACTER" position="0" mode="INPUT"/>
+    </constructor>
+    <property name="Default" dataType="StandardScopeEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="Transient" dataType="StandardScopeEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** One instance, running free, like a wolf. */</propertyComment>
+    </property>
+    <property name="Singleton" dataType="StandardScopeEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Only one instance at a time: effectively scoped to the life of the InjectABL kernel. */</propertyComment>
+    </property>
+    <property name="ABLSession" dataType="StandardScopeEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** One instance per AVM Session. */</propertyComment>
+    </property>
+    <property name="AgentConnection" dataType="StandardScopeEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** One instance per connection; meaningless for statefree Appservers */</propertyComment>
+    </property>
+    <property name="AgentRequest" dataType="StandardScopeEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** One instance per AppServer request */</propertyComment>
+    </property>
+    <property name="Custom" dataType="StandardScopeEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Custom scope */</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Lifecycle.StandardScopeEnum" type="NONE"/>
+    <using name="OpenEdge.Core.EnumMember" type="NONE"/>
+</unit>

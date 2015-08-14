@@ -1,0 +1,1324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+    <HEAD>
+        <meta http-equiv="expires" content="86400">
+        <TITLE>OpenEdge InjectABL Library, version 1.0.11</TITLE>
+        <link rel="stylesheet" type="text/css" href="resources/stylesheet.css" title="Style">
+        <SCRIPT src="resources/jquery.js"></SCRIPT>
+        <SCRIPT src="resources/functions.js"></SCRIPT>
+        <SCRIPT src="resources/frameload.js"></SCRIPT>
+        <!-- Browser Switch -->
+        <!--[if lt IE 8]>
+            <!-- Smaller than IE 8 -->
+            <style type="text/css">
+                .HeightFixIE { 
+                    height: 23px !important;
+                }
+            </style>
+        <![endif]-->
+        <!--[if IE 8]>
+            <!-- Equal IE 8 -->
+            <style type="text/css">
+                .HeightFixIE { 
+                    height: 20px !important;
+                }
+            </style>
+        <![endif]-->
+    </HEAD>
+<BODY onload="onLoad()">
+    <table class="header_table">
+        <tbody>
+        <tr>
+            <td>
+            	<div class="unit_header">
+            	    <table border="0">
+            	       <tbody>
+                	        <tr>
+                	            <td>
+                	                <span class="span_namespace">Namespace:</span>   
+                	            </td>
+                	            <td>
+                	                <span class="span_packagename"><a href="OpenEdge.InjectABL.Lifecycle.package.html">OpenEdge.InjectABL.Lifecycle<a></span>
+                	            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_pagetype">Class&nbsp;</span>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <span class="span_classname">ABLSession</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_parentclass">Parent classes:</span>   
+                                </td>
+                                <td class="span_parentclass">
+                                    <div class='parentclasses'><div style='padding-left:0em; height:12px' class='parentclassesitem'>                                                            <table style='border-spacing:0px'>                                                                <tr>                                                                    <td>                                                                    Progress.Lang.Object                                                                    </td>                                                                </tr>                                                            </table>                                                       </div><div style='padding-left:2em; height:16px' class='parentclassesitem'>                                                                <table>                                                                    <tr>                                                                        <td>                                                                            <div class='parentclassnode'></div>                                                                        </td>                                                                        <td>                                                                        <a href='OpenEdge.InjectABL.Lifecycle.ABLSession.html'>OpenEdge.InjectABL.Lifecycle.ABLSession</a>                                                                        </td>                                                                    </tr>                                                                </table>                                                           </div></div><br>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <span class="span_inherits">Inherits:</span>
+                                </td>
+                                <td class="unit_inherits">
+                                    <span class="span_inherits">Progress.Lang.Object</span>
+                                </td>
+                            </tr>
+                            
+                            <!--
+                            <tr>
+                                <td>
+                                    <span class="span_implements">Implements:</span> 
+                                </td>
+                                <td class="unit_interface">
+                                    <span class="span_implements"></span> 
+                                </td>
+                            </tr>
+                            -->
+                            <tr>
+                                <td>
+                                    <span class="span_inherits"></span>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_inherits"></span>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                	<br>
+                	<span class="unit_comment">
+                	<table><tbody class='unit_commment_table'><td class='unitcommentparam'></td><td class='unitcommentdesc'>Purpose: **************************************************************************** </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Copyright 2012 Progress Software Corporation </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Licensed under the Apache License, Version 2.0 (the "License"); </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>you may not use this file except in compliance with the License. </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>You may obtain a copy of the License at </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'><a href='http://www.apache.org/licenses/LICENSE-2.0' target='_blank'>http://www.apache.org/licenses/LICENSE-2.0</a> </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Unless required by applicable law or agreed to in writing, software </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>distributed under the License is distributed on an "AS IS" BASIS, </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>See the License for the specific language governing permissions and </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>limitations under the License. </td></tr><tr><td class='unitcommentparam'>File:</td><td class='unitcommentdesc'>ABLSession </td></tr><tr><td class='unitcommentparam'>Purpose:</td><td class='unitcommentdesc'>An extension of the SESSION system handle. </td></tr><tr><td class='unitcommentparam'>Description:</td><td class='unitcommentdesc'>ABLSession object : this object lives for the lifespan of </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>an AVM Session. </td></tr><tr><td class='unitcommentparam'>Author(s):</td><td class='unitcommentdesc'>pjudge </td></tr><tr><td class='unitcommentparam'>Created:</td><td class='unitcommentdesc'>Fri Jun 04 15:00:56 EDT 2010 </td></tr><tr><td class='unitcommentparam'>Notes:</td><td class='unitcommentdesc'>* Store customer properties for a session in the SessionProperties </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>IMap property </td></tr></tbody></table>
+                	</span>
+                	<br>
+                </div>
+            </td>
+            <td>
+                <div class="container_logo_google">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    
+    <br>
+    <br>
+    <div class="TableHeadingColor">
+        <span id="method_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Method Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary method_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>-</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010Mm43+zv8uG/ypbOo7TCEwA=='> CacheStartupProperties ()</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.Core.Collections.Array <a href='#020010mzaLxmkw5y59iwzHG/DAww=='> GetAllInstances (Class)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Returns all the object instances found that are of the type given.
+
+@param Class The type. This can be a class or an interface.
+@return Array The reference to that type, if any. Unknown value if
+there's no running instance of that name. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.Core.Collections.Array <a href='#020010CXYblJil72VlbZr4dqJTJw=='> GetAllRunningProcs (character)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Returns all the running persistent procedure instances found
+for a given name.
+
+@param character The (relative) path name for a procedure.
+@return Array An array of WidgetHandles to that procedure, if any.
+If there's no running instance of that name, then
+the array has an extent of 1 (one) which contains the
+unknown value.       */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         Progress.Lang.Object <a href='#020010Dd9aFm8zy8AZO+JcROJtBQ=='> GetFirstClassInstance (Class)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Returns the first object instance found that is of the type given.
+
+@param Class The type. This can be a class or an interface.
+@return Object The reference to that type, if any. Unknown value if
+there's no running instance of that name. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.Core.WidgetHandle <a href='#020010NN5ZaGaYNwB2ibLqHOH1vg=='> GetFirstRunningProc (character)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Returns the first running persistent procedure instance found
+for a given name.
+
+@param character The (relative) path name for a procedure.
+@return WidgetHandle The handle to that procedure, if any. Unknown value if
+there's no running instance of that name. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         Progress.Lang.Object <a href='#020010uVMaA32p9B6qzGQF0zM2+Q=='> ResolveWeakReference (integer)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Resolves a weak reference into an object instance. A weak reference is an integer
+representation of an object reference. This method is analogous to the WIDGET-HANDLE()
+function.
+
+Notes: * Based on http://msdn.microsoft.com/en-us/library/ms404247(v=VS.90).aspx
+* Performance of ResolveWeakReference() will probably suck.
+* An ABL statement "OBJECT-REFERENCE(int)" would entirely replace this method.
+@param integer A weak reference to an object.
+@return Object The object instance corresponding to that reference. The unknown value/null
+is returned if the referecen cannot be resolved.  */ <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    
+    <br>
+    <div class="TableHeadingColor">
+        <span id="constructor_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Constructor Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary constructor_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>-</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010Cyl/rHg7VQOwEbRgOhugKQ=='> ABLSession ()</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    <!--
+    <br>
+    <div class="TableHeadingColor">
+        <span id="event_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Event Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary event_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+                
+        </tbody>
+    </table>
+    -->
+    
+    <br>
+    <div class="TableHeadingColor">
+        <span id="property_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Property Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary property_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         DATETIME-TZ <a href='#020010OQc//1k5aC5RkzOiyROQ0Q=='> ActiveSince</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Information regarding session lifespan. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         CHARACTER <a href='#020010LxONZDuzGBnTgnfKupmSPg=='> Id</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** A unique identifier for this session. The SESSION:HANDLE tends to be the
+same every time; this gives us the opportunity to identify this session across all time and space */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Lifecycle.ABLSession <a href='#0200109FvHSXXe3PkfG4VEKaBU4w=='> Instance</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         CHARACTER <a href='#020010K9616rdteDPLNv2HNcu+lw=='> Name</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** An optional session type identifier. Defaults to SESSION:CLIENT-TYPE, but we have
+need for more complex session identifiers ('Development' or 'ClientRuntime'), which
+are not limited to simple client types. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.Core.Collections.IMap <a href='#020010cyaarjOzZgD6yy6D/w4olQ=='> SessionProperties</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** A collection of user-defined properties. These
+can be any key/value set of objects. */ <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    <br>
+    <br>
+    
+    <div class="TableHeadingColor cell">
+        <span id="method_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Method Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details method_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010Mm43+zv8uG/ypbOo7TCEwA==" href="#Top">Top</a>
+                <a name="  <a href='#020010Mm43+zv8uG/ypbOo7TCEwA=='> CacheStartupProperties ()</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PRIVATE  <a href='#020010Mm43+zv8uG/ypbOo7TCEwA=='> CacheStartupProperties ()</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010mzaLxmkw5y59iwzHG/DAww==" href="#Top">Top</a>
+                <a name=" OpenEdge.Core.Collections.Array <a href='#020010mzaLxmkw5y59iwzHG/DAww=='> GetAllInstances (Class)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC OpenEdge.Core.Collections.Array <a href='#020010mzaLxmkw5y59iwzHG/DAww=='> GetAllInstances (Class)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Returns all the object instances found that are of the type given. </td></tr><td class='paramname'></td><td class='paramdesc'>there's no running instance of that name. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poType</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      OpenEdge.Core.Collections.Array 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        Array The reference to that type, if any. Unknown value if
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010CXYblJil72VlbZr4dqJTJw==" href="#Top">Top</a>
+                <a name=" OpenEdge.Core.Collections.Array <a href='#020010CXYblJil72VlbZr4dqJTJw=='> GetAllRunningProcs (character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC OpenEdge.Core.Collections.Array <a href='#020010CXYblJil72VlbZr4dqJTJw=='> GetAllRunningProcs (character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Returns all the running persistent procedure instances found </td></tr><td class='paramname'></td><td class='paramdesc'>for a given name. </td></tr><td class='paramname'></td><td class='paramdesc'>If there's no running instance of that name, then </td></tr><td class='paramname'></td><td class='paramdesc'>the array has an extent of 1 (one) which contains the </td></tr><td class='paramname'></td><td class='paramdesc'>unknown value. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      OpenEdge.Core.Collections.Array 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        Array An array of WidgetHandles to that procedure, if any.
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010Dd9aFm8zy8AZO+JcROJtBQ==" href="#Top">Top</a>
+                <a name=" Progress.Lang.Object <a href='#020010Dd9aFm8zy8AZO+JcROJtBQ=='> GetFirstClassInstance (Class)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC Progress.Lang.Object <a href='#020010Dd9aFm8zy8AZO+JcROJtBQ=='> GetFirstClassInstance (Class)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Returns the first object instance found that is of the type given. </td></tr><td class='paramname'></td><td class='paramdesc'>there's no running instance of that name. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poType</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      Progress.Lang.Object 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        Object The reference to that type, if any. Unknown value if
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010NN5ZaGaYNwB2ibLqHOH1vg==" href="#Top">Top</a>
+                <a name=" OpenEdge.Core.WidgetHandle <a href='#020010NN5ZaGaYNwB2ibLqHOH1vg=='> GetFirstRunningProc (character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC OpenEdge.Core.WidgetHandle <a href='#020010NN5ZaGaYNwB2ibLqHOH1vg=='> GetFirstRunningProc (character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Returns the first running persistent procedure instance found </td></tr><td class='paramname'></td><td class='paramdesc'>for a given name. </td></tr><td class='paramname'></td><td class='paramdesc'>there's no running instance of that name. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      OpenEdge.Core.WidgetHandle 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        WidgetHandle The handle to that procedure, if any. Unknown value if
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010uVMaA32p9B6qzGQF0zM2+Q==" href="#Top">Top</a>
+                <a name=" Progress.Lang.Object <a href='#020010uVMaA32p9B6qzGQF0zM2+Q=='> ResolveWeakReference (integer)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC Progress.Lang.Object <a href='#020010uVMaA32p9B6qzGQF0zM2+Q=='> ResolveWeakReference (integer)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Resolves a weak reference into an object instance. A weak reference is an integer </td></tr><td class='paramname'></td><td class='paramdesc'>representation of an object reference. This method is analogous to the WIDGET-HANDLE() </td></tr><td class='paramname'></td><td class='paramdesc'>function. </td></tr><tr><td class='paramname'>Notes: </td><td class='paramdesc'>* Based on <a href='http://msdn.microsoft.com/en-us/library/ms404247(v=VS.90).aspx' target='_blank'>http://msdn.microsoft.com/en-us/library/ms404247(v=VS.90).aspx</a> </td></tr><td class='paramname'></td><td class='paramdesc'>is returned if the referecen cannot be resolved. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>piReference</i>
+    </td>
+    <td>
+       INTEGER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      Progress.Lang.Object 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        Object The object instance corresponding to that reference. The unknown value/null
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    
+    <div class="TableHeadingColor cell">
+        <span id="constructor_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Constructor Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details constructor_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010Cyl/rHg7VQOwEbRgOhugKQ==" href="#Top">Top</a>
+                <a name="  <a href='#020010Cyl/rHg7VQOwEbRgOhugKQ=='> ABLSession ()</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PRIVATE  <a href='#020010Cyl/rHg7VQOwEbRgOhugKQ=='> ABLSession ()</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    <!--
+    <div class="TableHeadingColor cell">
+        <span id="event_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Event Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details event_detail">
+        <tbody>
+            
+        </tbody>
+    </table>
+    <br>
+    <br>
+    -->
+    
+    <div class="TableHeadingColor cell">
+        <span id="property_detail" class="expand_arrow table_content_details expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Property Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content property_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010OQc//1k5aC5RkzOiyROQ0Q==" href="#Top">Top</a>
+                <a name=" DATETIME-TZ <a href='#020010OQc//1k5aC5RkzOiyROQ0Q=='> ActiveSince</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC DATETIME-TZ <a href='#020010OQc//1k5aC5RkzOiyROQ0Q=='> ActiveSince</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Information regarding session lifespan. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      DATETIME-TZ 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010LxONZDuzGBnTgnfKupmSPg==" href="#Top">Top</a>
+                <a name=" CHARACTER <a href='#020010LxONZDuzGBnTgnfKupmSPg=='> Id</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC CHARACTER <a href='#020010LxONZDuzGBnTgnfKupmSPg=='> Id</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>A unique identifier for this session. The SESSION:HANDLE tends to be the </td></tr><td class='paramname'></td><td class='paramdesc'>same every time; this gives us the opportunity to identify this session across all time and space </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      CHARACTER 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200109FvHSXXe3PkfG4VEKaBU4w==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Lifecycle.ABLSession.html'>OpenEdge.InjectABL.Lifecycle.ABLSession</a> <a href='#0200109FvHSXXe3PkfG4VEKaBU4w=='> Instance</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Lifecycle.ABLSession.html'>OpenEdge.InjectABL.Lifecycle.ABLSession</a> <a href='#0200109FvHSXXe3PkfG4VEKaBU4w=='> Instance</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Lifecycle.ABLSession.html'>OpenEdge.InjectABL.Lifecycle.ABLSession</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010K9616rdteDPLNv2HNcu+lw==" href="#Top">Top</a>
+                <a name=" CHARACTER <a href='#020010K9616rdteDPLNv2HNcu+lw=='> Name</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC CHARACTER <a href='#020010K9616rdteDPLNv2HNcu+lw=='> Name</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>An optional session type identifier. Defaults to SESSION:CLIENT-TYPE, but we have </td></tr><td class='paramname'></td><td class='paramdesc'>need for more complex session identifiers ('Development' or 'ClientRuntime'), which </td></tr><td class='paramname'></td><td class='paramdesc'>are not limited to simple client types. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      CHARACTER 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010cyaarjOzZgD6yy6D/w4olQ==" href="#Top">Top</a>
+                <a name=" OpenEdge.Core.Collections.IMap <a href='#020010cyaarjOzZgD6yy6D/w4olQ=='> SessionProperties</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC OpenEdge.Core.Collections.IMap <a href='#020010cyaarjOzZgD6yy6D/w4olQ=='> SessionProperties</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>A collection of user-defined properties. These </td></tr><td class='paramname'></td><td class='paramdesc'>can be any key/value set of objects. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      OpenEdge.Core.Collections.IMap 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    <font class="footer_timestamp">08.13.2015 14:10:21</font>
+    </BODY>
+</HTML>

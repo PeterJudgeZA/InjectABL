@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding.Conditions" className="ICondition" isAbstract="false" isFinal="false" isInterface="true">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : ICondition&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Thu Mar 04 10:53:22 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <method methodName="GetResolver" returnType="IConditionResolver" signature="GetResolver():IConditionResolver" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Returns the resolver used for this condition.&#xD;
+        &#xD;
+        @return IConditionResolver The object used to evaluate a condition of this type. */</comment>
+    </method>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.IConditionResolver" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+</unit>

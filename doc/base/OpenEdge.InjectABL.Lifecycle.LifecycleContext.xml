@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Lifecycle" className="LifecycleContext" isAbstract="false" isFinal="false" isInterface="false">
+    <interfaces>ILifecycleContext</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : LifecycleContext&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Wed Mar 03 10:03:26 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="LifecycleContext(INPUT:IKernel,INPUT:IBinding,INPUT:IPipeline,INPUT:ICache)" modifier="PUBLIC">
+        <constrComment>/** Initializes a new instance of the &lt;see cref=&quot;Context&quot;/&gt; class.&#xD;
+        @param kernel The kernel managing the resolution.&#xD;
+        @param request The context's Request:&#xD;
+        @param binding The context's Binding:&#xD;
+        @param cache The cache component.&#xD;
+        @param planner The planner component.&#xD;
+        @param pipeline The pipeline component. */</constrComment>
+        <parameter name="poKernel" dataType="IKernel" position="0" mode="INPUT"/>
+        <parameter name="poBinding" dataType="IBinding" position="1" mode="INPUT"/>
+        <parameter name="poPipeline" dataType="IPipeline" position="2" mode="INPUT"/>
+        <parameter name="poCache" dataType="ICache" position="3" mode="INPUT"/>
+    </constructor>
+    <method methodName="GetScope" returnType="Object" signature="GetScope():Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Gets the scope for the context that &quot;owns&quot; the instance activated therein.&#xD;
+        We don't store a reference for it since we want to be able to allow garbage &#xD;
+        collection to clean it up. &#xD;
+        &#xD;
+        @return The object that acts as the scope.&#xD;
+     */</comment>
+    </method>
+    <method methodName="GetProvider" returnType="IProvider" signature="GetProvider():IProvider" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Gets the provider that should be used to create the instance for this context.&#xD;
+        @return The provider that should be used.&#xD;
+     */</comment>
+    </method>
+    <method methodName="Resolve" returnType="Object" signature="Resolve():Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Resolves the instance associated with this context.&#xD;
+        &#xD;
+        @return The resolved instance.  */</comment>
+    </method>
+    <method methodName="Clone" returnType="Object" signature="Clone():Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false"/>
+    <property name="Kernel" dataType="IKernel" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the kernel that is driving the activation. */</propertyComment>
+    </property>
+    <property name="Binding" dataType="IBinding" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the Binding */</propertyComment>
+    </property>
+    <property name="Arguments" dataType="ICollection" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the parameters that were passed to manipulate the activation process. */</propertyComment>
+    </property>
+    <property name="Cache" dataType="ICache" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets or sets the cache component. */</propertyComment>
+    </property>
+    <property name="Pipeline" dataType="IPipeline" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets or sets the pipeline component. */</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Lifecycle.ILifecycleContext" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.LifecycleContext" type="NONE"/>
+    <using name="OpenEdge.InjectABL.ICache" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.IPipeline" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.IProvider" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IKernel" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ICollection" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.Collection" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL" className="KernelBase" inherits="BindingRoot" isAbstract="false" isFinal="false" isInterface="false">
+    <interfaces>IKernel</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : StandardKernel&#xD;
+    Purpose     : Standard/default InjectABL dependency injection kernel. &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 02 12:56:53 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="KernelBase()" modifier="PUBLIC"/>
+    <constructor signature="KernelBase(INPUT:IInjectionModuleCollection)" modifier="PUBLIC">
+        <parameter name="poModules" dataType="IInjectionModuleCollection" position="0" mode="INPUT"/>
+    </constructor>
+    <constructor signature="KernelBase(INPUT:ComponentContainer,INPUT:IInjectionModuleCollection,INPUT:KernelSettings)" modifier="PROTECTED">
+        <parameter name="poComponents" dataType="ComponentContainer" position="1" mode="INPUT"/>
+        <parameter name="poModules" dataType="IInjectionModuleCollection" position="2" mode="INPUT"/>
+        <parameter name="poSettings" dataType="KernelSettings" position="3" mode="INPUT"/>
+    </constructor>
+    <method methodName="AddComponents" signature="AddComponents()" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false"/>
+    <method methodName="AddBinding" signature="AddBinding(INPUT:IBinding)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poBinding" dataType="IBinding" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="RemoveBinding" signature="RemoveBinding(INPUT:IBinding)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Unregisters the specified binding.&#xD;
+        &#xD;
+        @param Ibinding The binding to remove. */</comment>
+        <parameter name="poBinding" dataType="IBinding" position="5" mode="INPUT"/>
+    </method>
+    <method methodName="Load" signature="Load(INPUT:IInjectionModuleCollection)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poModules" dataType="IInjectionModuleCollection" position="6" mode="INPUT"/>
+    </method>
+    <method methodName="HasModule" returnType="LOGICAL" signature="HasModule(INPUT:character):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcName" dataType="CHARACTER" position="7" mode="INPUT"/>
+    </method>
+    <method methodName="Load" signature="Load(INPUT:IInjectionModule)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poModule" dataType="IInjectionModule" position="8" mode="INPUT"/>
+    </method>
+    <method methodName="Load" signature="Load(INPUT:character)" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Loads IInjectionModules from files matching the pattern. &#xD;
+        &#xD;
+        @param character A file pattern */</comment>
+        <parameter name="pcFilePattern" dataType="CHARACTER" position="9" mode="INPUT"/>
+    </method>
+    <method methodName="Load" signature="Load(INPUT:character[])" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Loads IInjectionModules from files matching the pattern. &#xD;
+        &#xD;
+        @param character[] An array of file patterns */</comment>
+        <parameter name="pcFilePatterns" dataType="CHARACTER" position="11" mode="INPUT"/>
+    </method>
+    <method methodName="Unload" signature="Unload(INPUT:character)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcName" dataType="CHARACTER" position="12" mode="INPUT"/>
+    </method>
+    <method methodName="Get" returnType="Object" signature="Get(INPUT:Progress.Lang.Class):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="13" mode="INPUT"/>
+    </method>
+    <method methodName="Get" returnType="Object" signature="Get(INPUT:Progress.Lang.Class,INPUT:ICollection):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="14" mode="INPUT"/>
+        <parameter name="poArguments" dataType="ICollection" position="15" mode="INPUT"/>
+    </method>
+    <method methodName="Get" returnType="Object" signature="Get(INPUT:Progress.Lang.Class,INPUT:character):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Instantiates an instance of an object that matches the passed service,&#xD;
+        as determined by the bindings in a loaded module. &#xD;
+    &#xD;
+        @param Class A service represented by a Progress.Lang.Class type instance.&#xD;
+        @param character A name for the service   &#xD;
+        @return An instance of the requested service/interface    */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="16" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="17" mode="INPUT"/>
+    </method>
+    <method methodName="Get" returnType="Object" signature="Get(INPUT:Progress.Lang.Class,INPUT:character,INPUT:ICollection):Object" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="18" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="19" mode="INPUT"/>
+        <parameter name="poArguments" dataType="ICollection" position="20" mode="INPUT"/>
+    </method>
+    <method methodName="SelectBinding" returnType="IBinding" signature="SelectBinding(INPUT:Progress.Lang.Class,INPUT:character):IBinding" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Retrieve the binding to use for the service. */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="21" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="22" mode="INPUT"/>
+    </method>
+    <method methodName="Inject" signature="Inject(INPUT:Object,INPUT:ICollection)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Injects (from outside) **/</comment>
+        <parameter name="poInstance" dataType="Object" position="23" mode="INPUT"/>
+        <parameter name="poArguments" dataType="ICollection" position="24" mode="INPUT"/>
+    </method>
+    <method methodName="Release" returnType="LOGICAL" signature="Release(INPUT:Object):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poInstance" dataType="Object" position="25" mode="INPUT"/>
+    </method>
+    <method methodName="IsCached" returnType="LOGICAL" signature="IsCached(INPUT:Progress.Lang.Class,INPUT:character):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates whether a service is cached or not. &#xD;
+        &#xD;
+        @param Class A service represented by a Progress.Lang.Class type instance.&#xD;
+        @param character A name for the service&#xD;
+        @return Logical Returns true if the service is being cached ; false if not in cache.&#xD;
+                Note that a true return value doesn't mean there isn't a running instance of the service -&#xD;
+                since transient instances aren't cached - but only that there are no cached instances. */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="26" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="27" mode="INPUT"/>
+    </method>
+    <method methodName="IsCached" returnType="LOGICAL" signature="IsCached(INPUT:Progress.Lang.Class,INPUT:character,INPUT:ICollection):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates whether a service is cached or not. &#xD;
+        &#xD;
+        @param Class A service represented by a Progress.Lang.Class type instance.&#xD;
+        @param character A name for the service&#xD;
+        @param ICollection A collection of arguments to add to the bindings for the&#xD;
+                            object being instantiated.        &#xD;
+        @return Logical Returns true if the service is being cached ; false if not in cache.        &#xD;
+                Note that a true return value doesn't mean there isn't a running instance of the service -&#xD;
+                since transient instances aren't cached - but only that there are no cached instances. */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="28" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="29" mode="INPUT"/>
+        <parameter name="poArguments" dataType="ICollection" position="30" mode="INPUT"/>
+    </method>
+    <method methodName="Clear" signature="Clear(INPUT:Object)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poScope" dataType="Object" position="31" mode="INPUT"/>
+    </method>
+    <method methodName="GetBindings" returnType="IList" signature="GetBindings(INPUT:Progress.Lang.Class,INPUT:character):IList" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="32" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="33" mode="INPUT"/>
+    </method>
+    <method methodName="CreateDefaultBinding" returnType="IBinding" signature="CreateDefaultBinding(INPUT:Progress.Lang.Class):IBinding" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="34" mode="INPUT"/>
+    </method>
+    <method methodName="CreateBindingBuilder" returnType="IBindingSyntax" signature="CreateBindingBuilder(INPUT:IBinding):IBindingSyntax" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poBinding" dataType="IBinding" position="35" mode="INPUT"/>
+    </method>
+    <method methodName="CreateContext" returnType="ILifecycleContext" signature="CreateContext(INPUT:IBinding):ILifecycleContext" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poBinding" dataType="IBinding" position="36" mode="INPUT"/>
+    </method>
+    <method methodName="TypeIsSelfBindable" returnType="LOGICAL" signature="TypeIsSelfBindable(INPUT:Progress.Lang.Class):LOGICAL" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="37" mode="INPUT"/>
+    </method>
+    <property name="Settings" dataType="KernelSettings" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="Modules" dataType="IInjectionModuleCollection" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the modules that have been loaded into the kernel. **/</propertyComment>
+    </property>
+    <property name="Bindings" dataType="IMap" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/* Collection of bindings registered in this kernel  */</propertyComment>
+    </property>
+    <property name="Components" dataType="ComponentContainer" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the component container, which holds components that contribute to InjectABL. **/</propertyComment>
+    </property>
+    <property name="InvocationStack" dataType="IList" isAbstract="false" isStatic="false" extent="0" modifier="PROTECTED" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Stack of unique services (as define by their LifecycleContext) being invoked. Used to prevent&#xD;
+        circular references. */</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Binding.BindingRoot" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBindingRoot" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Binding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.BindingBuilder" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBindingSyntax" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBindingResolver" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Modules.IInjectionModule" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.ILifecycleContext" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.LifecycleContext" type="NONE"/>
+    <using name="OpenEdge.InjectABL.ICache" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.IPipeline" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.StandardScopeEnum" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IInjectionRequest" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IKernel" type="NONE"/>
+    <using name="OpenEdge.InjectABL.ComponentContainer" type="NONE"/>
+    <using name="OpenEdge.InjectABL.KernelSettings" type="NONE"/>
+    <using name="OpenEdge.Core.System.InvalidValueSpecifiedError" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ICollection" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IIterator" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IList" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.List" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IMap" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.Map" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+    <using name="OpenEdge.Core.String" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.AppError" type="NONE"/>
+    <using name="Progress.Lang.SysError" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

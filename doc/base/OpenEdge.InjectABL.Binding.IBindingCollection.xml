@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding" className="IBindingCollection" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : IBindingCollection&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Thu Mar 04 14:07:31 EST 2010&#xD;
+    Notes       : &#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="IBindingCollection()" modifier="PUBLIC"/>
+    <constructor signature="IBindingCollection(INPUT:OpenEdge.Core.Collections.IList)" modifier="PUBLIC">
+        <parameter name="list" dataType="OpenEdge.Core.Collections.IList" position="0" mode="INPUT"/>
+    </constructor>
+    <method methodName="Add" returnType="LOGICAL" signature="Add(INPUT:integer,INPUT:IBinding):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Inserts the specified element at the specified position in this list &#xD;
+       (optional operation).*/</comment>
+        <parameter name="i" dataType="INTEGER" position="1" mode="INPUT"/>
+        <parameter name="o" dataType="IBinding" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="Add" returnType="LOGICAL" signature="Add(INPUT:IBinding):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Appends the specified element to the end of this list &#xD;
+       (optional operation). */</comment>
+        <parameter name="o" dataType="IBinding" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="AddArray" returnType="LOGICAL" signature="AddArray(INPUT:IBinding[]):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Appends all the elements in the array this list, optionally&#xD;
+       at the specified position. */</comment>
+        <parameter name="c" dataType="IBinding" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="AddArray" returnType="LOGICAL" signature="AddArray(INPUT:integer,INPUT:IBinding[]):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="i" dataType="INTEGER" position="5" mode="INPUT"/>
+        <parameter name="c" dataType="IBinding" position="6" mode="INPUT"/>
+    </method>
+    <method methodName="Contains" returnType="LOGICAL" signature="Contains(INPUT:IBinding):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Returns true if this list contains the specified element. */</comment>
+        <parameter name="o" dataType="IBinding" position="7" mode="INPUT"/>
+    </method>
+    <method methodName="GetIBinding" returnType="IBinding" signature="GetIBinding(INPUT:integer):IBinding" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Returns the element at the specified position in this list. */</comment>
+        <parameter name="i" dataType="INTEGER" position="8" mode="INPUT"/>
+    </method>
+    <method methodName="IndexOf" returnType="INTEGER" signature="IndexOf(INPUT:IBinding):INTEGER" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Returns the index in this list of the first occurrence of the specified &#xD;
+      element, or 0 if this list does not contain this element.  */</comment>
+        <parameter name="o" dataType="IBinding" position="9" mode="INPUT"/>
+    </method>
+    <method methodName="LastIndexOf" returnType="INTEGER" signature="LastIndexOf(INPUT:IBinding):INTEGER" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/*  Returns the index in this list of the last occurrence of the &#xD;
+       specified element, or 0 if this list does not contain this element. */</comment>
+        <parameter name="o" dataType="IBinding" position="10" mode="INPUT"/>
+    </method>
+    <method methodName="RemoveIBinding" returnType="IBinding" signature="RemoveIBinding(INPUT:integer):IBinding" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Removes the element at the specified position in this list&#xD;
+     (optional operation). */</comment>
+        <parameter name="i" dataType="INTEGER" position="11" mode="INPUT"/>
+    </method>
+    <method methodName="Remove" returnType="LOGICAL" signature="Remove(INPUT:IBinding):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Removes the first occurrence in this list of the specified element &#xD;
+     (optional operation). */</comment>
+        <parameter name="o" dataType="IBinding" position="12" mode="INPUT"/>
+    </method>
+    <method methodName="Set" returnType="IBinding" signature="Set(INPUT:integer,INPUT:IBinding):IBinding" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Replaces the element at the specified position in this list with the &#xD;
+      specified element (optional operation). */</comment>
+        <parameter name="i" dataType="INTEGER" position="13" mode="INPUT"/>
+        <parameter name="o" dataType="IBinding" position="14" mode="INPUT"/>
+    </method>
+    <method methodName="SubListIBinding" returnType="OpenEdge.Core.Collections.IList" signature="SubListIBinding(INPUT:integer,INPUT:integer):OpenEdge.Core.Collections.IList" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Returns a view of the portion of this list between the specified &#xD;
+      fromIndex, inclusive, and toIndex, exclusive. */</comment>
+        <parameter name="fromIndex" dataType="INTEGER" position="15" mode="INPUT"/>
+        <parameter name="toIndex" dataType="INTEGER" position="16" mode="INPUT"/>
+    </method>
+    <method methodName="ToIBindingArray" returnType="IBinding" signature="ToIBindingArray():IBinding[]" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* returns the contents of the list as an array */</comment>
+    </method>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+</unit>

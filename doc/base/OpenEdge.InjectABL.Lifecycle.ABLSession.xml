@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Lifecycle" className="ABLSession" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : ABLSession&#xD;
+    Purpose     : An extension of the SESSION system handle. &#xD;
+    Syntax      : &#xD;
+    Description : ABLSession object : this object lives for the lifespan of &#xD;
+                  an AVM Session. &#xD;
+    @author pjudge&#xD;
+    Created     : Fri Jun 04 15:00:56 EDT 2010&#xD;
+    Notes       : * Store customer properties for a session in the SessionProperties &#xD;
+                    IMap property&#xD;
+                  * Discover handle- and object- references for given names&#xD;
+                  * Resolves weak references&#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="ABLSession()" modifier="PRIVATE"/>
+    <method methodName="CacheStartupProperties" signature="CacheStartupProperties()" modifier="PRIVATE" isStatic="false" isFinal="false" isAbstract="false"/>
+    <method methodName="GetFirstRunningProc" returnType="WidgetHandle" signature="GetFirstRunningProc(INPUT:character):WidgetHandle" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Returns the first running persistent procedure instance found&#xD;
+        for a given name.&#xD;
+        &#xD;
+        @param character The (relative) path name for a procedure.&#xD;
+        @return WidgetHandle The handle to that procedure, if any. Unknown value if&#xD;
+                       there's no running instance of that name. */</comment>
+        <parameter name="pcName" dataType="CHARACTER" position="0" mode="INPUT"/>
+    </method>
+    <method methodName="GetAllRunningProcs" returnType="Array" signature="GetAllRunningProcs(INPUT:character):Array" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Returns all the running persistent procedure instances found&#xD;
+        for a given name.&#xD;
+        &#xD;
+        @param character The (relative) path name for a procedure.&#xD;
+        @return Array An array of WidgetHandles to that procedure, if any.&#xD;
+                       If there's no running instance of that name, then&#xD;
+                       the array has an extent of 1 (one) which contains the &#xD;
+                       unknown value.       */</comment>
+        <parameter name="pcName" dataType="CHARACTER" position="1" mode="INPUT"/>
+    </method>
+    <method methodName="ResolveWeakReference" returnType="Object" signature="ResolveWeakReference(INPUT:integer):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Resolves a weak reference into an object instance. A weak reference is an integer&#xD;
+        representation of an object reference. This method is analogous to the WIDGET-HANDLE()&#xD;
+        function.&#xD;
+        &#xD;
+        Notes: * Based on http://msdn.microsoft.com/en-us/library/ms404247(v=VS.90).aspx&#xD;
+               * Performance of ResolveWeakReference() will probably suck.&#xD;
+               * An ABL statement &quot;OBJECT-REFERENCE(int)&quot; would entirely replace this method.    &#xD;
+        @param integer A weak reference to an object.&#xD;
+        @return Object The object instance corresponding to that reference. The unknown value/null&#xD;
+                is returned if the referecen cannot be resolved.  */</comment>
+        <parameter name="piReference" dataType="INTEGER" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="GetFirstClassInstance" returnType="Object" signature="GetFirstClassInstance(INPUT:Progress.Lang.Class):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Returns the first object instance found that is of the type given.&#xD;
+        &#xD;
+        @param Class The type. This can be a class or an interface. &#xD;
+        @return Object The reference to that type, if any. Unknown value if&#xD;
+                       there's no running instance of that name. */</comment>
+        <parameter name="poType" dataType="Progress.Lang.Class" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="GetAllInstances" returnType="Array" signature="GetAllInstances(INPUT:Progress.Lang.Class):Array" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Returns all the object instances found that are of the type given.&#xD;
+        &#xD;
+        @param Class The type. This can be a class or an interface.&#xD;
+        @return Array The reference to that type, if any. Unknown value if&#xD;
+                       there's no running instance of that name. */</comment>
+        <parameter name="poType" dataType="Progress.Lang.Class" position="4" mode="INPUT"/>
+    </method>
+    <property name="ActiveSince" dataType="DATETIME-TZ" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Information regarding session lifespan. */</propertyComment>
+    </property>
+    <property name="Id" dataType="CHARACTER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** A unique identifier for this session. The SESSION:HANDLE tends to be the&#xD;
+        same every time; this gives us the opportunity to identify this session across all time and space */</propertyComment>
+    </property>
+    <property name="SessionProperties" dataType="IMap" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** A collection of user-defined properties. These&#xD;
+        can be any key/value set of objects. */</propertyComment>
+    </property>
+    <property name="Name" dataType="CHARACTER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC">
+        <propertyComment>/** An optional session type identifier. Defaults to SESSION:CLIENT-TYPE, but we have&#xD;
+        need for more complex session identifiers ('Development' or 'ClientRuntime'), which&#xD;
+        are not limited to simple client types. */</propertyComment>
+    </property>
+    <property name="Instance" dataType="ABLSession" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IMap" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.Map" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.Array" type="NONE"/>
+    <using name="OpenEdge.Core.Session" type="NONE"/>
+    <using name="OpenEdge.Core.String" type="NONE"/>
+    <using name="OpenEdge.Core.WidgetHandle" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.ABLSession" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

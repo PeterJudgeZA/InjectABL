@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding.Conditions" className="Condition" isAbstract="false" isFinal="false" isInterface="false">
+    <interfaces>ICondition</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : Condition&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Mon Mar 08 15:22:04 EST 2010&#xD;
+    Notes       : &#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="Condition()" modifier="STATIC"/>
+    <constructor signature="Condition(INPUT:character)" modifier="PUBLIC">
+        <parameter name="pcValue" dataType="CHARACTER" position="0" mode="INPUT"/>
+    </constructor>
+    <constructor signature="Condition(INPUT:Object)" modifier="PUBLIC">
+        <parameter name="poValue" dataType="Object" position="1" mode="INPUT"/>
+    </constructor>
+    <method methodName="GetResolver" returnType="IConditionResolver" signature="GetResolver():IConditionResolver" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false"/>
+    <method methodName="Equals" returnType="LOGICAL" signature="Equals(INPUT:ICondition,INPUT:ICondition):LOGICAL" modifier="PUBLIC" isStatic="true" isFinal="false" isAbstract="false">
+        <parameter name="poCondition1" dataType="ICondition" position="2" mode="INPUT"/>
+        <parameter name="poCondition2" dataType="ICondition" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="Equals" returnType="LOGICAL" signature="Equals(INPUT:Object):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poCondition" dataType="Object" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="ToString" returnType="CHARACTER" signature="ToString():CHARACTER" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false"/>
+    <property name="ConditionResolverType" dataType="Progress.Lang.Class" isAbstract="false" isStatic="true" extent="0" modifier="PRIVATE" getModifier="PUBLIC" setModifier="PUBLIC"/>
+    <property name="Name" dataType="ICondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/* general condition types, to avoid having a SessionName and UIType etc. */</propertyComment>
+    </property>
+    <property name="Type" dataType="ICondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="And" dataType="ICondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/* Operators */</propertyComment>
+    </property>
+    <property name="Or" dataType="ICondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="When" dataType="ICondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/* Comparers */</propertyComment>
+    </property>
+    <property name="Is" dataType="ICondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="Not" dataType="ICondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.Condition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.ICondition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.IConditionResolver" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.StandardConditionResolver" type="NONE"/>
+    <using name="OpenEdge.Core.String" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

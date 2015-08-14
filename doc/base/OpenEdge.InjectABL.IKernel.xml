@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL" className="IKernel" isAbstract="false" isFinal="false" isInterface="true">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : IKernel&#xD;
+    Purpose     : InjectABL Kernel interface&#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 02 11:24:26 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <method methodName="Get" returnType="Object" signature="Get(INPUT:Progress.Lang.Class):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Instantiates an instance of an object that matches the passed service,&#xD;
+        as determined by the bindings in a loaded module. &#xD;
+    &#xD;
+        @param Class A service represented by a Progress.Lang.Class type instance.&#xD;
+        @return An instance of the requested service/interface    */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="0" mode="INPUT"/>
+    </method>
+    <method methodName="Get" returnType="Object" signature="Get(INPUT:Progress.Lang.Class,INPUT:character):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Instantiates an instance of an object that matches the passed service and&#xD;
+        name, as determined by the bindings in a loaded module. &#xD;
+        &#xD;
+        @param Class A service represented by a Progress.Lang.Class type instance.&#xD;
+        @param character A name for the service   &#xD;
+        @return An instance of the requested service/interface    */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="1" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="Get" returnType="Object" signature="Get(INPUT:Progress.Lang.Class,INPUT:ICollection):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Instantiates an instance of an object that matches the passed service,&#xD;
+        as determined by the bindings in a loaded module. &#xD;
+    &#xD;
+        @param Class A service represented by a Progress.Lang.Class type instance.&#xD;
+        @param ICollection A collection of arguments to add to the bindings for the&#xD;
+                            object being instantiated.  &#xD;
+        @return Object An instance of the requested service/interface    */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="3" mode="INPUT"/>
+        <parameter name="poArguments" dataType="ICollection" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="HasModule" returnType="LOGICAL" signature="HasModule(INPUT:character):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Determines whether a module with the specified name has been loaded in the kernel.&#xD;
+        &#xD;
+        @param character The name of the module.&#xD;
+        @return True if the specified module has been loaded. otherwise, false. */</comment>
+        <parameter name="pcName" dataType="CHARACTER" position="5" mode="INPUT"/>
+    </method>
+    <method methodName="Load" signature="Load(INPUT:IInjectionModuleCollection)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Loads module(s) into the kernel.&#xD;
+        &#xD;
+        @param IInjectionModuleCollection The modules to load. */</comment>
+        <parameter name="poModules" dataType="IInjectionModuleCollection" position="6" mode="INPUT"/>
+    </method>
+    <method methodName="Load" signature="Load(INPUT:IInjectionModule)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Loads a single module into the kernel.&#xD;
+        &#xD;
+        @param IInjectionModule The module to load. */</comment>
+        <parameter name="poModules" dataType="IInjectionModule" position="7" mode="INPUT"/>
+    </method>
+    <method methodName="Load" signature="Load(INPUT:character[])" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Loads modules from the files that match the specified pattern(s).&#xD;
+        @param character An array of file patterns (i.e. &quot;*.dll&quot;, &quot;modules/ *.rb&quot;) &#xD;
+                         to match. */</comment>
+        <parameter name="pcFilePatterns" dataType="CHARACTER" position="8" mode="INPUT"/>
+    </method>
+    <method methodName="Unload" signature="Unload(INPUT:character)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Unloads the plugin with the specified name.&#xD;
+        @param character The plugin's name. */</comment>
+        <parameter name="pcName" dataType="CHARACTER" position="9" mode="INPUT"/>
+    </method>
+    <method methodName="Inject" signature="Inject(INPUT:Object,INPUT:ICollection)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Injects the specified existing instance, without managing its lifecycle.&#xD;
+        @param Object The instance to inject.&#xD;
+        @param ICollection A collection of arguments to add to the bindings for the&#xD;
+                            object being instantiated.  */</comment>
+        <parameter name="poInstance" dataType="Object" position="10" mode="INPUT"/>
+        <parameter name="poArguments" dataType="ICollection" position="11" mode="INPUT"/>
+    </method>
+    <method methodName="Release" returnType="LOGICAL" signature="Release(INPUT:Object):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Deactivates and releases the specified instance if it is currently managed by InjectABL.&#xD;
+        &#xD;
+        @param Object The instance to release.&#xD;
+        @return logical True if the instance was found and released. otherwise false. */</comment>
+        <parameter name="poInstance" dataType="Object" position="12" mode="INPUT"/>
+    </method>
+    <method methodName="Clear" signature="Clear(INPUT:Object)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Deactivates and releases all instances scoped to the specified object.&#xD;
+    &#xD;
+        @param Object The scope object for which to release instances.  */</comment>
+        <parameter name="poScope" dataType="Object" position="13" mode="INPUT"/>
+    </method>
+    <method methodName="IsCached" returnType="LOGICAL" signature="IsCached(INPUT:Progress.Lang.Class,INPUT:character):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates whether a service is cached or not. &#xD;
+        &#xD;
+        @param Class A service represented by a Progress.Lang.Class type instance.&#xD;
+        @param character A name for the service&#xD;
+        @return Logical Returns true if the service is being cached ; false if not in cache.&#xD;
+                Note that a true return value doesn't mean there isn't a running instance of the service -&#xD;
+                since transient instances aren't cached - but only that there are no cached instances. */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="14" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="15" mode="INPUT"/>
+    </method>
+    <method methodName="IsCached" returnType="LOGICAL" signature="IsCached(INPUT:Progress.Lang.Class,INPUT:character,INPUT:ICollection):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates whether a service is cached or not. &#xD;
+        &#xD;
+        @param Class A service represented by a Progress.Lang.Class type instance.&#xD;
+        @param character A name for the service&#xD;
+        @param ICollection A collection of arguments to add to the bindings for the&#xD;
+                            object being instantiated.        &#xD;
+        @return Logical Returns true if the service is being cached ; false if not in cache.        &#xD;
+                Note that a true return value doesn't mean there isn't a running instance of the service -&#xD;
+                since transient instances aren't cached - but only that there are no cached instances. */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="16" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="17" mode="INPUT"/>
+        <parameter name="poArguments" dataType="ICollection" position="18" mode="INPUT"/>
+    </method>
+    <property name="Settings" dataType="KernelSettings" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the injection kernel settings  */</propertyComment>
+    </property>
+    <property name="Components" dataType="ComponentContainer" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the component container, which holds components that contribute to InjectABL.  */</propertyComment>
+    </property>
+    <property name="Modules" dataType="IInjectionModuleCollection" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the modules that have been loaded into the kernel.  */</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Modules.IInjectionModule" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.StandardScopeEnum" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IInjectionRequest" type="NONE"/>
+    <using name="OpenEdge.InjectABL.ComponentContainer" type="NONE"/>
+    <using name="OpenEdge.InjectABL.KernelSettings" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ICollection" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

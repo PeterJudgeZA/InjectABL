@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding.Modules" className="ModuleLoader" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : ModuleLoader&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Wed Mar 03 10:23:08 EST 2010&#xD;
+    Notes       : &#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="ModuleLoader(INPUT:IKernel)" modifier="PUBLIC">
+        <constrComment>/** Initializes a new instance of the &lt;see cref=&quot;ModuleLoader&quot;/&gt; class. &#xD;
+            &lt;param name=&quot;kernel&quot;&gt;The kernel into which modules will be loaded.&lt;/param&gt;&#xD;
+        **/</constrComment>
+        <parameter name="poKernel" dataType="IKernel" position="0" mode="INPUT"/>
+    </constructor>
+    <method methodName="LoadModules" signature="LoadModules(INPUT:character[])" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Loads any modules found in the files that match the specified patterns.&#xD;
+            &lt;param name=&quot;patterns&quot;&gt;The patterns to search.&lt;/param&gt;&#xD;
+        **/</comment>
+        <parameter name="pcPatterns" dataType="CHARACTER" position="1" mode="INPUT"/>
+    </method>
+    <property name="Kernel" dataType="IKernel" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets or sets the kernel into which modules will be loaded. **/</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Binding.Modules.IInjectionModule" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IKernel" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+</unit>

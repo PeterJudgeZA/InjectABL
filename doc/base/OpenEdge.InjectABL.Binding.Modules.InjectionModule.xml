@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding.Modules" className="InjectionModule" inherits="BindingRoot" isAbstract="true" isFinal="false" isInterface="false">
+    <interfaces>IInjectionModule</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : InjectionModule&#xD;
+    Purpose     : &#xD;
+    Syntax      :&#xD;
+    Description : A loadable unit that defines bindings for your application.&#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 02 11:08:44 EST 2010 &#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="InjectionModule()" modifier="PUBLIC"/>
+    <method methodName="OnLoad" signature="OnLoad(INPUT:IKernel)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Called when the module is loaded into a kernel.&#xD;
+        @param kernel The kernel that is loading the module.&#xD;
+      */</comment>
+        <parameter name="poKernel" dataType="IKernel" position="0" mode="INPUT"/>
+    </method>
+    <method methodName="OnUnload" signature="OnUnload(INPUT:IKernel)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Called when the module is unloaded from a kernel. &#xD;
+         &#xD;
+         @param kernel The kernel that is unloading the module.  */</comment>
+        <parameter name="poKernel" dataType="IKernel" position="1" mode="INPUT"/>
+    </method>
+    <method methodName="Load" signature="Load()" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="true">
+        <comment>/** Loads the module into the kernel.  */</comment>
+    </method>
+    <method methodName="Unload" signature="Unload()" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Unloads the module from the kernel.  */</comment>
+    </method>
+    <method methodName="AddBinding" signature="AddBinding(INPUT:IBinding)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Registers the specified binding.&#xD;
+         &#xD;
+         @param binding The binding to add. */</comment>
+        <parameter name="poBinding" dataType="IBinding" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="RemoveBinding" signature="RemoveBinding(INPUT:IBinding)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Unregisters the specified binding.&#xD;
+        @param binding The binding to remove.&#xD;
+       */</comment>
+        <parameter name="poBinding" dataType="IBinding" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="CreateBindingBuilder" returnType="IBindingSyntax" signature="CreateBindingBuilder(INPUT:IBinding):IBindingSyntax" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poBinding" dataType="IBinding" position="4" mode="INPUT"/>
+    </method>
+    <property name="Kernel" dataType="IKernel" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PROTECTED">
+        <propertyComment>/** Gets the kernel that the module is loaded into.  */</propertyComment>
+    </property>
+    <property name="Name" dataType="CHARACTER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the module's name. Only a single module with a given name can be loaded at one time.  */</propertyComment>
+    </property>
+    <property name="Bindings" dataType="IMap" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBindingRoot" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.BindingRoot" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Binding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.BindingBuilder" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBindingSyntax" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Modules.IInjectionModule" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IKernel" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IMap" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.Map" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IList" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.List" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IIterator" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+</unit>

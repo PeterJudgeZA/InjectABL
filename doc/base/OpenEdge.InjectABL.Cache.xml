@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL" className="Cache" isAbstract="false" isFinal="false" isInterface="false">
+    <interfaces>ICache</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : Cache&#xD;
+    Purpose     : Tracks instances for re-use in certain scopes. &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @Author   : pjudge&#xD;
+    Created     : Thu Mar 04 17:08:02 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="Cache(INPUT:IPipeline,INPUT:integer,INPUT:DateTimeAddIntervalEnum)" modifier="PUBLIC">
+        <parameter name="poPipeline" dataType="IPipeline" position="0" mode="INPUT"/>
+        <parameter name="piLifespan" dataType="INTEGER" position="1" mode="INPUT"/>
+        <parameter name="poLifespanUnit" dataType="DateTimeAddIntervalEnum" position="2" mode="INPUT"/>
+    </constructor>
+    <method methodName="Remember" signature="Remember(INPUT:ILifecycleContext,INPUT:Object)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Stores the specified context in the cache.&#xD;
+        &#xD;
+        @param context The context to store.&#xD;
+        @param reference The instance reference.    */</comment>
+        <parameter name="poContext" dataType="ILifecycleContext" position="3" mode="INPUT"/>
+        <parameter name="poInstance" dataType="Object" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="TryGet" returnType="Object" signature="TryGet(INPUT:ILifecycleContext):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Tries to retrieve an instance to re-use in the specified context.&#xD;
+    &#xD;
+        @param ILifecycleContext The context that is being activated.&#xD;
+        @return Object The instance for re-use, or unknown if none has been stored. */</comment>
+        <parameter name="poContext" dataType="ILifecycleContext" position="5" mode="INPUT"/>
+    </method>
+    <method methodName="TryGetContext" returnType="ILifecycleContext" signature="TryGetContext(INPUT:Object):ILifecycleContext" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Tries to find an ILifecycleContext object for a running instance.&#xD;
+        &#xD;
+        @param Object The running instance on which to check.&#xD;
+        @return ILifecycleContext The lifecycle context for the running object, if available */</comment>
+        <parameter name="poInstance" dataType="Object" position="6" mode="INPUT"/>
+    </method>
+    <method methodName="Release" returnType="LOGICAL" signature="Release(INPUT:Object):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Deactivates and releases the specified instance from the cache.&#xD;
+    &#xD;
+        @param Object The instance to release.&#xD;
+        @return logical True if the instance was found and released; otherwise false. */</comment>
+        <parameter name="poInstance" dataType="Object" position="7" mode="INPUT"/>
+    </method>
+    <method methodName="Prune" signature="Prune()" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Removes instances from the cache which should no longer be re-used. */</comment>
+    </method>
+    <method methodName="Clear" signature="Clear(INPUT:Object)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Immediately deactivates and removes all instances in the cache that are owned by&#xD;
+        the specified scope.&#xD;
+        @param scope The scope whose instances should be deactivated.&#xD;
+     */</comment>
+        <parameter name="poScope" dataType="Object" position="8" mode="INPUT"/>
+    </method>
+    <method methodName="Clear" signature="Clear()" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Immediately deactivates and removes all instances in the cache, regardless of scope. */</comment>
+    </method>
+    <method methodName="ForgetAllWhere" signature="ForgetAllWhere(INPUT:character)" modifier="PRIVATE" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcClause" dataType="CHARACTER" position="9" mode="INPUT"/>
+    </method>
+    <method methodName="Forget" returnType="LOGICAL" signature="Forget(INPUT:buffer):LOGICAL" modifier="PRIVATE" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pbCache" dataType="buffer" position="10" mode="INPUT"/>
+    </method>
+    <method methodName="Forget" returnType="LOGICAL" signature="Forget(INPUT:Object):LOGICAL" modifier="PRIVATE" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poInstance" dataType="Object" position="11" mode="INPUT"/>
+    </method>
+    <property name="Pipeline" dataType="IPipeline" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the activation pipeline in use for this kernel */</propertyComment>
+    </property>
+    <property name="Count" dataType="INTEGER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the number of entries currently stored in the cache. */</propertyComment>
+    </property>
+    <property name="PruningInterval" dataType="INTEGER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC"/>
+    <property name="PruningUnit" dataType="DateTimeAddIntervalEnum" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC"/>
+    <using name="OpenEdge.InjectABL.ICache" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.ILifecycleContext" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.IPipeline" type="NONE"/>
+    <using name="OpenEdge.Core.DateTimeAddIntervalEnum" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

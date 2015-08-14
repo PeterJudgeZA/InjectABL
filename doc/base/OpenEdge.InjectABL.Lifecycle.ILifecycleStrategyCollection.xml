@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Lifecycle" className="ILifecycleStrategyCollection" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : ILifecycleStrategyCollection&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Thu Mar 04 14:07:31 EST 2010&#xD;
+    Notes       : &#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="ILifecycleStrategyCollection()" modifier="PUBLIC"/>
+    <constructor signature="ILifecycleStrategyCollection(INPUT:OpenEdge.Core.Collections.ICollection)" modifier="PUBLIC">
+        <parameter name="poCollection" dataType="OpenEdge.Core.Collections.ICollection" position="0" mode="INPUT"/>
+    </constructor>
+    <method methodName="Add" returnType="LOGICAL" signature="Add(INPUT:ILifecycleStrategy):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Add an object to the collection.&#xD;
+    &#xD;
+        @param {&amp;ValueType} The object to add to the collection&#xD;
+        @return logical True if the operation succeeded.     */</comment>
+        <parameter name="newObject" dataType="ILifecycleStrategy" position="1" mode="INPUT"/>
+    </method>
+    <method methodName="AddArray" returnType="LOGICAL" signature="AddArray(INPUT:ILifecycleStrategy[]):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Add an array of objects to the collection.&#xD;
+    &#xD;
+        @param {&amp;CollectionType}[] The array to add to the collection&#xD;
+        @return logical True if the operation succeeded.     */</comment>
+        <parameter name="poArray" dataType="ILifecycleStrategy" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="Remove" returnType="LOGICAL" signature="Remove(INPUT:ILifecycleStrategy):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Remove an object from the collection.&#xD;
+    &#xD;
+        @param {&amp;ValueType} The object to remove from the collection&#xD;
+        @return logical True if the operation succeeded.     */</comment>
+        <parameter name="oldObject" dataType="ILifecycleStrategy" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="Contains" returnType="LOGICAL" signature="Contains(INPUT:ILifecycleStrategy):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Determine whether an object is in the collection.&#xD;
+        &#xD;
+        @param {&amp;ValueType} The object to check in the collection&#xD;
+        @return logical True if the operation succeeded.     */</comment>
+        <parameter name="checkObject" dataType="ILifecycleStrategy" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="ToILifecycleStrategyArray" returnType="ILifecycleStrategy" signature="ToILifecycleStrategyArray():ILifecycleStrategy[]" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Returns the elements in this collection as an ABL array.&#xD;
+       &#xD;
+       @return {&amp;ValueType}[]  An ABL array of the objects in this collection */</comment>
+    </method>
+    <using name="OpenEdge.InjectABL.Lifecycle.ILifecycleStrategy" type="NONE"/>
+</unit>

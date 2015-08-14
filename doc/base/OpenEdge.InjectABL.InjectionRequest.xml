@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL" className="InjectionRequest" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : InjectionRequest&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Mon Apr 19 14:39:18 EDT 2010&#xD;
+    Notes       : &#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="InjectionRequest(INPUT:Progress.Lang.Class,INPUT:character)" modifier="PUBLIC">
+        <constrComment>/** (optional) Gets the parameters that were passed to manipulate the activation process. &#xD;
+    define public property Parameters as IParameter extent no-undo get. set.&#xD;
+    */</constrComment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="0" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="1" mode="INPUT"/>
+    </constructor>
+    <property name="ServiceType" dataType="Progress.Lang.Class" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="Name" dataType="CHARACTER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+</unit>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Lifecycle" className="AgentConnection" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : AgentConnection&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : AgentConnection object : this object lives for the lifespan of &#xD;
+                  an AppServer connection (stateless AppServer).&#xD;
+    @author pjudge&#xD;
+    Created     : Fri Jun 04 15:00:56 EDT 2010&#xD;
+    Notes       : * The instance's lifespan is managed by as AppServer connect/disconnect&#xD;
+                    procedures.&#xD;
+                  * Note that this is meaninless for StateFree AppServers.&#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="AgentConnection()" modifier="PRIVATE"/>
+    <property name="ActiveSince" dataType="DATETIME-TZ" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Information regarding connection lifespan. */</propertyComment>
+    </property>
+    <property name="Id" dataType="CHARACTER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** A unique identifier for this connection. */</propertyComment>
+    </property>
+    <property name="ConnectionProperties" dataType="IMap" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/* A collection of user-defined properties */</propertyComment>
+    </property>
+    <property name="Instance" dataType="AgentConnection" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.AgentConnection" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IMap" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.Map" type="NONE"/>
+</unit>

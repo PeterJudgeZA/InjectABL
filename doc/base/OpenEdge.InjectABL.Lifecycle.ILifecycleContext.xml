@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Lifecycle" className="ILifecycleContext" isAbstract="false" isFinal="false" isInterface="true">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : ILifecycleContext&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : Contains information about the activation of a single instance.&#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 02 11:45:31 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <method methodName="GetProvider" returnType="IProvider" signature="GetProvider():IProvider" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Gets the provider that should be used to create the instance for this context.&#xD;
+        &#xD;
+        @return IProvider The provider that should be used. */</comment>
+    </method>
+    <method methodName="GetScope" returnType="Object" signature="GetScope():Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Gets the scope for the context that &quot;owns&quot; the instance activated therein.&#xD;
+        @return Object The object that acts as the scope. */</comment>
+    </method>
+    <method methodName="Resolve" returnType="Object" signature="Resolve():Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Resolves this instance for this context.&#xD;
+        The resolved instance. */</comment>
+    </method>
+    <property name="Kernel" dataType="IKernel" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the kernel that is driving the activation. */</propertyComment>
+    </property>
+    <property name="Binding" dataType="IBinding" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the binding. */</propertyComment>
+    </property>
+    <property name="Arguments" dataType="ICollection" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the arguments for the constructor/methods/etc that were passed to manipulate the activation process. */</propertyComment>
+    </property>
+    <property name="Pipeline" dataType="IPipeline" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets or sets the pipeline component. */</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.IPipeline" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.IProvider" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IKernel" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ICollection" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

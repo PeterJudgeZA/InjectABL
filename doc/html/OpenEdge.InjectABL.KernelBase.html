@@ -1,0 +1,3513 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+    <HEAD>
+        <meta http-equiv="expires" content="86400">
+        <TITLE>OpenEdge InjectABL Library, version 1.0.11</TITLE>
+        <link rel="stylesheet" type="text/css" href="resources/stylesheet.css" title="Style">
+        <SCRIPT src="resources/jquery.js"></SCRIPT>
+        <SCRIPT src="resources/functions.js"></SCRIPT>
+        <SCRIPT src="resources/frameload.js"></SCRIPT>
+        <!-- Browser Switch -->
+        <!--[if lt IE 8]>
+            <!-- Smaller than IE 8 -->
+            <style type="text/css">
+                .HeightFixIE { 
+                    height: 23px !important;
+                }
+            </style>
+        <![endif]-->
+        <!--[if IE 8]>
+            <!-- Equal IE 8 -->
+            <style type="text/css">
+                .HeightFixIE { 
+                    height: 20px !important;
+                }
+            </style>
+        <![endif]-->
+    </HEAD>
+<BODY onload="onLoad()">
+    <table class="header_table">
+        <tbody>
+        <tr>
+            <td>
+            	<div class="unit_header">
+            	    <table border="0">
+            	       <tbody>
+                	        <tr>
+                	            <td>
+                	                <span class="span_namespace">Namespace:</span>   
+                	            </td>
+                	            <td>
+                	                <span class="span_packagename"><a href="OpenEdge.InjectABL.package.html">OpenEdge.InjectABL<a></span>
+                	            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_pagetype">Class&nbsp;</span>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <span class="span_classname">KernelBase</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_parentclass">Parent classes:</span>   
+                                </td>
+                                <td class="span_parentclass">
+                                    <div class='parentclasses'><div style='padding-left:0em; height:12px' class='parentclassesitem'>                                                            <table style='border-spacing:0px'>                                                                <tr>                                                                    <td>                                                                    Progress.Lang.Object                                                                    </td>                                                                </tr>                                                            </table>                                                       </div><div style='padding-left:1em; height:16px' class='parentclassesitem'>                                                            <table>                                                                <tr>                                                                    <td>                                                                        <div class='parentclassnode'></div>                                                                    </td>                                                                    <td>                                                                    <a href='OpenEdge.InjectABL.Binding.BindingRoot.html'>OpenEdge.InjectABL.Binding.BindingRoot</a>                                                                    </td>                                                                </tr>                                                            </table>                                                       </div><div style='padding-left:3em; height:16px' class='parentclassesitem'>                                                                <table>                                                                    <tr>                                                                        <td>                                                                            <div class='parentclassnode'></div>                                                                        </td>                                                                        <td>                                                                        <a href='OpenEdge.InjectABL.KernelBase.html'>OpenEdge.InjectABL.KernelBase</a>                                                                        </td>                                                                    </tr>                                                                </table>                                                           </div></div><br>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <span class="span_inherits">Inherits:</span>
+                                </td>
+                                <td class="unit_inherits">
+                                    <span class="span_inherits"><a href='OpenEdge.InjectABL.Binding.BindingRoot.html'>OpenEdge.InjectABL.Binding.BindingRoot</a></span>
+                                </td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td>
+                                    <span class="span_implements">Implements:</span> 
+                                </td>
+                                <td class="unit_interface">
+                                    <span class="span_implements"> <a href='OpenEdge.InjectABL.IKernel.html'>OpenEdge.InjectABL.IKernel</a></span> 
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <span class="span_inherits"></span>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_inherits"></span>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                	<br>
+                	<span class="unit_comment">
+                	<table><tbody class='unit_commment_table'><td class='unitcommentparam'></td><td class='unitcommentdesc'>Purpose: **************************************************************************** </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Copyright 2012 Progress Software Corporation </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Licensed under the Apache License, Version 2.0 (the "License"); </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>you may not use this file except in compliance with the License. </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>You may obtain a copy of the License at </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'><a href='http://www.apache.org/licenses/LICENSE-2.0' target='_blank'>http://www.apache.org/licenses/LICENSE-2.0</a> </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Unless required by applicable law or agreed to in writing, software </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>distributed under the License is distributed on an "AS IS" BASIS, </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>See the License for the specific language governing permissions and </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>limitations under the License. </td></tr><tr><td class='unitcommentparam'>File:</td><td class='unitcommentdesc'>StandardKernel </td></tr><tr><td class='unitcommentparam'>Purpose:</td><td class='unitcommentdesc'>Standard/default InjectABL dependency injection kernel. </td></tr><tr><td class='unitcommentparam'>Author(s):</td><td class='unitcommentdesc'>pjudge </td></tr><tr><td class='unitcommentparam'>Created:</td><td class='unitcommentdesc'>Tue Mar 02 12:56:53 EST 2010 </td></tr></tbody></table>
+                	</span>
+                	<br>
+                </div>
+            </td>
+            <td>
+                <div class="container_logo_google">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    
+    <br>
+    <br>
+    <div class="TableHeadingColor">
+        <span id="method_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Method Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary method_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010ewluuiHqGwqy/1uB+OAGkA=='> AddBinding (IBinding)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i> Overrides <a href='OpenEdge.InjectABL.Binding.BindingRoot.html#AddBinding (IBinding)'>OpenEdge.InjectABL.Binding.BindingRoot:AddBinding (IBinding)</a> </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010xobuJgXuvNhTTiPe0fXjAA=='> AddComponents ()</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.IBindingSyntax <a href='#020010jvWOI4f/WGszFUUYVmR3vQ=='> Bind (Class)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Declares a binding from the service to itself.
+@param Class The service to bind. */ <br> <i> Inherited from <a href='OpenEdge.InjectABL.Binding.BindingRoot.html'>OpenEdge.InjectABL.Binding.BindingRoot</a> </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010eCeyUH3YLGDOs4vUR/CiMg=='> Clear (Object)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.IBindingSyntax <a href='#020010X8D6qSO4ZTWaQ4EnV10wwA=='> CreateBindingBuilder (IBinding)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i> Overrides <a href='OpenEdge.InjectABL.Binding.BindingRoot.html#CreateBindingBuilder (IBinding)'>OpenEdge.InjectABL.Binding.BindingRoot:CreateBindingBuilder (IBinding)</a> </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Lifecycle.ILifecycleContext <a href='#020010YYieSSfEXmcoCptApe8CPg=='> CreateContext (IBinding)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.IBinding <a href='#0200105HDZ05vIYOvWduAadlZsxQ=='> CreateDefaultBinding (Class)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         Progress.Lang.Object <a href='#020010vCLq4LawEhKIW8PNS7bC1g=='> Get (Class)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         Progress.Lang.Object <a href='#0200106ns5VHJ8Vja7AP8r2Xqn3A=='> Get (Class, character)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Instantiates an instance of an object that matches the passed service,
+as determined by the bindings in a loaded module.
+
+@param Class A service represented by a Progress.Lang.Class type instance.
+@param character A name for the service
+@return An instance of the requested service/interface    */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         Progress.Lang.Object <a href='#020010wZLR9R0OUh0A3vJpoP/hCg=='> Get (Class, character, ICollection)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         Progress.Lang.Object <a href='#020010qkMyi75yevzhDk1290Tg8A=='> Get (Class, ICollection)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.Core.Collections.IList <a href='#020010XEWSNmeAeIbWz7ZJYjzpWQ=='> GetBindings (Class, character)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         LOGICAL <a href='#020010vcTLd1vCiUn/sejookv/yw=='> HasModule (character)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010L2A8qABxLJ6OqSSYOpcGbw=='> Inject (Object, ICollection)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Injects (from outside) **/ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         LOGICAL <a href='#020010G+0f7tkLloekWwL34jptOg=='> IsCached (Class, character)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Indicates whether a service is cached or not.
+
+@param Class A service represented by a Progress.Lang.Class type instance.
+@param character A name for the service
+@return Logical Returns true if the service is being cached ; false if not in cache.
+Note that a true return value doesn't mean there isn't a running instance of the service -
+since transient instances aren't cached - but only that there are no cached instances. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         LOGICAL <a href='#020010J/dHinIlc21QkDVsRhz4kA=='> IsCached (Class, character, ICollection)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Indicates whether a service is cached or not.
+
+@param Class A service represented by a Progress.Lang.Class type instance.
+@param character A name for the service
+@param ICollection A collection of arguments to add to the bindings for the
+object being instantiated.
+@return Logical Returns true if the service is being cached ; false if not in cache.
+Note that a true return value doesn't mean there isn't a running instance of the service -
+since transient instances aren't cached - but only that there are no cached instances. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010PrDKNz1A4reQLRM8IMaHqg=='> Load (character)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Loads IInjectionModules from files matching the pattern.
+
+@param character A file pattern */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010aATcsd16wC8cFQge8QYjEA=='> Load (character[])</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Loads IInjectionModules from files matching the pattern.
+
+@param character[] An array of file patterns */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#0200107l/miJrjJiK4bJWEljPL3Q=='> Load (IInjectionModule)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#0200109EyGo79vQ66q+X8xK0DaQA=='> Load (IInjectionModuleCollection)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.IBindingSyntax <a href='#0200102u+7Ol8nChR3rg6fNp0pgg=='> Rebind (Class)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Removes any existing bindings for the specified service, and declares a new one.
+
+@param Class The service to re-bind. **/ <br> <i> Inherited from <a href='OpenEdge.InjectABL.Binding.BindingRoot.html'>OpenEdge.InjectABL.Binding.BindingRoot</a> </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         LOGICAL <a href='#0200103fe9mQMFG+FK7kzg4XoVWA=='> Release (Object)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010OOlB99pqQkhi3zQ7kPbqiA=='> RemoveBinding (IBinding)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Unregisters the specified binding.
+
+@param Ibinding The binding to remove. */ <br> <i> Overrides <a href='OpenEdge.InjectABL.Binding.BindingRoot.html#RemoveBinding (IBinding)'>OpenEdge.InjectABL.Binding.BindingRoot:RemoveBinding (IBinding)</a> </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.IBinding <a href='#0200100RzzvDDQvRLbPG6eQ43sVg=='> SelectBinding (Class, character)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Retrieve the binding to use for the service. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         LOGICAL <a href='#020010cQKyCcXepgd2E51t5P0mkQ=='> TypeIsSelfBindable (Class)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010fxuEFbQbksvhxIIObEXnuQ=='> Unbind (Class)</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Unregisters all bindings for the specified service.
+
+@param Class The service to unbind. */ <br> <i> Inherited from <a href='OpenEdge.InjectABL.Binding.BindingRoot.html'>OpenEdge.InjectABL.Binding.BindingRoot</a> </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010u8yozfkk3NnRV+chNmm3tw=='> Unload (character)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    
+    <br>
+    <div class="TableHeadingColor">
+        <span id="constructor_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Constructor Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary constructor_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010BIdaZFUWPm92NvIQq5oc7Q=='> KernelBase ()</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010KKgIhq2il1GZ7OuwuN4JsQ=='> KernelBase (ComponentContainer, IInjectionModuleCollection, KernelSettings)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010DxAFx3sdgtKWC8jLikcpJw=='> KernelBase (IInjectionModuleCollection)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    <!--
+    <br>
+    <div class="TableHeadingColor">
+        <span id="event_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Event Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary event_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+                
+        </tbody>
+    </table>
+    -->
+    
+    <br>
+    <div class="TableHeadingColor">
+        <span id="property_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Property Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary property_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.Core.Collections.IMap <a href='#020010cFyVnHko1FN5WEhLMAs16Q=='> Bindings</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/* Collection of bindings registered in this kernel  */ <br> <i> Overrides <a href='OpenEdge.InjectABL.Binding.BindingRoot.html#Bindings'>OpenEdge.InjectABL.Binding.BindingRoot:Bindings</a> </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.ComponentContainer <a href='#020010KgIFuU3ngqJBd0O4CY0GAA=='> Components</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Gets the component container, which holds components that contribute to InjectABL. **/ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>#</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.Core.Collections.IList <a href='#0200101LOkGPbdyCmoQ5B8E1IxmA=='> InvocationStack</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Stack of unique services (as define by their LifecycleContext) being invoked. Used to prevent
+circular references. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection <a href='#020010SZnEXPRpbkWSzE4uvVXKaA=='> Modules</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/** Gets the modules that have been loaded into the kernel. **/ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.KernelSettings <a href='#020010+A3sKvYkWYERnvRLbWnwwg=='> Settings</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    <br>
+    <br>
+    
+    <div class="TableHeadingColor cell">
+        <span id="method_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Method Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details method_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010ewluuiHqGwqy/1uB+OAGkA==" href="#Top">Top</a>
+                <a name="  <a href='#020010ewluuiHqGwqy/1uB+OAGkA=='> AddBinding (IBinding)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010ewluuiHqGwqy/1uB+OAGkA=='> AddBinding (IBinding)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i> Overrides <a href='OpenEdge.InjectABL.Binding.BindingRoot.html#AddBinding (IBinding)'>OpenEdge.InjectABL.Binding.BindingRoot:AddBinding (IBinding)</a> </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poBinding</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010xobuJgXuvNhTTiPe0fXjAA==" href="#Top">Top</a>
+                <a name="  <a href='#020010xobuJgXuvNhTTiPe0fXjAA=='> AddComponents ()</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED  <a href='#020010xobuJgXuvNhTTiPe0fXjAA=='> AddComponents ()</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010jvWOI4f/WGszFUUYVmR3vQ==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> <a href='#020010jvWOI4f/WGszFUUYVmR3vQ=='> Bind (Class)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> <a href='#020010jvWOI4f/WGszFUUYVmR3vQ=='> Bind (Class)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i> Inherited from <a href='OpenEdge.InjectABL.Binding.BindingRoot.html'>OpenEdge.InjectABL.Binding.BindingRoot</a> </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Declares a binding from the service to itself. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010eCeyUH3YLGDOs4vUR/CiMg==" href="#Top">Top</a>
+                <a name="  <a href='#020010eCeyUH3YLGDOs4vUR/CiMg=='> Clear (Object)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010eCeyUH3YLGDOs4vUR/CiMg=='> Clear (Object)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poScope</i>
+    </td>
+    <td>
+       Progress.Lang.Object
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010X8D6qSO4ZTWaQ4EnV10wwA==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> <a href='#020010X8D6qSO4ZTWaQ4EnV10wwA=='> CreateBindingBuilder (IBinding)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> <a href='#020010X8D6qSO4ZTWaQ4EnV10wwA=='> CreateBindingBuilder (IBinding)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i> Overrides <a href='OpenEdge.InjectABL.Binding.BindingRoot.html#CreateBindingBuilder (IBinding)'>OpenEdge.InjectABL.Binding.BindingRoot:CreateBindingBuilder (IBinding)</a> </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poBinding</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010YYieSSfEXmcoCptApe8CPg==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Lifecycle.ILifecycleContext.html'>OpenEdge.InjectABL.Lifecycle.ILifecycleContext</a> <a href='#020010YYieSSfEXmcoCptApe8CPg=='> CreateContext (IBinding)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED <a href='OpenEdge.InjectABL.Lifecycle.ILifecycleContext.html'>OpenEdge.InjectABL.Lifecycle.ILifecycleContext</a> <a href='#020010YYieSSfEXmcoCptApe8CPg=='> CreateContext (IBinding)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poBinding</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Lifecycle.ILifecycleContext.html'>OpenEdge.InjectABL.Lifecycle.ILifecycleContext</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200105HDZ05vIYOvWduAadlZsxQ==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a> <a href='#0200105HDZ05vIYOvWduAadlZsxQ=='> CreateDefaultBinding (Class)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a> <a href='#0200105HDZ05vIYOvWduAadlZsxQ=='> CreateDefaultBinding (Class)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010vCLq4LawEhKIW8PNS7bC1g==" href="#Top">Top</a>
+                <a name=" Progress.Lang.Object <a href='#020010vCLq4LawEhKIW8PNS7bC1g=='> Get (Class)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC Progress.Lang.Object <a href='#020010vCLq4LawEhKIW8PNS7bC1g=='> Get (Class)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      Progress.Lang.Object 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200106ns5VHJ8Vja7AP8r2Xqn3A==" href="#Top">Top</a>
+                <a name=" Progress.Lang.Object <a href='#0200106ns5VHJ8Vja7AP8r2Xqn3A=='> Get (Class, character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC Progress.Lang.Object <a href='#0200106ns5VHJ8Vja7AP8r2Xqn3A=='> Get (Class, character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Instantiates an instance of an object that matches the passed service, </td></tr><td class='paramname'></td><td class='paramdesc'>as determined by the bindings in a loaded module. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      Progress.Lang.Object 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        An instance of the requested service/interface
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010wZLR9R0OUh0A3vJpoP/hCg==" href="#Top">Top</a>
+                <a name=" Progress.Lang.Object <a href='#020010wZLR9R0OUh0A3vJpoP/hCg=='> Get (Class, character, ICollection)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED Progress.Lang.Object <a href='#020010wZLR9R0OUh0A3vJpoP/hCg=='> Get (Class, character, ICollection)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>poArguments</i>
+    </td>
+    <td>
+       OpenEdge.Core.Collections.ICollection
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      Progress.Lang.Object 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010qkMyi75yevzhDk1290Tg8A==" href="#Top">Top</a>
+                <a name=" Progress.Lang.Object <a href='#020010qkMyi75yevzhDk1290Tg8A=='> Get (Class, ICollection)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC Progress.Lang.Object <a href='#020010qkMyi75yevzhDk1290Tg8A=='> Get (Class, ICollection)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>poArguments</i>
+    </td>
+    <td>
+       OpenEdge.Core.Collections.ICollection
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      Progress.Lang.Object 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010XEWSNmeAeIbWz7ZJYjzpWQ==" href="#Top">Top</a>
+                <a name=" OpenEdge.Core.Collections.IList <a href='#020010XEWSNmeAeIbWz7ZJYjzpWQ=='> GetBindings (Class, character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED OpenEdge.Core.Collections.IList <a href='#020010XEWSNmeAeIbWz7ZJYjzpWQ=='> GetBindings (Class, character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      OpenEdge.Core.Collections.IList 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010vcTLd1vCiUn/sejookv/yw==" href="#Top">Top</a>
+                <a name=" LOGICAL <a href='#020010vcTLd1vCiUn/sejookv/yw=='> HasModule (character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC LOGICAL <a href='#020010vcTLd1vCiUn/sejookv/yw=='> HasModule (character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      LOGICAL 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010L2A8qABxLJ6OqSSYOpcGbw==" href="#Top">Top</a>
+                <a name="  <a href='#020010L2A8qABxLJ6OqSSYOpcGbw=='> Inject (Object, ICollection)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010L2A8qABxLJ6OqSSYOpcGbw=='> Inject (Object, ICollection)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Injects (from outside) </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poInstance</i>
+    </td>
+    <td>
+       Progress.Lang.Object
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>poArguments</i>
+    </td>
+    <td>
+       OpenEdge.Core.Collections.ICollection
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010G+0f7tkLloekWwL34jptOg==" href="#Top">Top</a>
+                <a name=" LOGICAL <a href='#020010G+0f7tkLloekWwL34jptOg=='> IsCached (Class, character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC LOGICAL <a href='#020010G+0f7tkLloekWwL34jptOg=='> IsCached (Class, character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Indicates whether a service is cached or not. </td></tr><td class='paramname'></td><td class='paramdesc'>Note that a true return value doesn't mean there isn't a running instance of the service - </td></tr><td class='paramname'></td><td class='paramdesc'>since transient instances aren't cached - but only that there are no cached instances. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      LOGICAL 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        Logical Returns true if the service is being cached ; false if not in cache.
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010J/dHinIlc21QkDVsRhz4kA==" href="#Top">Top</a>
+                <a name=" LOGICAL <a href='#020010J/dHinIlc21QkDVsRhz4kA=='> IsCached (Class, character, ICollection)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC LOGICAL <a href='#020010J/dHinIlc21QkDVsRhz4kA=='> IsCached (Class, character, ICollection)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Indicates whether a service is cached or not. </td></tr><td class='paramname'></td><td class='paramdesc'>object being instantiated. </td></tr><td class='paramname'></td><td class='paramdesc'>Note that a true return value doesn't mean there isn't a running instance of the service - </td></tr><td class='paramname'></td><td class='paramdesc'>since transient instances aren't cached - but only that there are no cached instances. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>poArguments</i>
+    </td>
+    <td>
+       OpenEdge.Core.Collections.ICollection
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      LOGICAL 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        Logical Returns true if the service is being cached ; false if not in cache.
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010PrDKNz1A4reQLRM8IMaHqg==" href="#Top">Top</a>
+                <a name="  <a href='#020010PrDKNz1A4reQLRM8IMaHqg=='> Load (character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED  <a href='#020010PrDKNz1A4reQLRM8IMaHqg=='> Load (character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Loads IInjectionModules from files matching the pattern. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>pcFilePattern</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010aATcsd16wC8cFQge8QYjEA==" href="#Top">Top</a>
+                <a name="  <a href='#020010aATcsd16wC8cFQge8QYjEA=='> Load (character[])</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010aATcsd16wC8cFQge8QYjEA=='> Load (character[])</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Loads IInjectionModules from files matching the pattern. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>pcFilePatterns</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200107l/miJrjJiK4bJWEljPL3Q==" href="#Top">Top</a>
+                <a name="  <a href='#0200107l/miJrjJiK4bJWEljPL3Q=='> Load (IInjectionModule)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#0200107l/miJrjJiK4bJWEljPL3Q=='> Load (IInjectionModule)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poModule</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.Modules.IInjectionModule.html'>OpenEdge.InjectABL.Binding.Modules.IInjectionModule</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200109EyGo79vQ66q+X8xK0DaQA==" href="#Top">Top</a>
+                <a name="  <a href='#0200109EyGo79vQ66q+X8xK0DaQA=='> Load (IInjectionModuleCollection)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#0200109EyGo79vQ66q+X8xK0DaQA=='> Load (IInjectionModuleCollection)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poModules</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection.html'>OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200102u+7Ol8nChR3rg6fNp0pgg==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> <a href='#0200102u+7Ol8nChR3rg6fNp0pgg=='> Rebind (Class)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> <a href='#0200102u+7Ol8nChR3rg6fNp0pgg=='> Rebind (Class)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i> Inherited from <a href='OpenEdge.InjectABL.Binding.BindingRoot.html'>OpenEdge.InjectABL.Binding.BindingRoot</a> </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Removes any existing bindings for the specified service, and declares a new one. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.IBindingSyntax.html'>OpenEdge.InjectABL.Binding.IBindingSyntax</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200103fe9mQMFG+FK7kzg4XoVWA==" href="#Top">Top</a>
+                <a name=" LOGICAL <a href='#0200103fe9mQMFG+FK7kzg4XoVWA=='> Release (Object)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC LOGICAL <a href='#0200103fe9mQMFG+FK7kzg4XoVWA=='> Release (Object)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poInstance</i>
+    </td>
+    <td>
+       Progress.Lang.Object
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      LOGICAL 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010OOlB99pqQkhi3zQ7kPbqiA==" href="#Top">Top</a>
+                <a name="  <a href='#020010OOlB99pqQkhi3zQ7kPbqiA=='> RemoveBinding (IBinding)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010OOlB99pqQkhi3zQ7kPbqiA=='> RemoveBinding (IBinding)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i> Overrides <a href='OpenEdge.InjectABL.Binding.BindingRoot.html#RemoveBinding (IBinding)'>OpenEdge.InjectABL.Binding.BindingRoot:RemoveBinding (IBinding)</a> </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Unregisters the specified binding. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poBinding</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200100RzzvDDQvRLbPG6eQ43sVg==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a> <a href='#0200100RzzvDDQvRLbPG6eQ43sVg=='> SelectBinding (Class, character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a> <a href='#0200100RzzvDDQvRLbPG6eQ43sVg=='> SelectBinding (Class, character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Retrieve the binding to use for the service. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.IBinding.html'>OpenEdge.InjectABL.Binding.IBinding</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010cQKyCcXepgd2E51t5P0mkQ==" href="#Top">Top</a>
+                <a name=" LOGICAL <a href='#020010cQKyCcXepgd2E51t5P0mkQ=='> TypeIsSelfBindable (Class)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED LOGICAL <a href='#020010cQKyCcXepgd2E51t5P0mkQ=='> TypeIsSelfBindable (Class)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      LOGICAL 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010fxuEFbQbksvhxIIObEXnuQ==" href="#Top">Top</a>
+                <a name="  <a href='#020010fxuEFbQbksvhxIIObEXnuQ=='> Unbind (Class)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010fxuEFbQbksvhxIIObEXnuQ=='> Unbind (Class)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i> Inherited from <a href='OpenEdge.InjectABL.Binding.BindingRoot.html'>OpenEdge.InjectABL.Binding.BindingRoot</a> </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Unregisters all bindings for the specified service. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poService</i>
+    </td>
+    <td>
+       Progress.Lang.Class
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010u8yozfkk3NnRV+chNmm3tw==" href="#Top">Top</a>
+                <a name="  <a href='#020010u8yozfkk3NnRV+chNmm3tw=='> Unload (character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010u8yozfkk3NnRV+chNmm3tw=='> Unload (character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>pcName</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    
+    <div class="TableHeadingColor cell">
+        <span id="constructor_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Constructor Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details constructor_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010BIdaZFUWPm92NvIQq5oc7Q==" href="#Top">Top</a>
+                <a name="  <a href='#020010BIdaZFUWPm92NvIQq5oc7Q=='> KernelBase ()</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010BIdaZFUWPm92NvIQq5oc7Q=='> KernelBase ()</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010KKgIhq2il1GZ7OuwuN4JsQ==" href="#Top">Top</a>
+                <a name="  <a href='#020010KKgIhq2il1GZ7OuwuN4JsQ=='> KernelBase (ComponentContainer, IInjectionModuleCollection, KernelSettings)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED  <a href='#020010KKgIhq2il1GZ7OuwuN4JsQ=='> KernelBase (ComponentContainer, IInjectionModuleCollection, KernelSettings)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poComponents</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.ComponentContainer.html'>OpenEdge.InjectABL.ComponentContainer</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>poModules</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection.html'>OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>poSettings</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.KernelSettings.html'>OpenEdge.InjectABL.KernelSettings</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010DxAFx3sdgtKWC8jLikcpJw==" href="#Top">Top</a>
+                <a name="  <a href='#020010DxAFx3sdgtKWC8jLikcpJw=='> KernelBase (IInjectionModuleCollection)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010DxAFx3sdgtKWC8jLikcpJw=='> KernelBase (IInjectionModuleCollection)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poModules</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection.html'>OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    <!--
+    <div class="TableHeadingColor cell">
+        <span id="event_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Event Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details event_detail">
+        <tbody>
+            
+        </tbody>
+    </table>
+    <br>
+    <br>
+    -->
+    
+    <div class="TableHeadingColor cell">
+        <span id="property_detail" class="expand_arrow table_content_details expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Property Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content property_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010cFyVnHko1FN5WEhLMAs16Q==" href="#Top">Top</a>
+                <a name=" OpenEdge.Core.Collections.IMap <a href='#020010cFyVnHko1FN5WEhLMAs16Q=='> Bindings</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC OpenEdge.Core.Collections.IMap <a href='#020010cFyVnHko1FN5WEhLMAs16Q=='> Bindings</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i> Overrides <a href='OpenEdge.InjectABL.Binding.BindingRoot.html#Bindings'>OpenEdge.InjectABL.Binding.BindingRoot:Bindings</a> </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><td class='paramname'></td><td class='paramdesc'>/* Collection of bindings registered in this kernel </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      OpenEdge.Core.Collections.IMap 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010KgIFuU3ngqJBd0O4CY0GAA==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.ComponentContainer.html'>OpenEdge.InjectABL.ComponentContainer</a> <a href='#020010KgIFuU3ngqJBd0O4CY0GAA=='> Components</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.ComponentContainer.html'>OpenEdge.InjectABL.ComponentContainer</a> <a href='#020010KgIFuU3ngqJBd0O4CY0GAA=='> Components</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Gets the component container, which holds components that contribute to InjectABL. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.ComponentContainer.html'>OpenEdge.InjectABL.ComponentContainer</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200101LOkGPbdyCmoQ5B8E1IxmA==" href="#Top">Top</a>
+                <a name=" OpenEdge.Core.Collections.IList <a href='#0200101LOkGPbdyCmoQ5B8E1IxmA=='> InvocationStack</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PROTECTED OpenEdge.Core.Collections.IList <a href='#0200101LOkGPbdyCmoQ5B8E1IxmA=='> InvocationStack</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Stack of unique services (as define by their LifecycleContext) being invoked. Used to prevent </td></tr><td class='paramname'></td><td class='paramdesc'>circular references. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      OpenEdge.Core.Collections.IList 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010SZnEXPRpbkWSzE4uvVXKaA==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection.html'>OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection</a> <a href='#020010SZnEXPRpbkWSzE4uvVXKaA=='> Modules</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection.html'>OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection</a> <a href='#020010SZnEXPRpbkWSzE4uvVXKaA=='> Modules</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><tr><td class='paramname'>Purpose: </td><td class='paramdesc'>Gets the modules that have been loaded into the kernel. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection.html'>OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010+A3sKvYkWYERnvRLbWnwwg==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.KernelSettings.html'>OpenEdge.InjectABL.KernelSettings</a> <a href='#020010+A3sKvYkWYERnvRLbWnwwg=='> Settings</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.KernelSettings.html'>OpenEdge.InjectABL.KernelSettings</a> <a href='#020010+A3sKvYkWYERnvRLbWnwwg=='> Settings</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.KernelSettings.html'>OpenEdge.InjectABL.KernelSettings</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    <font class="footer_timestamp">08.13.2015 14:10:21</font>
+    </BODY>
+</HTML>

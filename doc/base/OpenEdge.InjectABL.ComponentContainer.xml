@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL" className="ComponentContainer" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : ComponentContainer&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Fri Mar 05 08:39:42 EST 2010&#xD;
+    Notes       : &#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="ComponentContainer(INPUT:IKernel)" modifier="PUBLIC">
+        <parameter name="poKernel" dataType="IKernel" position="0" mode="INPUT"/>
+    </constructor>
+    <method methodName="Add" returnType="LOGICAL" signature="Add(INPUT:Progress.Lang.Class,INPUT:Progress.Lang.Class):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poKey" dataType="Progress.Lang.Class" position="1" mode="INPUT"/>
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="Clear" signature="Clear()" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false"/>
+    <method methodName="Contains" returnType="LOGICAL" signature="Contains(INPUT:Progress.Lang.Class,INPUT:Progress.Lang.Class):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poKey" dataType="Progress.Lang.Class" position="3" mode="INPUT"/>
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="IsEmpty" returnType="LOGICAL" signature="IsEmpty():LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false"/>
+    <method methodName="RemoveAll" returnType="LOGICAL" signature="RemoveAll(INPUT:Progress.Lang.Class):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poKey" dataType="Progress.Lang.Class" position="5" mode="INPUT"/>
+    </method>
+    <method methodName="RemoveFirst" returnType="LOGICAL" signature="RemoveFirst(INPUT:Progress.Lang.Class):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poKey" dataType="Progress.Lang.Class" position="6" mode="INPUT"/>
+    </method>
+    <method methodName="RemoveValue" returnType="LOGICAL" signature="RemoveValue(INPUT:Progress.Lang.Class,INPUT:Progress.Lang.Class):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poKey" dataType="Progress.Lang.Class" position="7" mode="INPUT"/>
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="8" mode="INPUT"/>
+    </method>
+    <method methodName="GetType" returnType="Progress.Lang.Class" signature="GetType(INPUT:Progress.Lang.Class):Progress.Lang.Class" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="9" mode="INPUT"/>
+    </method>
+    <method methodName="Get" returnType="Object" signature="Get(INPUT:Progress.Lang.Class):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="10" mode="INPUT"/>
+    </method>
+    <method methodName="GetCache" returnType="ICache" signature="GetCache(INPUT:Progress.Lang.Class):ICache" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="11" mode="INPUT"/>
+    </method>
+    <method methodName="GetPipeline" returnType="IPipeline" signature="GetPipeline(INPUT:Progress.Lang.Class):IPipeline" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Factory method for invoking kernel components. We can't really use the Kernel,&#xD;
+        since these components are central to using the Kernel. We still use dependency&#xD;
+        injection though :) **/</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="12" mode="INPUT"/>
+    </method>
+    <method methodName="GetLifecycleStrategy" returnType="ILifecycleStrategy" signature="GetLifecycleStrategy(INPUT:Progress.Lang.Class):ILifecycleStrategy" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="13" mode="INPUT"/>
+    </method>
+    <property name="Size" dataType="INTEGER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="Kernel" dataType="IKernel" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.*" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Modules.*" type="NONE"/>
+    <using name="OpenEdge.InjectABL.*" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.*" type="NONE"/>
+    <using name="Progress.Lang.*" type="NONE"/>
+</unit>

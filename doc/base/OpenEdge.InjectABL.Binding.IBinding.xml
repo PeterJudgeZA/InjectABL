@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding" className="IBinding" isAbstract="false" isFinal="false" isInterface="true">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : IBinding&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 02 11:30:06 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <method methodName="GetProvider" returnType="IProvider" signature="GetProvider():IProvider" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Gets the provider for the binding.&#xD;
+        @param context The context.&#xD;
+        @return The provider to use.    */</comment>
+    </method>
+    <method methodName="GetScope" returnType="Object" signature="GetScope(INPUT:ILifecycleContext):Object" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Gets the scope for the binding, if any.&#xD;
+        @param context The context.&#xD;
+        @return The object that will act as the scope, or unknown if the service is transient. */</comment>
+        <parameter name="poContext" dataType="ILifecycleContext" position="0" mode="INPUT"/>
+    </method>
+    <method methodName="Matches" returnType="LOGICAL" signature="Matches(INPUT:IBinding):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Determines whether the specified request satisfies the conditions defined on this binding.&#xD;
+        @param request The request.&#xD;
+        @return &lt;c&gt;True&lt;/c&gt; if the request satisfies the conditions. otherwise &lt;c&gt;false&lt;/c&gt;. */</comment>
+        <parameter name="poBinding" dataType="IBinding" position="1" mode="INPUT"/>
+    </method>
+    <property name="Service" dataType="Progress.Lang.Class" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the service type that is controlled by the binding. */</propertyComment>
+    </property>
+    <property name="Target" dataType="BindingTargetEnum" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC">
+        <propertyComment>/** Gets or sets the type of target for the binding. */</propertyComment>
+    </property>
+    <property name="TargetType" dataType="Progress.Lang.Class" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC"/>
+    <property name="IsConditional" dataType="LOGICAL" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets a value indicating whether the binding has a condition associated with it. */</propertyComment>
+    </property>
+    <property name="Condition" dataType="ObjectStack" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC">
+        <propertyComment>/** Gets or sets the condition defined for the binding. */</propertyComment>
+    </property>
+    <property name="ProviderType" dataType="Progress.Lang.Class" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC">
+        <propertyComment>/** Gets or sets the type that returns the provider that should be used by the binding. */</propertyComment>
+    </property>
+    <property name="Scope" dataType="StandardScopeEnum" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC">
+        <propertyComment>/** Gets or sets the callback that returns the object that will act as the binding's scope. */</propertyComment>
+    </property>
+    <property name="ScopeCallbackType" dataType="Progress.Lang.Class" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC"/>
+    <property name="Arguments" dataType="ICollection" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** Gets the parameters defined for the binding. */</propertyComment>
+    </property>
+    <property name="Name" dataType="CHARACTER" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PUBLIC">
+        <propertyComment>/** Gets or sets  the optional name defined for the binding. */</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Binding.BindingTargetEnum" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.StandardScopeEnum" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.IProvider" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.ILifecycleContext" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ObjectStack" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ICollection" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding" className="BindingBuilder" isAbstract="false" isFinal="false" isInterface="false">
+    <interfaces>IBindingSyntax</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : BindingBuilder&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 02 14:51:10 EST 2010&#xD;
+    Notes       : &#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="BindingBuilder(INPUT:IBinding,INPUT:IKernel)" modifier="PUBLIC">
+        <constrComment>/** Initializes a new instance of the BindingBuilder&amp;lt.T&amp;gt. class.&#xD;
+        @param IBinding The binding to build.&#xD;
+        @param IKernel The kernel. */</constrComment>
+        <parameter name="poBinding" dataType="IBinding" position="0" mode="INPUT"/>
+        <parameter name="poKernel" dataType="IKernel" position="1" mode="INPUT"/>
+    </constructor>
+    <method methodName="ToSelf" returnType="IBindingSyntax" signature="ToSelf():IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates that the service should be self-bound.&#xD;
+        @return IBindingSyntax The current binding builder (for fluent syntax) */</comment>
+    </method>
+    <method methodName="To" returnType="IBindingSyntax" signature="To(INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates that the service should be bound to the specified implementation type.&#xD;
+        &#xD;
+        @param Class The implementation type. This has to be a concrete type (ie not abstract &#xD;
+               or an interface). &#xD;
+        @return IBindingSyntax The current binding builder (for fluent syntax) */</comment>
+        <parameter name="poImplementation" dataType="Progress.Lang.Class" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="Using" returnType="IBindingSyntax" signature="Using(INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates that the service should be bound to an instance of the specified provider type.&#xD;
+        The instance will be activated via the kernel when an instance of the service is activated.&#xD;
+        &#xD;
+        @param Class The type of provider to activate.&#xD;
+        @return IBindingSyntax The current binding builder (for fluent syntax)  */</comment>
+        <parameter name="poProviderType" dataType="Progress.Lang.Class" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="InSingletonScope" returnType="IBindingSyntax" signature="InSingletonScope():IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates that only a single instance of the binding should be created, and then&#xD;
+        should be re-used for all subsequent requests.  */</comment>
+    </method>
+    <method methodName="InTransientScope" returnType="IBindingSyntax" signature="InTransientScope():IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates that instances activated via the binding should not be re-used, nor have&#xD;
+        their lifecycle managed by InjectABL.  &#xD;
+        &#xD;
+        @return IBindingSyntax The current binding builder (for fluent syntax) */</comment>
+    </method>
+    <method methodName="InAgentConnectionScope" returnType="IBindingSyntax" signature="InAgentConnectionScope():IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates that an instance will be reused across an AppServer connection. &#xD;
+        Meaningless for statefree AppServers. &#xD;
+        &#xD;
+        @return IBindingSyntax The current binding builder (for fluent syntax) */</comment>
+    </method>
+    <method methodName="InAgentRequestScope" returnType="IBindingSyntax" signature="InAgentRequestScope():IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates that an instance will be reused across an AppServer request.&#xD;
+     &#xD;
+        @return IBindingSyntax The current binding builder (for fluent syntax) */</comment>
+    </method>
+    <method methodName="InScope" returnType="IBindingSyntax" signature="InScope(INPUT:Progress.Lang.Class,INPUT:StandardScopeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Generic scope binding&#xD;
+        &#xD;
+        @param Class The type providing the scope&#xD;
+        @return IBindingSyntax The current binding builder (for fluent syntax) */</comment>
+        <parameter name="poScopeCallback" dataType="Progress.Lang.Class" position="4" mode="INPUT"/>
+        <parameter name="poScope" dataType="StandardScopeEnum" position="5" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:IParameter[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* generalised case; all other WithConstructorArgument() methods pass through this one. */</comment>
+        <parameter name="poParameter" dataType="IParameter" position="6" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="7" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Progress.Lang.Class,INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="8" mode="INPUT"/>
+        <parameter name="pcInstanceName" dataType="CHARACTER" position="9" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Progress.Lang.Class,INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="10" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="11" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Progress.Lang.Class,INPUT:DataTypeEnum,INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="12" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="13" mode="INPUT"/>
+        <parameter name="pcInstanceName" dataType="CHARACTER" position="14" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Progress.Lang.Class[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="15" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Progress.Lang.Class[],INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poService" dataType="Progress.Lang.Class" position="16" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="17" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Object):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poValue" dataType="Object" position="18" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Object,INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poValue" dataType="Object" position="19" mode="INPUT"/>
+        <parameter name="poDeclaringType" dataType="Progress.Lang.Class" position="20" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Object[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poValue" dataType="Object" position="21" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:Object[],INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poValue" dataType="Object" position="22" mode="INPUT"/>
+        <parameter name="poDeclaringType" dataType="Progress.Lang.Class" position="23" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcValue" dataType="CHARACTER" position="24" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:character,INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcValue" dataType="CHARACTER" position="25" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="26" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:character[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcValue" dataType="CHARACTER" position="27" mode="INPUT"/>
+    </method>
+    <method methodName="WithConstructorArgument" returnType="IBindingSyntax" signature="WithConstructorArgument(INPUT:character[],INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcValue" dataType="CHARACTER" position="28" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="29" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:IParameter[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Generalised case for more complex scenarios; all other WithPropertyValue() methods pass through this one. This method will probably never be called directly, but&#xD;
+        it doesn't hurt to have here. */</comment>
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="30" mode="INPUT"/>
+        <parameter name="poParameter" dataType="IParameter" position="31" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="32" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="33" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Progress.Lang.Class,INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="34" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="35" mode="INPUT"/>
+        <parameter name="pcInstanceName" dataType="CHARACTER" position="36" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Progress.Lang.Class,INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="37" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="38" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="39" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Progress.Lang.Class,INPUT:DataTypeEnum,INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="40" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="41" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="42" mode="INPUT"/>
+        <parameter name="pcInstanceName" dataType="CHARACTER" position="43" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Class[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="44" mode="INPUT"/>
+        <parameter name="poService" dataType="Class" position="45" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Progress.Lang.Class[],INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="46" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="47" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="48" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Object):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="49" mode="INPUT"/>
+        <parameter name="poValue" dataType="Object" position="50" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Object,INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="51" mode="INPUT"/>
+        <parameter name="poValue" dataType="Object" position="52" mode="INPUT"/>
+        <parameter name="poDeclaringType" dataType="Progress.Lang.Class" position="53" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Object[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="54" mode="INPUT"/>
+        <parameter name="poValue" dataType="Object" position="55" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:Object[],INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="56" mode="INPUT"/>
+        <parameter name="poValue" dataType="Object" position="57" mode="INPUT"/>
+        <parameter name="poDeclaringType" dataType="Progress.Lang.Class" position="58" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="59" mode="INPUT"/>
+        <parameter name="pcValue" dataType="CHARACTER" position="60" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:character,INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="61" mode="INPUT"/>
+        <parameter name="pcValue" dataType="CHARACTER" position="62" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="63" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:character[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="64" mode="INPUT"/>
+        <parameter name="pcValue" dataType="CHARACTER" position="65" mode="INPUT"/>
+    </method>
+    <method methodName="WithPropertyValue" returnType="IBindingSyntax" signature="WithPropertyValue(INPUT:character,INPUT:character[],INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcPropertyName" dataType="CHARACTER" position="66" mode="INPUT"/>
+        <parameter name="pcValue" dataType="CHARACTER" position="67" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="68" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* WithMethodValue */</comment>
+        <parameter name="pcMethodName" dataType="CHARACTER" position="69" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="70" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Progress.Lang.Class,INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="71" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="72" mode="INPUT"/>
+        <parameter name="pcInstanceName" dataType="CHARACTER" position="73" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Progress.Lang.Class[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="74" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="75" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Object,INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="76" mode="INPUT"/>
+        <parameter name="poValue" dataType="Object" position="77" mode="INPUT"/>
+        <parameter name="poDeclaringType" dataType="Progress.Lang.Class" position="78" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Object):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="79" mode="INPUT"/>
+        <parameter name="poValue" dataType="Object" position="80" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Progress.Lang.Class,INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="81" mode="INPUT"/>
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="82" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="83" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Progress.Lang.Class,INPUT:DataTypeEnum,INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="84" mode="INPUT"/>
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="85" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="86" mode="INPUT"/>
+        <parameter name="pcInstanceName" dataType="CHARACTER" position="87" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Object[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="88" mode="INPUT"/>
+        <parameter name="poValue" dataType="Object" position="89" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Object[],INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="90" mode="INPUT"/>
+        <parameter name="poValue" dataType="Object" position="91" mode="INPUT"/>
+        <parameter name="poDeclaringType" dataType="Progress.Lang.Class" position="92" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:Progress.Lang.Class[],INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="93" mode="INPUT"/>
+        <parameter name="poValue" dataType="Progress.Lang.Class" position="94" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="95" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="96" mode="INPUT"/>
+        <parameter name="pcValue" dataType="CHARACTER" position="97" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:character,INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="98" mode="INPUT"/>
+        <parameter name="pcValue" dataType="CHARACTER" position="99" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="100" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:character[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="101" mode="INPUT"/>
+        <parameter name="pcValue" dataType="CHARACTER" position="102" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:character[],INPUT:DataTypeEnum):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="103" mode="INPUT"/>
+        <parameter name="pcValue" dataType="CHARACTER" position="104" mode="INPUT"/>
+        <parameter name="poDataType" dataType="DataTypeEnum" position="105" mode="INPUT"/>
+    </method>
+    <method methodName="WithMethodValue" returnType="IBindingSyntax" signature="WithMethodValue(INPUT:character,INPUT:IParameter[]):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcMethodName" dataType="CHARACTER" position="106" mode="INPUT"/>
+        <parameter name="poParameter" dataType="IParameter" position="107" mode="INPUT"/>
+    </method>
+    <method methodName="When" returnType="IConditionSyntax" signature="When():IConditionSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* When */</comment>
+    </method>
+    <method methodName="OnThinClientSession" returnType="IBindingSyntax" signature="OnThinClientSession():IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Binding is applicable to a client session. This is typically a GUI or thin-client of some sort */</comment>
+    </method>
+    <method methodName="OnServerSession" returnType="IBindingSyntax" signature="OnServerSession():IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Binding applicable to a server session. This is any headless backend - appserver, webserver etc */</comment>
+    </method>
+    <method methodName="OnFatClientSession" returnType="IBindingSyntax" signature="OnFatClientSession():IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Binding is applicable to a complete client/server session. Typically a development environment, or fat client */</comment>
+    </method>
+    <method methodName="OnNamedSession" returnType="IBindingSyntax" signature="OnNamedSession(INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Indicates that the binding is valid for a session as identified by an application-specific code/name */</comment>
+        <parameter name="pcSessionCode" dataType="CHARACTER" position="108" mode="INPUT"/>
+    </method>
+    <method methodName="Named" returnType="IBindingSyntax" signature="Named(INPUT:character):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="pcName" dataType="CHARACTER" position="109" mode="INPUT"/>
+    </method>
+    <property name="Binding" dataType="IBinding" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the binding being built.  */</propertyComment>
+    </property>
+    <property name="Kernel" dataType="IKernel" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Gets the kernel.  */</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Binding.IBindingSyntax" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.BindingTargetEnum" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Parameters.Routine" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Parameters.IParameter" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Parameters.Parameter" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Parameters.Routine" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.Condition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.ConditionBuilder" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.IConditionSyntax" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.SessionTypeCondition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.SessionTypeCondition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.UITypeCondition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.StandardScope" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Lifecycle.StandardScopeEnum" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IKernel" type="NONE"/>
+    <using name="OpenEdge.Core.SessionClientTypeEnum" type="NONE"/>
+    <using name="OpenEdge.Core.RoutineTypeEnum" type="NONE"/>
+    <using name="OpenEdge.Core.DataTypeEnum" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.AppError" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

@@ -1,0 +1,1506 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+    <HEAD>
+        <meta http-equiv="expires" content="86400">
+        <TITLE>OpenEdge InjectABL Library, version 1.0.11</TITLE>
+        <link rel="stylesheet" type="text/css" href="resources/stylesheet.css" title="Style">
+        <SCRIPT src="resources/jquery.js"></SCRIPT>
+        <SCRIPT src="resources/functions.js"></SCRIPT>
+        <SCRIPT src="resources/frameload.js"></SCRIPT>
+        <!-- Browser Switch -->
+        <!--[if lt IE 8]>
+            <!-- Smaller than IE 8 -->
+            <style type="text/css">
+                .HeightFixIE { 
+                    height: 23px !important;
+                }
+            </style>
+        <![endif]-->
+        <!--[if IE 8]>
+            <!-- Equal IE 8 -->
+            <style type="text/css">
+                .HeightFixIE { 
+                    height: 20px !important;
+                }
+            </style>
+        <![endif]-->
+    </HEAD>
+<BODY onload="onLoad()">
+    <table class="header_table">
+        <tbody>
+        <tr>
+            <td>
+            	<div class="unit_header">
+            	    <table border="0">
+            	       <tbody>
+                	        <tr>
+                	            <td>
+                	                <span class="span_namespace">Namespace:</span>   
+                	            </td>
+                	            <td>
+                	                <span class="span_packagename"><a href="OpenEdge.InjectABL.Binding.Conditions.package.html">OpenEdge.InjectABL.Binding.Conditions<a></span>
+                	            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_pagetype">Class&nbsp;</span>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <span class="span_classname">Condition</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_parentclass">Parent classes:</span>   
+                                </td>
+                                <td class="span_parentclass">
+                                    <div class='parentclasses'><div style='padding-left:0em; height:12px' class='parentclassesitem'>                                                            <table style='border-spacing:0px'>                                                                <tr>                                                                    <td>                                                                    Progress.Lang.Object                                                                    </td>                                                                </tr>                                                            </table>                                                       </div><div style='padding-left:2em; height:16px' class='parentclassesitem'>                                                                <table>                                                                    <tr>                                                                        <td>                                                                            <div class='parentclassnode'></div>                                                                        </td>                                                                        <td>                                                                        <a href='OpenEdge.InjectABL.Binding.Conditions.Condition.html'>OpenEdge.InjectABL.Binding.Conditions.Condition</a>                                                                        </td>                                                                    </tr>                                                                </table>                                                           </div></div><br>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <span class="span_inherits">Inherits:</span>
+                                </td>
+                                <td class="unit_inherits">
+                                    <span class="span_inherits">Progress.Lang.Object</span>
+                                </td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td>
+                                    <span class="span_implements">Implements:</span> 
+                                </td>
+                                <td class="unit_interface">
+                                    <span class="span_implements"> <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a></span> 
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <span class="span_inherits"></span>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="span_inherits"></span>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                	<br>
+                	<span class="unit_comment">
+                	<table><tbody class='unit_commment_table'><td class='unitcommentparam'></td><td class='unitcommentdesc'>Purpose: **************************************************************************** </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Copyright 2012 Progress Software Corporation </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Licensed under the Apache License, Version 2.0 (the "License"); </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>you may not use this file except in compliance with the License. </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>You may obtain a copy of the License at </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'><a href='http://www.apache.org/licenses/LICENSE-2.0' target='_blank'>http://www.apache.org/licenses/LICENSE-2.0</a> </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>Unless required by applicable law or agreed to in writing, software </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>distributed under the License is distributed on an "AS IS" BASIS, </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>See the License for the specific language governing permissions and </td></tr><td class='unitcommentparam'></td><td class='unitcommentdesc'>limitations under the License. </td></tr><tr><td class='unitcommentparam'>File:</td><td class='unitcommentdesc'>Condition </td></tr><tr><td class='unitcommentparam'>Author(s):</td><td class='unitcommentdesc'>pjudge </td></tr><tr><td class='unitcommentparam'>Created:</td><td class='unitcommentdesc'>Mon Mar 08 15:22:04 EST 2010 </td></tr></tbody></table>
+                	</span>
+                	<br>
+                </div>
+            </td>
+            <td>
+                <div class="container_logo_google">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    
+    <br>
+    <br>
+    <div class="TableHeadingColor">
+        <span id="method_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Method Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary method_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         LOGICAL <a href='#020010J6svygmWXBY/VcM588upRQ=='> Equals (ICondition, ICondition)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         LOGICAL <a href='#020010uYwgK17l8D4KLEis+q492w=='> Equals (Object)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Conditions.IConditionResolver <a href='#020010cAAVr6xaGoJC7sLzMKUY0A=='> GetResolver ()</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         CHARACTER <a href='#020010lpqkwXy3OTuOd1MD0BAkGg=='> ToString ()</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    
+    <br>
+    <div class="TableHeadingColor">
+        <span id="constructor_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Constructor Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary constructor_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font></font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010v0SFSrn8U0T4GuFmpJZVfg=='> Condition ()</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#0200108opKTeU2ldPEVawtmRF0Og=='> Condition (character)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft ">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+          <a href='#020010obmqrVLVRDQHufsz63NNLA=='> Condition (Object)</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    <!--
+    <br>
+    <div class="TableHeadingColor">
+        <span id="event_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Event Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary event_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+                
+        </tbody>
+    </table>
+    -->
+    
+    <br>
+    <div class="TableHeadingColor">
+        <span id="property_summary" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Property Summary</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_summary property_summary">
+        <tbody>
+            <tr class="TableSubHeadingColor">
+                <th align="left"></th>
+                <th align="left">Options</th>
+                <th align="left">Name</th>
+                <th align="left">Purpose</th>
+            </tr>
+            <tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Conditions.ICondition <a href='#020010S/fTSewpx5mJ620Gv7RpdQ=='> And</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/* Operators */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>-</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         Progress.Lang.Class <a href='#020010SBM0gSSl3hjL2Tm5RkhLHw=='> ConditionResolverType</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Conditions.ICondition <a href='#020010s7ZKxplZYNiaw65QbZ4+CQ=='> Is</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Conditions.ICondition <a href='#020010aOmULEiHNbNwCR/qBc4Slw=='> Name</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/* general condition types, to avoid having a SessionName and UIType etc. */ <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Conditions.ICondition <a href='#020010Bb5U1inLYnhiMldVyqGxxA=='> Not</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Conditions.ICondition <a href='#020010zhEIACT/DwCLKAKu/vwX/g=='> Or</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Conditions.ICondition <a href='#020010fmWz3P0vOd+WcCKQ1ihFaA=='> Type</a>
+    </font>
+  </td>
+  <td class="cell">
+      <br> <i>  </i>
+  </td>
+</tr>
+<tr class="table_content overview_row">
+  <td align="left" valign="top" class="img_col cell cellleft STATIC">
+  </td>
+  <td align="left" valign="top" class="option_col cell">
+    <font>+</font>
+    <font></font>
+    <font></font>
+  </td>
+  <td class="signature_col cell">
+    <font>
+         OpenEdge.InjectABL.Binding.Conditions.ICondition <a href='#020010Z9x2SHKJSkNPqZurtH30RA=='> When</a>
+    </font>
+  </td>
+  <td class="cell">
+     
+/* Comparers */ <br> <i>  </i>
+  </td>
+</tr>
+    
+        </tbody>
+    </table>
+    
+    <br>
+    <br>
+    
+    <div class="TableHeadingColor cell">
+        <span id="method_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Method Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details method_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010J6svygmWXBY/VcM588upRQ==" href="#Top">Top</a>
+                <a name=" LOGICAL <a href='#020010J6svygmWXBY/VcM588upRQ=='> Equals (ICondition, ICondition)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC LOGICAL <a href='#020010J6svygmWXBY/VcM588upRQ=='> Equals (ICondition, ICondition)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poCondition1</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i>poCondition2</i>
+    </td>
+    <td>
+       <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      LOGICAL 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010uYwgK17l8D4KLEis+q492w==" href="#Top">Top</a>
+                <a name=" LOGICAL <a href='#020010uYwgK17l8D4KLEis+q492w=='> Equals (Object)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC LOGICAL <a href='#020010uYwgK17l8D4KLEis+q492w=='> Equals (Object)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poCondition</i>
+    </td>
+    <td>
+       Progress.Lang.Object
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr><tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      LOGICAL 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010cAAVr6xaGoJC7sLzMKUY0A==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Conditions.IConditionResolver.html'>OpenEdge.InjectABL.Binding.Conditions.IConditionResolver</a> <a href='#020010cAAVr6xaGoJC7sLzMKUY0A=='> GetResolver ()</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Conditions.IConditionResolver.html'>OpenEdge.InjectABL.Binding.Conditions.IConditionResolver</a> <a href='#020010cAAVr6xaGoJC7sLzMKUY0A=='> GetResolver ()</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Conditions.IConditionResolver.html'>OpenEdge.InjectABL.Binding.Conditions.IConditionResolver</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010lpqkwXy3OTuOd1MD0BAkGg==" href="#Top">Top</a>
+                <a name=" CHARACTER <a href='#020010lpqkwXy3OTuOd1MD0BAkGg=='> ToString ()</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC CHARACTER <a href='#020010lpqkwXy3OTuOd1MD0BAkGg=='> ToString ()</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      CHARACTER 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    
+    <div class="TableHeadingColor cell">
+        <span id="constructor_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Constructor Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details constructor_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010v0SFSrn8U0T4GuFmpJZVfg==" href="#Top">Top</a>
+                <a name="  <a href='#020010v0SFSrn8U0T4GuFmpJZVfg=='> Condition ()</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">STATIC  <a href='#020010v0SFSrn8U0T4GuFmpJZVfg=='> Condition ()</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="0200108opKTeU2ldPEVawtmRF0Og==" href="#Top">Top</a>
+                <a name="  <a href='#0200108opKTeU2ldPEVawtmRF0Og=='> Condition (character)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#0200108opKTeU2ldPEVawtmRF0Og=='> Condition (character)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>pcValue</i>
+    </td>
+    <td>
+       CHARACTER
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010obmqrVLVRDQHufsz63NNLA==" href="#Top">Top</a>
+                <a name="  <a href='#020010obmqrVLVRDQHufsz63NNLA=='> Condition (Object)</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC  <a href='#020010obmqrVLVRDQHufsz63NNLA=='> Condition (Object)</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  
+                  <tr>
+    <td class="document_detail_parameter">
+        <i>poValue</i>
+    </td>
+    <td>
+       Progress.Lang.Object
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    <!--
+    <div class="TableHeadingColor cell">
+        <span id="event_detail" class="expand_arrow expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Event Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content table_content_details event_detail">
+        <tbody>
+            
+        </tbody>
+    </table>
+    <br>
+    <br>
+    -->
+    
+    <div class="TableHeadingColor cell">
+        <span id="property_detail" class="expand_arrow table_content_details expandButtonShow HeightFixIE">
+        </span>
+        <span>
+            <font size="+2">
+                <b>Property Detail</b>
+            </font>
+        </span>
+    </div>
+    <table border="0" class="table_content property_detail">
+        <tbody>
+            <tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010S/fTSewpx5mJ620Gv7RpdQ==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010S/fTSewpx5mJ620Gv7RpdQ=='> And</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010S/fTSewpx5mJ620Gv7RpdQ=='> And</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><td class='paramname'></td><td class='paramdesc'>/* Operators </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010SBM0gSSl3hjL2Tm5RkhLHw==" href="#Top">Top</a>
+                <a name=" Progress.Lang.Class <a href='#020010SBM0gSSl3hjL2Tm5RkhLHw=='> ConditionResolverType</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PRIVATE Progress.Lang.Class <a href='#020010SBM0gSSl3hjL2Tm5RkhLHw=='> ConditionResolverType</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      Progress.Lang.Class 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010s7ZKxplZYNiaw65QbZ4+CQ==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010s7ZKxplZYNiaw65QbZ4+CQ=='> Is</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010s7ZKxplZYNiaw65QbZ4+CQ=='> Is</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010aOmULEiHNbNwCR/qBc4Slw==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010aOmULEiHNbNwCR/qBc4Slw=='> Name</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010aOmULEiHNbNwCR/qBc4Slw=='> Name</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><td class='paramname'></td><td class='paramdesc'>/* general condition types, to avoid having a SessionName and UIType etc. </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010Bb5U1inLYnhiMldVyqGxxA==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010Bb5U1inLYnhiMldVyqGxxA=='> Not</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010Bb5U1inLYnhiMldVyqGxxA=='> Not</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010zhEIACT/DwCLKAKu/vwX/g==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010zhEIACT/DwCLKAKu/vwX/g=='> Or</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010zhEIACT/DwCLKAKu/vwX/g=='> Or</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010fmWz3P0vOd+WcCKQ1ihFaA==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010fmWz3P0vOd+WcCKQ1ihFaA=='> Type</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010fmWz3P0vOd+WcCKQ1ihFaA=='> Type</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr><tr class="table_content table_detail_row">
+    <th colspan="2" align="left" valign="top" class="cell">
+        <div class="table_detail_comment_div">
+            <font class="Code_Text">
+                <a name="020010Z9x2SHKJSkNPqZurtH30RA==" href="#Top">Top</a>
+                <a name=" <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010Z9x2SHKJSkNPqZurtH30RA=='> When</a>"></a>
+            </font>
+        </div>
+        <h3 class="Signature_Font">PUBLIC <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> <a href='#020010Z9x2SHKJSkNPqZurtH30RA=='> When</a></h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="img_STATIC" Title="Static">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Abstract">
+                    </div>
+                </td>
+                <td>
+                    <div class="img_" Title="Final">
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        <i>  </i>
+        <div>
+        <dl>
+          <dd class="detail_comment">
+            <table><tbody class='commment_formater_table'><td class='paramname'></td><td class='paramdesc'>/* Comparers </td></tr></tbody></table>
+            <dl>
+              <table class="parameter_table">
+                  <!--
+                  <tr>
+                    <td colspan="2">
+                      <b>Parameters:</b>           
+                    </td>
+                  </tr>
+                  -->
+                  <tr>
+    <td class="document_detail_parameter">
+        <i><b>Returns</b></i>
+    </td>
+    <td>
+      <a href='OpenEdge.InjectABL.Binding.Conditions.ICondition.html'>OpenEdge.InjectABL.Binding.Conditions.ICondition</a> 
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td class="document_detail_parameter">
+    </td>
+    <td>
+        
+    </td>
+</tr>
+              </table>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </th>
+</tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+    <font class="footer_timestamp">08.13.2015 14:10:16</font>
+    </BODY>
+</HTML>

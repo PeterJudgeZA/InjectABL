@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding" className="BindingRoot" isAbstract="true" isFinal="false" isInterface="false">
+    <interfaces>IBindingRoot</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : BindingRoot&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 02 11:56:07 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <method methodName="Bind" returnType="IBindingSyntax" signature="Bind(INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Declares a binding from the service to itself.        &#xD;
+        @param Class The service to bind. */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="0" mode="INPUT"/>
+    </method>
+    <method methodName="Unbind" signature="Unbind(INPUT:Progress.Lang.Class)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Unregisters all bindings for the specified service.&#xD;
+        &#xD;
+        @param Class The service to unbind. */</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="1" mode="INPUT"/>
+    </method>
+    <method methodName="Rebind" returnType="IBindingSyntax" signature="Rebind(INPUT:Progress.Lang.Class):IBindingSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Removes any existing bindings for the specified service, and declares a new one.&#xD;
+        &#xD;
+        @param Class The service to re-bind. **/</comment>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="AddBinding" signature="AddBinding(INPUT:IBinding)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="true">
+        <comment>/** Registers the specified binding.&#xD;
+        &#xD;
+        @param IBinding The binding to add. */</comment>
+        <parameter name="poBinding" dataType="IBinding" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="RemoveBinding" signature="RemoveBinding(INPUT:IBinding)" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="true">
+        <comment>/** Unregisters the specified binding.&#xD;
+        @param IBinding The binding to remove. */</comment>
+        <parameter name="poBinding" dataType="IBinding" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="CreateBindingBuilder" returnType="IBindingSyntax" signature="CreateBindingBuilder(INPUT:IBinding):IBindingSyntax" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="true">
+        <parameter name="poBinding" dataType="IBinding" position="5" mode="INPUT"/>
+    </method>
+    <property name="Bindings" dataType="IMap" isAbstract="true" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE">
+        <propertyComment>/** A collection of bindings, keyed by the service they bind to. */</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Binding.IBindingRoot" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Binding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBindingCollection" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBindingSyntax" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IMap" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IIterator" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ICollection" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+</unit>

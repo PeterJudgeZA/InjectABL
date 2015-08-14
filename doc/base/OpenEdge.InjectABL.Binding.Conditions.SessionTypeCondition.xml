@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding.Conditions" className="SessionTypeCondition" inherits="Condition" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : SessionTypeCondition&#xD;
+    Purpose     : Session type and session code conditions for bindings.&#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Thu Mar 04 11:02:32 EST 2010&#xD;
+    Notes       : * We need a separate Condition class here since we want to &#xD;
+                    have our own ConditionResolver, since there may be &#xD;
+                    some special treatment&#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="SessionTypeCondition()" modifier="STATIC"/>
+    <constructor signature="SessionTypeCondition(INPUT:character)" modifier="PUBLIC">
+        <parameter name="pcValue" dataType="CHARACTER" position="0" mode="INPUT"/>
+    </constructor>
+    <constructor signature="SessionTypeCondition(INPUT:Object)" modifier="PUBLIC">
+        <parameter name="poValue" dataType="Object" position="1" mode="INPUT"/>
+    </constructor>
+    <method methodName="GetResolver" returnType="IConditionResolver" signature="GetResolver():IConditionResolver" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false"/>
+    <property name="ThinClient" dataType="SessionTypeCondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/* ThinClient, Server, FatClient used for RHS, to compare to the 'Condition:Type' condition */</propertyComment>
+    </property>
+    <property name="Server" dataType="SessionTypeCondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="FatClient" dataType="SessionTypeCondition" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="ConditionResolverType" dataType="Progress.Lang.Class" isAbstract="false" isStatic="true" extent="0" modifier="PRIVATE" getModifier="PUBLIC" setModifier="PUBLIC"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.SessionTypeCondition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.IConditionResolver" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.Condition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.StandardConditionResolver" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.SessionTypeConditionResolver" type="NONE"/>
+    <using name="OpenEdge.Core.String" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

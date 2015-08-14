@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding.Parameters" className="RoutineCollection" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/*------------------------------------------------------------------------&#xD;
+    File        : RoutineCollection&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    Author(s)   : pjudge&#xD;
+    Created     : Wed Dec 11 15:16:59 EST 2013&#xD;
+    Notes       : &#xD;
+  ----------------------------------------------------------------------*/</classComment>
+    <constructor signature="RoutineCollection()" modifier="PUBLIC"/>
+    <constructor signature="RoutineCollection(INPUT:OpenEdge.Core.Collections.ICollection)" modifier="PUBLIC">
+        <parameter name="poCollection" dataType="OpenEdge.Core.Collections.ICollection" position="0" mode="INPUT"/>
+    </constructor>
+    <method methodName="Add" returnType="LOGICAL" signature="Add(INPUT:Routine):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Add an object to the collection.&#xD;
+    &#xD;
+        @param {&amp;ValueType} The object to add to the collection&#xD;
+        @return logical True if the operation succeeded.     */</comment>
+        <parameter name="newObject" dataType="Routine" position="1" mode="INPUT"/>
+    </method>
+    <method methodName="AddArray" returnType="LOGICAL" signature="AddArray(INPUT:Routine[]):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Add an array of objects to the collection.&#xD;
+    &#xD;
+        @param {&amp;CollectionType}[] The array to add to the collection&#xD;
+        @return logical True if the operation succeeded.     */</comment>
+        <parameter name="poArray" dataType="Routine" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="Remove" returnType="LOGICAL" signature="Remove(INPUT:Routine):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Remove an object from the collection.&#xD;
+    &#xD;
+        @param {&amp;ValueType} The object to remove from the collection&#xD;
+        @return logical True if the operation succeeded.     */</comment>
+        <parameter name="oldObject" dataType="Routine" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="Contains" returnType="LOGICAL" signature="Contains(INPUT:Routine):LOGICAL" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Determine whether an object is in the collection.&#xD;
+        &#xD;
+        @param {&amp;ValueType} The object to check in the collection&#xD;
+        @return logical True if the operation succeeded.     */</comment>
+        <parameter name="checkObject" dataType="Routine" position="4" mode="INPUT"/>
+    </method>
+    <method methodName="ToRoutineArray" returnType="Routine" signature="ToRoutineArray():Routine[]" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/* Returns the elements in this collection as an ABL array.&#xD;
+       &#xD;
+       @return {&amp;ValueType}[]  An ABL array of the objects in this collection */</comment>
+    </method>
+    <using name="OpenEdge.InjectABL.Binding.Parameters.Routine" type="NONE"/>
+</unit>

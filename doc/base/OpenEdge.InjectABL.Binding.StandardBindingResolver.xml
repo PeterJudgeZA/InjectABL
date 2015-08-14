@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding" className="StandardBindingResolver" isAbstract="false" isFinal="false" isInterface="false">
+    <interfaces>IBindingResolver</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/**------------------------------------------------------------------------&#xD;
+    File        : StandardBindingResolver&#xD;
+    Purpose     : Returns all bindings for (typically) a service that meet&#xD;
+                  service, name and condition requirements. More than one&#xD;
+                  binding may be returned. The decision of which binding to&#xD;
+                  use is done by the InjectABL Kernel.&#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 09 09:02:30 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <method methodName="Resolve" returnType="IList" signature="Resolve(INPUT:IMap,INPUT:Progress.Lang.Class,INPUT:character):IList" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Returns valid binding(s) for the service from a set of bindings&#xD;
+        &#xD;
+        @param IMap The complete set of bindings to resolve&#xD;
+        @param Class The service type&#xD;
+        @param character The binding name&#xD;
+        @return IList  The list of bindings corresponding to the service &amp; name */</comment>
+        <parameter name="poBindings" dataType="IMap" position="0" mode="INPUT"/>
+        <parameter name="poService" dataType="Progress.Lang.Class" position="1" mode="INPUT"/>
+        <parameter name="pcName" dataType="CHARACTER" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="ResolveCondition" returnType="LOGICAL" signature="ResolveCondition(INPUT:IBinding):LOGICAL" modifier="PROTECTED" isStatic="false" isFinal="false" isAbstract="false">
+        <comment>/** Resolved the conditions attached to a binding&#xD;
+        &#xD;
+        @param IBinding The biding in question&#xD;
+        @return Logical Whether the binding meets the conditions or not. */</comment>
+        <parameter name="poBinding" dataType="IBinding" position="3" mode="INPUT"/>
+    </method>
+    <using name="OpenEdge.InjectABL.Lifecycle.StandardScopeEnum" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBindingResolver" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.ICondition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.Condition" type="NONE"/>
+    <using name="OpenEdge.Core.System.NotFoundError" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IMap" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IList" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.List" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.IIterator" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ObjectStack" type="NONE"/>
+    <using name="Progress.Lang.Class" type="NONE"/>
+    <using name="Progress.Lang.Object" type="NONE"/>
+</unit>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding.Conditions" className="ConditionBuilder" isAbstract="false" isFinal="false" isInterface="false">
+    <interfaces>IConditionSyntax</interfaces>
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : ConditionBuilder&#xD;
+    Purpose     : &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Mon Mar 08 11:50:07 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="ConditionBuilder(INPUT:ObjectStack)" modifier="PUBLIC">
+        <constrComment>/*&#xD;
+    define public property Is as IConditionSyntax no-undo&#xD;
+        get():&#xD;
+            BindingCondition:Push(Condition:Is).&#xD;
+            return this-object. &#xD;
+        end get.&#xD;
+        &#xD;
+    define public property Not as IConditionSyntax no-undo&#xD;
+        get():&#xD;
+            BindingCondition:Push(Condition:Not).&#xD;
+            return this-object. &#xD;
+        end get.&#xD;
+*/</constrComment>
+        <parameter name="poBindingCondition" dataType="ObjectStack" position="0" mode="INPUT"/>
+    </constructor>
+    <constructor signature="ConditionBuilder(INPUT:IBinding)" modifier="PUBLIC">
+        <parameter name="poBinding" dataType="IBinding" position="1" mode="INPUT"/>
+    </constructor>
+    <method methodName="Condition" returnType="IConditionSyntax" signature="Condition(INPUT:ICondition):IConditionSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poCondition" dataType="ICondition" position="2" mode="INPUT"/>
+    </method>
+    <method methodName="Is" returnType="IConditionSyntax" signature="Is(INPUT:ICondition):IConditionSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poCondition" dataType="ICondition" position="3" mode="INPUT"/>
+    </method>
+    <method methodName="Not" returnType="IConditionSyntax" signature="Not(INPUT:ICondition):IConditionSyntax" modifier="PUBLIC" isStatic="false" isFinal="false" isAbstract="false">
+        <parameter name="poCondition" dataType="ICondition" position="4" mode="INPUT"/>
+    </method>
+    <property name="BindingCondition" dataType="ObjectStack" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="Kernel" dataType="IKernel" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE"/>
+    <property name="And" dataType="IConditionSyntax" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE"/>
+    <property name="Or" dataType="IConditionSyntax" isAbstract="false" isStatic="false" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.IConditionSyntax" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.Condition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.SessionTypeCondition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.Conditions.ICondition" type="NONE"/>
+    <using name="OpenEdge.InjectABL.Binding.IBinding" type="NONE"/>
+    <using name="OpenEdge.InjectABL.IKernel" type="NONE"/>
+    <using name="OpenEdge.Core.Collections.ObjectStack" type="NONE"/>
+    <using name="OpenEdge.Core.Assert" type="NONE"/>
+</unit>

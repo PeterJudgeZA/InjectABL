@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit packageName="OpenEdge.InjectABL.Binding" className="BindingTargetEnum" inherits="EnumMember" isAbstract="false" isFinal="false" isInterface="false">
+    <classComment>/** ****************************************************************************&#xD;
+  Copyright 2012 Progress Software Corporation&#xD;
+  &#xD;
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;
+  you may not use this file except in compliance with the License.&#xD;
+  You may obtain a copy of the License at&#xD;
+  &#xD;
+    http://www.apache.org/licenses/LICENSE-2.0&#xD;
+  &#xD;
+  Unless required by applicable law or agreed to in writing, software&#xD;
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
+  See the License for the specific language governing permissions and&#xD;
+  limitations under the License.&#xD;
+**************************************************************************** **/</classComment>
+    <classComment>/** ------------------------------------------------------------------------&#xD;
+    File        : BindingTarget&#xD;
+    Purpose     : Enumeration of InjectABL binding target types &#xD;
+    Syntax      : &#xD;
+    Description : &#xD;
+    @author pjudge&#xD;
+    Created     : Tue Mar 02 11:37:41 EST 2010&#xD;
+    Notes       : &#xD;
+  ---------------------------------------------------------------------- */</classComment>
+    <constructor signature="BindingTargetEnum()" modifier="STATIC"/>
+    <constructor signature="BindingTargetEnum()" modifier="PRIVATE"/>
+    <property name="Self" dataType="BindingTargetEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Indicates that the binding is from a type to itself. **/</propertyComment>
+    </property>
+    <property name="Type" dataType="BindingTargetEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Indicates that the binding is from one type to another. **/</propertyComment>
+    </property>
+    <property name="Provider" dataType="BindingTargetEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Indicates that the binding is from a type to a provider. **/</propertyComment>
+    </property>
+    <property name="Method" dataType="BindingTargetEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Indicates that the binding is from a type to a callback method. **/</propertyComment>
+    </property>
+    <property name="Constant" dataType="BindingTargetEnum" isAbstract="false" isStatic="true" extent="0" modifier="PUBLIC" getModifier="PUBLIC" setModifier="PRIVATE">
+        <propertyComment>/** Indicates that the binding is from a type to a constant value. **/</propertyComment>
+    </property>
+    <using name="OpenEdge.InjectABL.Binding.BindingTargetEnum" type="NONE"/>
+    <using name="OpenEdge.Core.EnumMember" type="NONE"/>
+</unit>
