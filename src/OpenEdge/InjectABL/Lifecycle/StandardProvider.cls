@@ -1,5 +1,5 @@
 /** ****************************************************************************
-  Copyright 2012 Progress Software Corporation
+  Copyright 2012, 2017 Progress Software Corporation
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ using OpenEdge.Core.System.ArgumentError.
 using OpenEdge.Core.RoutineTypeEnum.
 using OpenEdge.Core.Collections.IIterator.
 using OpenEdge.Core.DataTypeEnum.
+using OpenEdge.Core.DataTypeHelper.
 using OpenEdge.Core.IOModeEnum.
 using OpenEdge.Core.Assert.
 
@@ -229,9 +230,9 @@ class OpenEdge.InjectABL.Lifecycle.StandardProvider implements IProvider:
         define variable cValueArray as character extent no-undo.
         define variable lIsArray as logical no-undo.
         
-        lIsArray = DataTypeEnum:IsArray(poArgument:DataType).
+        lIsArray = DataTypeHelper:IsArray(poArgument:DataType).
         
-        if DataTypeEnum:IsPrimitive(poArgument:DataType) then
+        if DataTypeHelper:IsPrimitive(poArgument:DataType) then
         do:
             if lIsArray then
             do:
@@ -289,9 +290,9 @@ class OpenEdge.InjectABL.Lifecycle.StandardProvider implements IProvider:
         define variable cValueArray as character extent no-undo.
         define variable lIsArray as logical no-undo.
         
-        lIsArray = DataTypeEnum:IsArray(poArgument:DataType).
+        lIsArray = DataTypeHelper:IsArray(poArgument:DataType).
         
-        if DataTypeEnum:IsPrimitive(poArgument:DataType) then
+        if DataTypeHelper:IsPrimitive(poArgument:DataType) then
         do:
             if lIsArray then
             do:

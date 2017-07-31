@@ -1,5 +1,5 @@
 /** ****************************************************************************
-  Copyright 2012 Progress Software Corporation
+  Copyright 2012, 2017 Progress Software Corporation
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ using OpenEdge.Core.System.ArgumentError.
 
 using OpenEdge.Core.RoutineTypeEnum.
 using OpenEdge.Core.DataTypeEnum.
+using OpenEdge.Core.DataTypeHelper.
 using OpenEdge.Core.Assert.
 
 using Progress.Lang.Class.
@@ -63,9 +64,9 @@ class OpenEdge.InjectABL.Binding.Parameters.Parameter implements IParameter:
     define private variable mcValue as character extent no-undo.
     
     method public void GetValue(poContext as ILifecycleContext, output poValue as Object):
-        if DataTypeEnum:IsPrimitive(DataType) then
+        if DataTypeHelper:IsPrimitive(DataType) then
             undo, throw new InvalidCallError(RoutineTypeEnum:Method:ToString(), 'parameter value is not an object data type ').
-        if DataTypeEnum:IsArray(DataType) then
+        if DataTypeHelper:IsArray(DataType) then
             undo, throw new InvalidCallError(RoutineTypeEnum:Method:ToString(), 'parameter value is an not a scalar value').
         
         if DataType:Equals(DataTypeEnum:Class) then
@@ -78,10 +79,10 @@ class OpenEdge.InjectABL.Binding.Parameters.Parameter implements IParameter:
         define variable iLoop as integer no-undo.
         define variable iMax as integer no-undo.
         
-        if DataTypeEnum:IsPrimitive(DataType) then
+        if DataTypeHelper:IsPrimitive(DataType) then
             undo, throw new InvalidCallError(RoutineTypeEnum:Method:ToString(), 'parameter value is not an object data type').
         
-        if not DataTypeEnum:IsArray(DataType) then
+        if not DataTypeHelper:IsArray(DataType) then
             undo, throw new InvalidCallError(RoutineTypeEnum:Method:ToString(), 'parameter value is an not array').
         
         iMax = extent(moValue).
@@ -96,20 +97,20 @@ class OpenEdge.InjectABL.Binding.Parameters.Parameter implements IParameter:
     end method.
     
     method public void GetValue(poContext as ILifecycleContext, output pcValue as character):
-        if not DataTypeEnum:IsPrimitive(DataType) then
+        if not DataTypeHelper:IsPrimitive(DataType) then
             undo, throw new InvalidCallError(RoutineTypeEnum:Method:ToString(), 'parameter value is not a primitive data type').
         
-        if DataTypeEnum:IsArray(DataType) then
+        if DataTypeHelper:IsArray(DataType) then
             undo, throw new InvalidCallError(RoutineTypeEnum:Method:ToString(), 'parameter value is not a scalar value').
         
         pcValue = mcValue[1].
     end method.
     
     method public void GetValue(poContext as ILifecycleContext, output pcValue as character extent):
-        if not DataTypeEnum:IsPrimitive(DataType) then
+        if not DataTypeHelper:IsPrimitive(DataType) then
             undo, throw new InvalidCallError(RoutineTypeEnum:Method:ToString(), 'parameter value is not a primitive data tye').
                            
-        if not DataTypeEnum:IsArray(DataType) then
+        if not DataTypeHelper:IsArray(DataType) then
             undo, throw new InvalidCallError(RoutineTypeEnum:Method:ToString(), 'parameter value is an not array').
         
         pcValue = mcValue.
@@ -216,7 +217,5 @@ class OpenEdge.InjectABL.Binding.Parameters.Parameter implements IParameter:
         this-object(poType, get-class(Progress.Lang.Class)).
         DataType = poDataType.
     end constructor.
-    
-            
     
 end class.
