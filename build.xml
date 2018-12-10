@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Build script for OpenEdge InjectABL library">
+    <property environment="env" />
+	
+    <condition property="build.root" value="${env.BUILD_ROOT}" >
+        <isset property="env.BUILD_ROOT"/>
+    </condition>
+	<property name="build.root"   value="${basedir}" />
+	
+	<condition property="dist.dir" value="${env.DIST_DIR}" >
+        <isset property="env.DIST_DIR"/>
+    </condition>
+	<property name="dist.dir"   value="${build.root}/dist" />
+	
+    <taskdef resource="PCT.properties" />
+    <typedef resource="types.properties" />
+    <taskdef resource="extras.properties" />
+    
+    <!-- Set n' forget -->
+    <property name="DLC" value="${env.DLC}" />
+    <DlcHome value="${env.DLC}" />
+    <ProgressVersion dlcHome="${env.DLC}" majorVersion="dlc.major" minorVersion="dlc.minor" revision="dlc.sp" patchLevel="dlc.patch" />
+    <property name="oe.version" value="${dlc.major}.${dlc.minor}.${dlc.sp}.${dlc.patch}" />    
+    <echo message="Using OpenEdge version ${oe.version} from $$DLC ${env.DLC} "
+          level="verbose"  />
+	
+    <tstamp>
+    	<format property="tstamp.now.iso" pattern="yyyy-MM-dd'T'HH:mm:ss.SSSZ"/>
+    </tstamp>	
+    
+    <target name="unpackDlcLib-Core">
+        <mkdir dir="${build.root}/dlc-src" />
+        <copy todir="${build.root}/dlc-src">
+            <plfileset src="${DLC}/src/OpenEdge.Core.pl" includes="**/**" />
+        </copy>
+    </target>
+    
+    <!-- Builds/compiles the library -->
+    <target name="build" depends="unpackDlcLib-Core">
+        <mkdir dir="${build.root}/bin/" />
+        <mkdir dir="${build.root}/preprocess" />
+        
+        <PCTCompileExt    
+            destDir="${build.root}/bin" 
+            cpStream="UTF-8" 
+            multiCompile="true" 
+            preprocessDir="${build.root}/preprocess" 
+            graphicalMode="false" 
+            forceCompile="true"
+        >
+            <propath>
+                <pathelement path="${build.root}/src" />                
+                <pathelement path="${build.root}/dlc-src/" />
+            </propath>
+            
+            <fileset dir="${build.root}/src">
+                <include name="**/*.p" />
+                <include name="**/*.w" />
+                <include name="**/*.cls" />
+            </fileset>
+        </PCTCompileExt>
+    </target>
+    
+    <target name="package" description="Creates archives for r-code (PL) and source (zip) for InjectABL" >
+        <mkdir dir="${dist.dir}" />
+    	
+        <manifest 
+        	file="${build.root}/cfg/MANIFEST.MF"
+        	mode="update"
+    	>
+        	<section name="InjectABL">
+        		<attribute name="OpenEdge-Version"        value="${oe.version}" />
+        		<attribute name="InjectABL-Version"       value="${library.Version}"/>
+        		<attribute name="InjectABL-Description"   value="${library.Description}"/>
+        		<attribute name="Built-At"                value="${tstamp.now.iso}"/>
+			</section>
+        </manifest>
+        
+        <!-- R-code -->
+        <PCTLibrary
+            destfile="${dist.dir}/${library.Name}-${library.Version}.pl" 
+            basedir="${build.root}" 
+            includes="bin/**/*.r cfg/MANIFEST.MF"
+            excludes=".pct/*"
+        />
+        <!-- Source code -->
+        <zip
+            destfile="${dist.dir}/${library.Name}-${library.Version}.zip"
+            basedir="${build.root}"
+            update="true"
+            includes="src/**/* cfg/MANIFEST.MF"
+            excludes="**/*.r*"
+        />
+    </target>
+    
+    <target name="doc" description="Builds documentation for InjectABL" depends="build">
+        <mkdir dir="${build.root}/doc/xml" />
+        <mkdir dir="${build.root}/doc/base" />
+        <mkdir dir="${build.root}/doc/html" />
+        
+        <ClassDocumentation destDir="${build.root}/doc/base">
+            <fileset dir="${build.root}/preprocess">
+                <exclude name="**/*.p" />
+                <exclude name="**/*.w" />
+                <include name="**/*.cls" />
+            </fileset>
+        </ClassDocumentation>
+        
+        <HTMLDocumentation 
+            sourceDir="${build.root}/doc/base" 
+            destDir="${build.root}/doc/html" 
+            treeViewOverview="true"
+            title="${library.Description}, version ${library.Version}" />
+        
+        <!-- Remove the preprocessed directory -->
+        <delete dir="${build.root}/preprocess" />
+    </target>
+
+</project>
