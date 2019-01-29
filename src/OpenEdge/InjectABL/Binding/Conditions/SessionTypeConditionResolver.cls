@@ -46,32 +46,41 @@ class OpenEdge.InjectABL.Binding.Conditions.SessionTypeConditionResolver impleme
     method public logical EvaluateClause(input poLHS as ICondition,
                                          input poOperator as ICondition,
                                          input poRHS as ICondition):
-        define variable lConditionsMet as logical no-undo.
+        define variable lConditionsMet      as logical   no-undo.
+        define variable cCurrentSessionType as character no-undo.
         
         case poLHS:
-            when Condition:Type then
+            when OpenEdge.InjectABL.Binding.Conditions.Condition:Type then
             do:
-                /* Available SessionConditions: ThinClient, FatClient, Server */
+              
+                /* Available SessionConditions: ThinClient, FatClient, Server    */
+                /* ##anb: Rework needed! SessionClientTypeEnum cannot handle     */
+                /* 4GLCLIENT returned by session:client-type !                   */ 
+                  
+                cCurrentSessionType = replace(session:client-type, '4GLCLIENT':U, 'ABLCLIENT':U).
+                
                 case poRHS:
+                    
                     when SessionTypeCondition:ThinClient then
-                        lConditionsMet = SessionClientTypeEnum:CurrentSession:Equals(SessionClientTypeEnum:ABLClient)
-                                      or SessionClientTypeEnum:CurrentSession:Equals(SessionClientTypeEnum:WebClient).
+                        lConditionsMet = SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:ABLClient
+                                      or SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:WebClient.
                     when SessionTypeCondition:FatClient then
                         /* A fat client contains client and server components, and thus is a client that is not a WebClient. */
-                        lConditionsMet = SessionClientTypeEnum:CurrentSession:Equals(SessionClientTypeEnum:ABLClient)
-                                       and not SessionClientTypeEnum:CurrentSession:Equals(SessionClientTypeEnum:WebClient).
+                        lConditionsMet = SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:ABLClient
+                                       and not SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:WebClient.
                     when SessionTypeCondition:Server then
                         /* We assume that the other/underfined session client types are used as servers. */
-                        lConditionsMet = SessionClientTypeEnum:CurrentSession:Equals(SessionClientTypeEnum:AppServer)
-                                      or SessionClientTypeEnum:CurrentSession:Equals(SessionClientTypeEnum:WebSpeed)
-                                      or SessionClientTypeEnum:CurrentSession:Equals(SessionClientTypeEnum:Other).
+                        lConditionsMet = SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:AppServer
+                                      or SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:WebSpeed
+                                      or SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:PacificAS
+                                      or SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:Other.
                 end case.
             end.
-            when Condition:Name then lConditionsMet = ABLSession:Instance:Name eq poRHS:ToString().
+            when OpenEdge.InjectABL.Binding.Conditions.Condition:Name then lConditionsMet = ABLSession:Instance:Name eq poRHS:ToString().
         end case.
         
         /* If the operator is Not, the flip the evaluation */
-        if poOperator:Equals(Condition:Not) then
+        if poOperator:Equals(OpenEdge.InjectABL.Binding.Conditions.Condition:Not) then
             lConditionsMet = not lConditionsMet.
         
         return lConditionsMet.

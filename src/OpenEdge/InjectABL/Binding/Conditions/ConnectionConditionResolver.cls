@@ -45,8 +45,8 @@ class OpenEdge.InjectABL.Binding.Conditions.ConnectionConditionResolver implemen
         define variable lConditionsMet as logical no-undo.
         
         case poOperator:
-            when Condition:Is  then lConditionsMet = poLHS:Equals(poRHS).
-            when Condition:Not then lConditionsMet = not poLHS:Equals(poRHS).
+            when OpenEdge.InjectABL.Binding.Conditions.Condition:Is  then lConditionsMet = poLHS:Equals(poRHS).
+            when OpenEdge.InjectABL.Binding.Conditions.Condition:Not then lConditionsMet = not poLHS:Equals(poRHS).
         end case.
         
         return lConditionsMet.
