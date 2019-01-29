@@ -35,7 +35,7 @@ class OpenEdge.Test.WarriorModule inherits InjectionModule:
           :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider')).
 
         bind(get-class('OpenEdge.Test.IAmmo'))
-          :To(get-class('OpenEdge.Test.Bullets'))
+          :To(get-class('OpenEdge.Test.WoodBullets'))
           :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider')).
 
         bind(get-class('OpenEdge.Test.IArmor'))
