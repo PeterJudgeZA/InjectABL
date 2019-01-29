@@ -1,10 +1,10 @@
 /*------------------------------------------------------------------------
-    File        : WarriorModule
+    File        : AdvancedWarriorModule
     Purpose     : 
     Syntax      : 
     Description : 
-    @author pjudge
-    Created     : Tue Mar 02 11:07:55 EST 2010
+    Author(s)   : Boehme_A
+    Created     : Sat Dec 15 12:02:06 CET 2018
     Notes       : 
   ----------------------------------------------------------------------*/
 block-level on error undo, throw.
@@ -17,6 +17,7 @@ using OpenEdge.InjectABL.Lifecycle.*.
 using OpenEdge.InjectABL.Binding.Modules.*.
 using OpenEdge.Core.*.
 using Progress.Lang.*.
+using OpenEdge.Test.IWeapon from propath.
 
 class OpenEdge.Test.WarriorModule inherits InjectionModule:
     
@@ -26,42 +27,38 @@ class OpenEdge.Test.WarriorModule inherits InjectionModule:
 
     method override public void Load():
         def var oParam as IParameter extent no-undo.
+               
+        /* Samurai init */
         
-        /* use oBS as bug workaround */
-        def var obs as IBindingSyntax.
-        
-        /* Samurai! */
-        obs = Bind('OpenEdge.Test.IWeapon').
-        obs = obs:To('OpenEdge.Test.Sword').
-        
-        obs = Bind('OpenEdge.Test.IWeapon').
-        obs = obs:To('OpenEdge.Test.Shuriken'):Named('alternateweapon').
-        
-        obs = Bind('OpenEdge.Test.Samurai').
-        obs = obs
-            :ToSelf()
-            :Using('OpenEdge.Test.SamuraiProvider')
-            :WithPropertyValue('Dojo', 'Ninja Gym East')
-        .
-        
-        extent(oParam) = ?.
-        extent(oParam) = 1.
-        oParam[1] = new Parameter('brian', DataTypeEnum:Integer).
+        bind(get-class('OpenEdge.Test.IWeapon'))
+          :To(get-class('OpenEdge.Test.Gun'))
+          :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider')).
 
-        obs
-            :WithPropertyValue('NumberOfAssistants', oParam).
-        
-        
+        bind(get-class('OpenEdge.Test.IAmmo'))
+          :To(get-class('OpenEdge.Test.Bullets'))
+          :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider')).
+
+        bind(get-class('OpenEdge.Test.IArmor'))
+          :To(get-class('OpenEdge.Test.Kusari'))
+          :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider')).
+         
+        bind(get-class('OpenEdge.Test.IWeapon'))
+          :To(get-class('OpenEdge.Test.Shuriken')):Named('alternateweapon').
+             
         extent(oParam) = ?.
         extent(oParam) = 2.
         oParam[1] = new Parameter('Mike').
         oParam[2] = new Parameter('Dwight').
-        
-        obs    
-            :WithMethodValue('SetNinjaMasters', oParam)
-            :WithMethodValue('SetAlternateWeapon', get-class(IWeapon))
-            /*:OnServerSession()*/
-            .
+             
+        bind(get-class('OpenEdge.Test.Samurai'))
+          :ToSelf()
+          :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider'))
+          :WithPropertyValue('Dojo', 'Ninja Gym East')
+          :WithPropertyValue('NumberOfAssistants', new Parameter('1':U,  DataTypeEnum:Integer))
+          :WithMethodValue('SetNinjaMasters', oParam)
+          :WithMethodValue('SetAlternateWeapon', get-class(IWeapon), 'AlternateWeapon')
+        .
+
         
         /*
         obs = Bind('OpenEdge.Test.Samurai').
