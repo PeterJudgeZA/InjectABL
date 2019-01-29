@@ -438,11 +438,14 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
        
         oBuilder = Bind(poService).
         oBuilder:ToSelf().
+
+        oBindings = GetBindings(poService, '').
        
-        oBindings = GetBindings(poService, '').          
+        if oBindings:Size > 0 then
         oBinding = cast(oBindings:Get(1), IBinding).
            
         return oBinding.
+        
     end method. 
     
     method override protected IBindingSyntax CreateBindingBuilder(input poBinding as IBinding):
