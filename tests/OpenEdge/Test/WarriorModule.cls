@@ -1,66 +1,73 @@
 /*------------------------------------------------------------------------
     File        : AdvancedWarriorModule
-    Purpose     :
-    Syntax      :
-    Description :
+    Purpose     : 
+    Syntax      : 
+    Description : 
     Author(s)   : Boehme_A
     Created     : Sat Dec 15 12:02:06 CET 2018
-    Notes       :
+    Notes       : 
   ----------------------------------------------------------------------*/
 block-level on error undo, throw.
 
-using OpenEdge.Core.DataTypeEnum.
-using OpenEdge.InjectABL.Binding.Modules.InjectionModule.
-using OpenEdge.InjectABL.Binding.Parameters.IParameter.
-using OpenEdge.InjectABL.Binding.Parameters.Parameter.
-using OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider.
-using OpenEdge.Test.Gun.
-using OpenEdge.Test.IAmmo.
-using OpenEdge.Test.IArmor.
+using OpenEdge.InjectABL.*.
+using OpenEdge.InjectABL.Binding.*.
+using OpenEdge.InjectABL.Binding.Parameters.*.
+using OpenEdge.InjectABL.Binding.Conditions.*.
+using OpenEdge.InjectABL.Lifecycle.*.
+using OpenEdge.InjectABL.Binding.Modules.*.
+using OpenEdge.Core.*.
+using Progress.Lang.*.
 using OpenEdge.Test.IWeapon.
-using OpenEdge.Test.Kusari.
-using OpenEdge.Test.Samurai.
-using OpenEdge.Test.Shuriken.
-using OpenEdge.Test.WoodBullets.
 
 class OpenEdge.Test.WarriorModule inherits InjectionModule:
-
+    
     constructor public WarriorModule():
         super().
     end constructor.
 
     method override public void Load():
         def var oParam as IParameter extent no-undo.
-
+               
         /* Samurai init */
-        this-object:Bind(get-class(IWeapon))
-          :To(get-class(Gun))
-          :Using(get-class(ConstructorInjectionProvider)).
+        
+        bind(get-class('OpenEdge.Test.IWeapon'))
+          :To(get-class('OpenEdge.Test.Gun'))
+          :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider')).
 
-        this-object:Bind(get-class(IAmmo))
-          :To(get-class(WoodBullets))
-          :Using(get-class(ConstructorInjectionProvider)).
+        bind(get-class('OpenEdge.Test.IAmmo'))
+          :To(get-class('OpenEdge.Test.Bullets'))
+          :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider')).
 
-        this-object:Bind(get-class(IArmor))
-          :To(get-class(Kusari))
-          :Using(get-class(ConstructorInjectionProvider)).
-
-        this-object:Bind(get-class(IWeapon))
-          :To(get-class(Shuriken)):Named('alternateweapon').
-
+        bind(get-class('OpenEdge.Test.IArmor'))
+          :To(get-class('OpenEdge.Test.Kusari'))
+          :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider')).
+         
+        bind(get-class('OpenEdge.Test.IWeapon'))
+          :To(get-class('OpenEdge.Test.Shuriken')):Named('alternateweapon').
+             
         extent(oParam) = ?.
         extent(oParam) = 2.
         oParam[1] = new Parameter('Mike').
         oParam[2] = new Parameter('Dwight').
-
-        this-object:Bind(get-class(Samurai))
+             
+        bind(get-class('OpenEdge.Test.Samurai'))
           :ToSelf()
-          :Using(get-class(ConstructorInjectionProvider))
+          :Using(get-class('OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider'))
           :WithPropertyValue('Dojo', 'Ninja Gym East')
           :WithPropertyValue('NumberOfAssistants', new Parameter('1':U,  DataTypeEnum:Integer))
           :WithMethodValue('SetNinjaMasters', oParam)
           :WithMethodValue('SetAlternateWeapon', get-class(IWeapon), 'AlternateWeapon')
         .
+
+        
+        /*
+        obs = Bind(get-class(OpenEdge.Test.Samurai').
+        obs = obs
+            :To(get-class(OpenEdge.Test.ClientSamurai')
+            :Using('OpenEdge.Test.SamuraiProvider')
+            /*:OnClientSession()*/
+            .
+        */            
     end method.
 
 end class.
