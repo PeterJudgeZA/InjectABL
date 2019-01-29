@@ -32,6 +32,7 @@ using OpenEdge.InjectABL.Binding.Conditions.Condition.
 using OpenEdge.Core.String.
 using OpenEdge.Core.Assert.
 
+
 class OpenEdge.InjectABL.Binding.Conditions.Condition implements ICondition:
 
     define static private property ConditionResolverType as Progress.Lang.Class no-undo get. set.
@@ -53,15 +54,15 @@ class OpenEdge.InjectABL.Binding.Conditions.Condition implements ICondition:
 
     constructor static Condition():
         define variable oType as Progress.Lang.Class no-undo.
-
+        
         assign OpenEdge.InjectABL.Binding.Conditions.Condition:ConditionResolverType = get-class(StandardConditionResolver)
-
-               OpenEdge.InjectABL.Binding.Conditions.Condition:And = new OpenEdge.InjectABL.Binding.Conditions.Condition('and')
-               OpenEdge.InjectABL.Binding.Conditions.Condition:or  = new OpenEdge.InjectABL.Binding.Conditions.Condition('or')
-
-               OpenEdge.InjectABL.Binding.Conditions.Condition:Is   = new OpenEdge.InjectABL.Binding.Conditions.Condition('is')
-               OpenEdge.InjectABL.Binding.Conditions.Condition:When = new OpenEdge.InjectABL.Binding.Conditions.Condition('when')
-               OpenEdge.InjectABL.Binding.Conditions.Condition:not  = new OpenEdge.InjectABL.Binding.Conditions.Condition('not')
+               
+               Condition:And = new Condition('and')
+               Condition:Or  = new Condition('or')
+               
+               Condition:Is   = new Condition('is')
+               Condition:When = new Condition('when')
+               Condition:Not  = new Condition('not')
 
                OpenEdge.InjectABL.Binding.Conditions.Condition:Name = new OpenEdge.InjectABL.Binding.Conditions.Condition('Name')
                OpenEdge.InjectABL.Binding.Conditions.Condition:Type = new OpenEdge.InjectABL.Binding.Conditions.Condition('Type')
@@ -78,7 +79,7 @@ class OpenEdge.InjectABL.Binding.Conditions.Condition implements ICondition:
     end constructor.
 
     method public IConditionResolver GetResolver():
-        return StandardConditionResolver:GetResolver(OpenEdge.InjectABL.Binding.Conditions.Condition:ConditionResolverType).
+        return StandardConditionResolver:GetResolver(OpenEdge.InjectABL.Binding.Conditions.Condition:ConditionResolverType). 
     end method.
 
     method static public logical Equals(poCondition1 as ICondition, poCondition2 as ICondition):
