@@ -22,7 +22,6 @@
     Created     : Fri Jun 04 13:50:10 EDT 2010
     Notes       : 
   ---------------------------------------------------------------------- */
-block-level on error undo, throw.
 
 enum OpenEdge.InjectABL.Lifecycle.StandardScopeEnum:
     define enum /** One instance, running free, like a wolf. */

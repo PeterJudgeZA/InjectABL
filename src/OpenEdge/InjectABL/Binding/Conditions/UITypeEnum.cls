@@ -20,10 +20,8 @@
     Description : 
     @author pjudge
     Created     : Fri Apr 23 15:08:30 EDT 2010
-    Notes       : * This class is not final since implementers could have their
-                    own names for UI types.
   ---------------------------------------------------------------------- */
-block-level on error undo, throw.
+enum OpenEdge.InjectABL.Binding.Conditions.UITypeEnum :
 
 enum OpenEdge.InjectABL.Binding.Conditions.UITypeEnum:
     define enum /** Character-mode UI */

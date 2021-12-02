@@ -22,7 +22,6 @@
     Created     : Tue Mar 02 11:37:41 EST 2010
     Notes       : 
   ---------------------------------------------------------------------- */
-block-level on error undo, throw.
 
 enum OpenEdge.InjectABL.Binding.BindingTargetEnum:
     define enum /** Indicates that the binding is from a type to itself. **/

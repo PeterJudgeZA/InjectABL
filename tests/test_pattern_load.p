@@ -1,19 +1,16 @@
 
 /*------------------------------------------------------------------------
     File        : test_pattern_load.p
-    Purpose     : 
+    Purpose     :
 
     Syntax      :
 
-    Description : 
+    Description :
 
     Author(s)   : pjudge
     Created     : Mon Dec 13 14:06:46 EST 2010
     Notes       :
   ----------------------------------------------------------------------*/
-
-/* ***************************  Definitions  ************************** */
-
 block-level on error undo, throw.
 
 using OpenEdge.Core.Assert.
@@ -29,16 +26,16 @@ function Load return logical (input pcFilePattern as character):
         define variable cPWD as character no-undo.
         define variable cFolder as character no-undo.
         define variable oModules as IInjectionModuleCollection no-undo.
-        
+
         Assert:NotNullOrEmpty(pcFilePattern, 'file pattern').
-        
+
         /* Remove the extension, since we may only have the .R present. */
         iMax = num-entries(pcFilePattern, '.').
         case iMax:
             when 1 then cFileBase = pcFilePattern.
             otherwise
             do:
-                cOriginalExtension = entry(iMax, pcFilePattern, '.'). 
+                cOriginalExtension = entry(iMax, pcFilePattern, '.').
                 do iLoop = (iMax - 1) to 1 by -1:
                     cFileBase = entry(iLoop, pcFilePattern, '.')
                               + '.' +
@@ -46,16 +43,16 @@ function Load return logical (input pcFilePattern as character):
                 end.
             end.
         end case.
-        
+
         /* Resolve the working folder into something meaningful, since
            SEARCH() is significantly faster with a fully-qualified path  */
         file-info:file-name = '.'.
-        cPWD = file-info:full-pathname. 
-        
+        cPWD = file-info:full-pathname.
+
         iMax = num-entries(propath).
         do iLoop = 1 to iMax:
             cFolder = entry(iLoop, propath).
-            
+
             if cFolder begins '.' then
             do:
                 if cFolder  eq '.' then
@@ -63,11 +60,11 @@ function Load return logical (input pcFilePattern as character):
                 else
                     cFolder = cPWD + substring(cFolder, 2).
             end.
-            
-            /* Always looks for .R. We can write a specialised resolver here if we want 
+
+            /* Always looks for .R. We can write a specialised resolver here if we want
                to get fancy and look for .r and .p
             if cFile eq ? then
-                cFile = search(cFolderBase + pcFilePattern). */            
+                cFile = search(cFolderBase + pcFilePattern). */
             assign cFolderBase = right-trim(cFolder, '/') + '/' + cFileBase
                    cFile = search(cFolderBase + '.r').
             if cFile eq ? then

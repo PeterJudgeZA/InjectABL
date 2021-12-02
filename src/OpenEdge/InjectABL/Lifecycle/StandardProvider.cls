@@ -323,7 +323,7 @@ class OpenEdge.InjectABL.Lifecycle.StandardProvider implements IProvider:
                 poParams:SetParameter(piOrder,
                                       substitute(DataTypeHelper:GetMask(DataTypeEnum:Class), poArgument:DeclaredType:TypeName),
                                       IOModeEnum:Input:ToString(),
-                                      oValue).
+                                      oValue).                    
             end.
         end.    /* objects*/
         

@@ -115,12 +115,12 @@ class OpenEdge.InjectABL.Binding.StandardBindingResolver implements IBindingReso
             case oCondition:
                 /* 'When' starts a new set of evaluations. We treat this as an And (true);
                    this is necessary for cases where there is only one condition. */ 
-                when Condition:When then
-                    assign oOperator = Condition:And
+                when OpenEdge.InjectABL.Binding.Conditions.Condition:When then
+                    assign oOperator = OpenEdge.InjectABL.Binding.Conditions.Condition:And
                            lSubconditionMet = true.
                 
-                when Condition:And or 
-                when Condition:Or then
+                when OpenEdge.InjectABL.Binding.Conditions.Condition:And or 
+                when OpenEdge.InjectABL.Binding.Conditions.Condition:Or then
                     oOperator = oCondition.
                 
                 otherwise
@@ -139,7 +139,7 @@ class OpenEdge.InjectABL.Binding.StandardBindingResolver implements IBindingReso
             if valid-object(oOperator) then
             do:
                 case oOperator:
-                    when Condition:Or then
+                    when OpenEdge.InjectABL.Binding.Conditions.Condition:Or then
                     do:
                         lConditionsMet = lConditionsMet or lSubconditionMet.
                         
@@ -150,7 +150,7 @@ class OpenEdge.InjectABL.Binding.StandardBindingResolver implements IBindingReso
                             leave.
                     end.
                     
-                    when Condition:And then
+                    when OpenEdge.InjectABL.Binding.Conditions.Condition:And then
                     do:
                         lConditionsMet = lConditionsMet and lSubconditionMet.
                         

@@ -1,10 +1,10 @@
 /*------------------------------------------------------------------------
     File        : test_injectabl.p
-    Purpose     : 
+    Purpose     :
 
     Syntax      :
 
-    Description : 
+    Description :
 
     @author pjudge
     Created     : Tue Mar 02 10:56:02 EST 2010
@@ -24,8 +24,6 @@ using OpenEdge.Test.WarriorModule.
 using Progress.Lang.AppError.
 using Progress.Lang.Error.
 using OpenEdge.Core.System.ArgumentError.
-
-session:error-stack-trace = yes.
 
 def var kernel as IKernel.
 def var modules as IInjectionModuleCollection.
@@ -47,24 +45,42 @@ warrior:Attack("the evildoers").
    
 params = new Collection().
 
-routine = new Routine(get-class(OpenEdge.Test.Samurai),
+routine = new Routine(get-class(Samurai),
                       'SetPrimaryWeapon',
                       RoutineTypeEnum:Method).
+
 extent(routine:Parameters) = 1.
-routine:Parameters[1] = new Parameter(get-class(OpenEdge.Test.Shuriken)).
+
+routine:Parameters[1] = new Parameter(get-class(Shuriken)).
+
 params:Add(routine).
-           
-routine = new Routine(get-class(OpenEdge.Test.Samurai),
+
+routine = new Routine(get-class(Samurai),
                       'UseAlternate',
                       RoutineTypeEnum:PropertySetter).
+
 extent(routine:Parameters) = 1.
+
 routine:Parameters[1] = new Parameter('true', DataTypeEnum:Logical).
+
 params:Add(routine).
+
+message
+  "First: " warrior:toString() skip
+  view-as alert-box
+  title program-name(1).
+
 
 kernel:Inject(warrior, params).
 */
 
+message
+  warrior:toString() skip
+  view-as alert-box
+  title program-name(1).
+
 warrior:Attack("a melon").
+*/
 
 catch a as AppError:
     message     

@@ -539,7 +539,7 @@ class OpenEdge.InjectABL.Binding.BindingBuilder implements IBindingSyntax:
         define variable oConditionSyntax as IConditionSyntax no-undo.
         
         oConditionSyntax = this-object:When().
-        oConditionSyntax:Condition(Condition:Type):Is(SessionTypeCondition:ThinClient).
+        oConditionSyntax:Condition(OpenEdge.InjectABL.Binding.Conditions.Condition:Type):Is(SessionTypeCondition:ThinClient).
 
         return this-object.
     end method.
@@ -549,7 +549,7 @@ class OpenEdge.InjectABL.Binding.BindingBuilder implements IBindingSyntax:
         define variable oConditionSyntax as IConditionSyntax no-undo.
         
         oConditionSyntax = this-object:When().
-        oConditionSyntax:Condition(Condition:Type):Is(SessionTypeCondition:Server).
+        oConditionSyntax:Condition(OpenEdge.InjectABL.Binding.Conditions.Condition:Type):Is(SessionTypeCondition:Server).
 
         return this-object.
     end method.
@@ -559,7 +559,7 @@ class OpenEdge.InjectABL.Binding.BindingBuilder implements IBindingSyntax:
         define variable oConditionSyntax as IConditionSyntax no-undo.
         
         oConditionSyntax = this-object:When().
-        oConditionSyntax:Condition(Condition:Type):Is(SessionTypeCondition:FatClient).
+        oConditionSyntax:Condition(OpenEdge.InjectABL.Binding.Conditions.Condition:Type):Is(SessionTypeCondition:FatClient).
 
         return this-object.
     end method.
@@ -569,7 +569,7 @@ class OpenEdge.InjectABL.Binding.BindingBuilder implements IBindingSyntax:
         define variable oConditionSyntax as IConditionSyntax no-undo.
         
         oConditionSyntax = this-object:When().
-        oConditionSyntax:Condition(Condition:Name):Is(new SessionTypeCondition(pcSessionCode)).
+        oConditionSyntax:Condition(OpenEdge.InjectABL.Binding.Conditions.Condition:Name):Is(new SessionTypeCondition(pcSessionCode)).
         
         return this-object.
     end method.

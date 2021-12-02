@@ -17,6 +17,7 @@ using OpenEdge.Test.*.
 class OpenEdge.Test.Samurai:
     
     define private variable moWeapon as IWeapon no-undo.
+    define private variable moArmor as IArmor no-undo.
     define private variable moAlternateWeapon as IWeapon no-undo.
     define public property Dojo as character no-undo get. set.
     define public property UseAlternate as logical no-undo get. set.
@@ -28,9 +29,20 @@ class OpenEdge.Test.Samurai:
         moWeapon = poWeapon.
     end constructor.
     
+    constructor public Samurai(poWeapon as IWeapon, poArmor as IArmor):
+       moWeapon = poWeapon.     
+       moArmor  = poArmor.
+    end constructor.
+    
     method public void Attack(target as char):
+      
         message
-        'students at '  Dojo ' about to attack ... ' 
+        'students at '  Dojo ' about to attack ... ' skip
+        '' +
+        (if valid-object(moArmor) then
+           'Protected by Armor with level ' + string(moArmor:iProtect())
+         else
+           'unprotected! They have no armor :(')
         view-as alert-box.
         
         if UseAlternate then
@@ -50,6 +62,7 @@ class OpenEdge.Test.Samurai:
     end method.
     
     method public void SetPrimaryWeapon(poWeapon as IWeapon):
+      message
         moWeapon = poWeapon.
     end method.
     
@@ -57,6 +70,21 @@ class OpenEdge.Test.Samurai:
                                        pcAssistantToTheMaster as character):
         mcNinjaMaster = pcMaster.
         mcAssistantToTheMaster = pcAssistantToTheMaster. 
+    end method.
+    
+    method override character toString():
+      
+      return 
+          "Hello there" + chr(13)
+        + "My NinjaMaster       is " + quoter (mcNinjaMaster) + chr(13)
+        + "his assistent        is " + quoter (mcAssistantToTheMaster) + chr(13)
+        + "My primary weapon    is " + quoter (moWeapon:GetClass():TypeName) + chr(13)
+        + "my alternate weapon  is " + quoter (moAlternateWeapon:GetClass():TypeName) + chr(13)
+        + "Iam told to use the " + (if UseAlternate then
+                                      quoter (moAlternateWeapon:GetClass():TypeName)
+                                    else
+                                      quoter (moWeapon:GetClass():TypeName)).
+          
     end method.
     
 end class.

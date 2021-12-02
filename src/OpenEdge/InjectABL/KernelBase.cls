@@ -351,9 +351,10 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
                     :TryGetContext(poInstance).
         if not valid-object(oContext) then
             oContext = CreateContext(CreateDefaultBinding(poInstance:GetClass())).
-        
-        oContext:Binding:Arguments:AddAll(poArguments).
-                
+          
+        // [hb] original: oContext:Binding:Arguments:AddAll(poArguments).
+        oContext:Arguments:AddAll(poArguments).
+     
         cast(Components:Get(get-class(IPipeline)), IPipeline)
             :Activate(oContext, poInstance).
     end method.
@@ -427,17 +428,24 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
 
     method protected IBinding CreateDefaultBinding(input poService as Progress.Lang.Class):
         define variable oBinding as IBinding no-undo.
+        define variable oBindings as IList     no-undo.
         define variable oBuilder as IBindingSyntax no-undo.
         
         if not TypeIsSelfBindable(poService) then
             undo, throw new InvalidValueSpecifiedError(
                                 'default binding',
                                 ': Type ' + poService:TypeName + ' cannot bind to itself').
-        
+       
         oBuilder = Bind(poService).
         oBuilder:ToSelf().
-        
+
+        oBindings = GetBindings(poService, '').
+       
+        if oBindings:Size > 0 then
+        oBinding = cast(oBindings:Get(1), IBinding).
+           
         return oBinding.
+        
     end method. 
     
     method override protected IBindingSyntax CreateBindingBuilder(input poBinding as IBinding):
