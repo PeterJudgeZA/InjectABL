@@ -24,6 +24,7 @@ using OpenEdge.Test.WarriorModule.
 using Progress.Lang.AppError.
 using Progress.Lang.Error.
 using OpenEdge.Core.System.ArgumentError.
+using OpenEdge.Test.Shuriken.
 
 def var kernel as IKernel.
 def var modules as IInjectionModuleCollection.
@@ -31,18 +32,18 @@ def var params as ICollection.
 def var routine as Routine.
 def var warrior as Samurai.
 
+session:error-stack-trace = yes.
+
 modules = new IInjectionModuleCollection().
 modules:Add(new WarriorModule()).
 
 kernel = new StandardKernel(modules).
 
-warrior = cast(kernel:Get(get-class(OpenEdge.Test.Samurai)), Samurai). 
+warrior = cast(kernel:Get(get-class(OpenEdge.Test.Samurai)), Samurai).
 
 warrior:Attack("the evildoers").
 
-/* The "Inject" functionality has a bug - it doesn't resolve the binding; 
-   Has to do with the fact that the Samurai is transient
-   
+
 params = new Collection().
 
 routine = new Routine(get-class(Samurai),
@@ -70,9 +71,7 @@ message
   view-as alert-box
   title program-name(1).
 
-
 kernel:Inject(warrior, params).
-*/
 
 message
   warrior:toString() skip
@@ -80,10 +79,9 @@ message
   title program-name(1).
 
 warrior:Attack("a melon").
-*/
 
 catch a as AppError:
-    message     
+    message
     'msg=' a:GetMessage(1) skip
     'retval=' a:ReturnValue skip(2)
     a:CallStack
@@ -91,7 +89,7 @@ catch a as AppError:
 end catch.
 
 catch e as Error:
-    message     
+    message
         e:GetMessage(1) skip(2)
         e:CallStack
     view-as alert-box title 'Unhandled Progress.Lang.Error'.
