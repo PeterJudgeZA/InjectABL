@@ -24,15 +24,13 @@
   ----------------------------------------------------------------------*/
 block-level on error undo, throw.
 
-using OpenEdge.InjectABL.Binding.Conditions.Condition.
+using OpenEdge.Core.Assert.
+using OpenEdge.Core.String.
 using OpenEdge.InjectABL.Binding.Conditions.ICondition.
 using OpenEdge.InjectABL.Binding.Conditions.IConditionResolver.
 using OpenEdge.InjectABL.Binding.Conditions.StandardConditionResolver.
-
-using OpenEdge.Core.String.
-using OpenEdge.Core.Assert.
-using Progress.Lang.Class.
 using Progress.Lang.Object.
+using OpenEdge.InjectABL.Binding.Conditions.Condition.
 
 class OpenEdge.InjectABL.Binding.Conditions.Condition implements ICondition:
     
@@ -59,11 +57,11 @@ class OpenEdge.InjectABL.Binding.Conditions.Condition implements ICondition:
         assign Condition:ConditionResolverType = get-class(StandardConditionResolver)
                
                Condition:And = new Condition('and')
-               Condition:Or = new Condition('or')
+               Condition:Or  = new Condition('or')
                
-               Condition:Is = new Condition('is')
+               Condition:Is   = new Condition('is')
                Condition:When = new Condition('when')
-               Condition:Not = new Condition('not')
+               Condition:Not  = new Condition('not')
 
                Condition:Name = new Condition('Name')
                Condition:Type = new Condition('Type')

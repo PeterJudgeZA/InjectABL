@@ -25,32 +25,16 @@
   ---------------------------------------------------------------------- */
 block-level on error undo, throw.
 
-using OpenEdge.InjectABL.Binding.Conditions.UITypeEnum.
-using OpenEdge.Core.EnumMember.
-
-class OpenEdge.InjectABL.Binding.Conditions.UITypeEnum serializable inherits EnumMember:
-    /** Character-mode UI */
-    define static public property TTY    as UITypeEnum no-undo get. private set.
-    /** 'Classic' ABL GUI */
-    define static public property ABL    as UITypeEnum no-undo get. private set.
-    /* OpenEdge GUI for .NET */
-    define static public property DotNet as UITypeEnum no-undo get. private set.
-    /** Web UI */
-    define static public property Web    as UITypeEnum no-undo get. private set.
-    /** Mobile UI */
-    define static public property Mobile as UITypeEnum no-undo get. private set.
-    
-    constructor static UITypeEnum():
-        assign UITypeEnum:TTY    = new UITypeEnum('TTY')
-               UITypeEnum:ABL    = new UITypeEnum('ABL')
-               UITypeEnum:DotNet = new UITypeEnum('DotNet')
-               UITypeEnum:Web    = new UITypeEnum('Web')
-               UITypeEnum:Mobile = new UITypeEnum('Mobile')
-               .
-    end constructor.
-    
-    constructor public UITypeEnum ( input pcName as character ):
-        super (input pcName).
-    end constructor.
-    
-end class.
+enum OpenEdge.InjectABL.Binding.Conditions.UITypeEnum:
+    define enum /** Character-mode UI */
+                TTY
+                /** 'Classic' ABL GUI */
+                ABL
+                /* OpenEdge GUI for .NET */
+                DotNet
+                /** Web UI */
+                Web
+                /** Mobile UI */
+                Mobile
+                .         
+end enum.
