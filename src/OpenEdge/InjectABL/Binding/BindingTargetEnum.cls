@@ -23,13 +23,16 @@
     Notes       : 
   ---------------------------------------------------------------------- */
 
-enum OpenEdge.InjectABL.Binding.BindingTargetEnum :  
-
-  define enum Self
-              Type
-              Provider
-              Method
-              Constant
-              .
-
+enum OpenEdge.InjectABL.Binding.BindingTargetEnum:
+    define enum /** Indicates that the binding is from a type to itself. **/
+                Self
+                /** Indicates that the binding is from one type to another. **/
+                Type
+                /** Indicates that the binding is from a type to a provider. **/
+                Provider
+                /** Indicates that the binding is from a type to a callback method. **/
+                Method
+                /** Indicates that the binding is from a type to a constant value. **/
+                Constant
+                .
 end enum.

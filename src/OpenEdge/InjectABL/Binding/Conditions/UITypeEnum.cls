@@ -23,12 +23,16 @@
   ---------------------------------------------------------------------- */
 enum OpenEdge.InjectABL.Binding.Conditions.UITypeEnum :
 
-define enum TTY
-            ABL
-            DotNet
-            Web
-            Mobile
-            .
-
+enum OpenEdge.InjectABL.Binding.Conditions.UITypeEnum:
+    define enum /** Character-mode UI */
+                TTY
+                /** 'Classic' ABL GUI */
+                ABL
+                /* OpenEdge GUI for .NET */
+                DotNet
+                /** Web UI */
+                Web
+                /** Mobile UI */
+                Mobile
+                .         
 end enum.
-

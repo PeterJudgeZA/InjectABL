@@ -23,15 +23,19 @@
     Notes       : 
   ---------------------------------------------------------------------- */
 
-enum OpenEdge.InjectABL.Lifecycle.StandardScopeEnum :  
-
-  define enum Transient
-              Default = Transient
-              Singleton
-              ABLSession
-              AgentConnection
-              AgentRequest
-              Custom
-              .
-
+enum OpenEdge.InjectABL.Lifecycle.StandardScopeEnum:
+    define enum /** One instance, running free, like a wolf. */
+                Transient
+                /** Only one instance at a time: effectively scoped to the life of the InjectABL kernel. */
+                Singleton 
+                /** One instance per AVM Session. */
+                ABLSession
+                /** One instance per connection; meaningless for statefree Appservers */
+                AgentConnection
+                /** One instance per AppServer request */
+                AgentRequest
+                /** Custom scope */
+                Custom 
+                Default = Transient
+                .
 end enum.

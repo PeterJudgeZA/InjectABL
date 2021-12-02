@@ -17,7 +17,7 @@ using OpenEdge.InjectABL.Lifecycle.*.
 using OpenEdge.InjectABL.Binding.Modules.*.
 using OpenEdge.Core.*.
 using Progress.Lang.*.
-using OpenEdge.Test.*.
+using OpenEdge.Test.IWeapon.
 
 class OpenEdge.Test.WarriorModule inherits InjectionModule:
 
@@ -29,7 +29,6 @@ class OpenEdge.Test.WarriorModule inherits InjectionModule:
         def var oParam as IParameter extent no-undo.
 
         /* Samurai init */
-
         bind(get-class(IWeapon))
           :To(get-class(Gun))
           :Using(get-class(ConstructorInjectionProvider)).
@@ -59,15 +58,6 @@ class OpenEdge.Test.WarriorModule inherits InjectionModule:
           :WithMethodValue('SetAlternateWeapon', get-class(IWeapon), 'AlternateWeapon')
         .
 
-
-        /*
-        obs = Bind('OpenEdge.Test.Samurai').
-        obs = obs
-            :To('OpenEdge.Test.ClientSamurai')
-            :Using('OpenEdge.Test.SamuraiProvider')
-            /*:OnClientSession()*/
-            .
-        */
     end method.
 
 end class.

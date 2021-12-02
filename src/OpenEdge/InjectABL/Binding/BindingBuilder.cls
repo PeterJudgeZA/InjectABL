@@ -24,29 +24,23 @@
   ----------------------------------------------------------------------*/
 block-level on error undo, throw.
 
-using OpenEdge.InjectABL.Binding.IBindingSyntax.
-using OpenEdge.InjectABL.Binding.IBinding.
+using OpenEdge.Core.Assert.
+using OpenEdge.Core.DataTypeEnum.
+using OpenEdge.Core.RoutineTypeEnum.
 using OpenEdge.InjectABL.Binding.BindingTargetEnum.
-using OpenEdge.InjectABL.Binding.Parameters.Routine.
-using OpenEdge.InjectABL.Binding.Parameters.IParameter.
-using OpenEdge.InjectABL.Binding.Parameters.Parameter.
-using OpenEdge.InjectABL.Binding.Parameters.Routine.
 using OpenEdge.InjectABL.Binding.Conditions.Condition.
 using OpenEdge.InjectABL.Binding.Conditions.ConditionBuilder.
 using OpenEdge.InjectABL.Binding.Conditions.IConditionSyntax.
 using OpenEdge.InjectABL.Binding.Conditions.SessionTypeCondition.
-using OpenEdge.InjectABL.Binding.Conditions.SessionTypeCondition.
-using OpenEdge.InjectABL.Binding.Conditions.UITypeCondition.
+using OpenEdge.InjectABL.Binding.IBinding.
+using OpenEdge.InjectABL.Binding.IBindingSyntax.
+using OpenEdge.InjectABL.Binding.Parameters.IParameter.
+using OpenEdge.InjectABL.Binding.Parameters.Parameter.
+using OpenEdge.InjectABL.Binding.Parameters.Routine.
+using OpenEdge.InjectABL.IKernel.
 using OpenEdge.InjectABL.Lifecycle.StandardScope.
 using OpenEdge.InjectABL.Lifecycle.StandardScopeEnum.
-using OpenEdge.InjectABL.IKernel.
-
-using OpenEdge.Core.SessionClientTypeEnum.
-using OpenEdge.Core.RoutineTypeEnum.
-using OpenEdge.Core.DataTypeEnum.
-using OpenEdge.Core.Assert.
 using Progress.Lang.Class.
-using Progress.Lang.AppError.
 using Progress.Lang.Object.
 
 class OpenEdge.InjectABL.Binding.BindingBuilder implements IBindingSyntax:

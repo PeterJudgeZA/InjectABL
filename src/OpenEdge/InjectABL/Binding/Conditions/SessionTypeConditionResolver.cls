@@ -24,17 +24,17 @@
   ---------------------------------------------------------------------- */
 block-level on error undo, throw.
 
-using OpenEdge.InjectABL.Lifecycle.ABLSession.
+using OpenEdge.Core.SessionClientTypeEnum.
 using OpenEdge.InjectABL.Binding.Conditions.Condition.
 using OpenEdge.InjectABL.Binding.Conditions.ICondition.
 using OpenEdge.InjectABL.Binding.Conditions.IConditionResolver.
 using OpenEdge.InjectABL.Binding.Conditions.SessionTypeCondition.
+using OpenEdge.InjectABL.Lifecycle.ABLSession.
 
-using OpenEdge.Core.SessionClientTypeEnum.
 
 class OpenEdge.InjectABL.Binding.Conditions.SessionTypeConditionResolver implements IConditionResolver:
-    
     constructor public SessionTypeConditionResolver():
+        assign this-object:CurrentSession = SessionClientTypeEnum:GetEnum(session:client-type).
     end constructor. 
     
     /** Evaluates the provided conditions. 

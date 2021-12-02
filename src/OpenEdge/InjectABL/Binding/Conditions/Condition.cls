@@ -27,11 +27,8 @@ block-level on error undo, throw.
 using OpenEdge.InjectABL.Binding.Conditions.ICondition.
 using OpenEdge.InjectABL.Binding.Conditions.IConditionResolver.
 using OpenEdge.InjectABL.Binding.Conditions.StandardConditionResolver.
-
-using OpenEdge.Core.String.
-using OpenEdge.Core.Assert.
-using Progress.Lang.Class.
 using Progress.Lang.Object.
+using OpenEdge.InjectABL.Binding.Conditions.Condition.
 
 
 class OpenEdge.InjectABL.Binding.Conditions.Condition implements ICondition:

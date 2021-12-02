@@ -237,18 +237,16 @@ class OpenEdge.InjectABL.Lifecycle.StandardProvider implements IProvider:
             if lIsArray then
             do:
                 poArgument:GetValue(poContext, output cValueArray).
-                poInstance:GetClass():SetPropertyValue(
-                    poInstance, 
-                    pcPropertyName,
-                    cValueArray).
+                poInstance:GetClass():SetPropertyValue(poInstance,
+                                                       pcPropertyName,
+                                                       cValueArray).
             end.
             else
             do:
                 poArgument:GetValue(poContext, output cValue).
-                poInstance:GetClass():SetPropertyValue(
-                    poInstance, 
-                    pcPropertyName,
-                    cValue).
+                poInstance:GetClass():SetPropertyValue(poInstance,
+                                                       pcPropertyName,
+                                                       cValue).
             end.
         end.    /* primitives */
         else
@@ -256,18 +254,16 @@ class OpenEdge.InjectABL.Lifecycle.StandardProvider implements IProvider:
             if lIsArray then
             do:
                 poArgument:GetValue(poContext, output oValueArray).
-                poInstance:GetClass():SetPropertyValue(
-                    poInstance, 
-                    pcPropertyName,
-                    oValueArray).
+                poInstance:GetClass():SetPropertyValue(poInstance,
+                                                       pcPropertyName,
+                                                       oValueArray).
             end.
             else
             do:
                 poArgument:GetValue(poContext, output oValue).
-                poInstance:GetClass():SetPropertyValue(
-                    poInstance, 
-                    pcPropertyName,
-                    oValue).
+                poInstance:GetClass():SetPropertyValue(poInstance,
+                                                       pcPropertyName,
+                                                       oValue).
             end.
         end.    /* objects*/
         
@@ -317,7 +313,7 @@ class OpenEdge.InjectABL.Lifecycle.StandardProvider implements IProvider:
             do:
                 poArgument:GetValue(poContext, output oValueArray).
                 poParams:SetParameter(piOrder,
-                                      substitute(DataTypeEnum:ClassArray:ToString(), poArgument:DeclaredType:TypeName),
+                                      substitute(DataTypeHelper:GetMask(DataTypeEnum:ClassArray), poArgument:DeclaredType:TypeName),
                                       IOModeEnum:Input:ToString(),
                                       oValueArray).
             end.
@@ -325,7 +321,7 @@ class OpenEdge.InjectABL.Lifecycle.StandardProvider implements IProvider:
             do:
                 poArgument:GetValue(poContext, output oValue).
                 poParams:SetParameter(piOrder,
-                                      DataTypeEnum:Class:ToString() + ' ':U + poArgument:DeclaredType:TypeName,
+                                      substitute(DataTypeHelper:GetMask(DataTypeEnum:Class), poArgument:DeclaredType:TypeName),
                                       IOModeEnum:Input:ToString(),
                                       oValue).                    
             end.
