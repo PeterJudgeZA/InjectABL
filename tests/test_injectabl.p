@@ -10,22 +10,27 @@
     Created     : Tue Mar 02 10:56:02 EST 2010
     Notes       :
   ----------------------------------------------------------------------*/
-using   OpenEdge.Core.InjectABL.IKernel.
-using   OpenEdge.Lang.Collections.ICollection.
-using   OpenEdge.Lang.Collections.Collection.
-using   OpenEdge.Core.InjectABL.Binding.Modules.IInjectionModuleCollection.
-using OpenEdge.Test.*.
-using OpenEdge.Core.InjectABL.*.
-using OpenEdge.Core.InjectABL.Binding.Parameters.*.
-using OpenEdge.Core.InjectABL.Binding.Modules.*.
-using OpenEdge.Lang.*.
-using Progress.Lang.*.
+using OpenEdge.Core.Collections.Collection.
+using OpenEdge.Core.Collections.ICollection.
+using OpenEdge.Core.DataTypeEnum.
+using OpenEdge.Core.RoutineTypeEnum.
+using OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection.
+using OpenEdge.InjectABL.Binding.Parameters.Parameter.
+using OpenEdge.InjectABL.Binding.Parameters.Routine.
+using OpenEdge.InjectABL.IKernel.
+using OpenEdge.InjectABL.StandardKernel.
+using OpenEdge.Test.Samurai.
+using OpenEdge.Test.WarriorModule.
+using Progress.Lang.AppError.
+using Progress.Lang.Error.
+using OpenEdge.Core.System.ArgumentError.
+
+session:error-stack-trace = yes.
 
 def var kernel as IKernel.
 def var modules as IInjectionModuleCollection.
 def var params as ICollection.
 def var routine as Routine.
-
 def var warrior as Samurai.
 
 modules = new IInjectionModuleCollection().
@@ -33,10 +38,13 @@ modules:Add(new WarriorModule()).
 
 kernel = new StandardKernel(modules).
 
-warrior = cast(kernel:Get('OpenEdge.Test.Samurai'), Samurai). 
+warrior = cast(kernel:Get(get-class(OpenEdge.Test.Samurai)), Samurai). 
 
 warrior:Attack("the evildoers").
 
+/* The "Inject" functionality has a bug - it doesn't resolve the binding; 
+   Has to do with the fact that the Samurai is transient
+   
 params = new Collection().
 
 routine = new Routine(get-class(OpenEdge.Test.Samurai),
@@ -54,6 +62,7 @@ routine:Parameters[1] = new Parameter('true', DataTypeEnum:Logical).
 params:Add(routine).
 
 kernel:Inject(warrior, params).
+*/
 
 warrior:Attack("a melon").
 
@@ -77,10 +86,5 @@ finally:
         kernel:Release(warrior).
 
     kernel = ?.
-
-    message 
-    'are we ok?'
-    view-as alert-box.        
 end finally.
-
 /* eof */
