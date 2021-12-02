@@ -15,12 +15,12 @@
 **************************************************************************** **/
 /** ------------------------------------------------------------------------
     File        : StandardKernel
-    Purpose     : Standard/default InjectABL dependency injection kernel. 
-    Syntax      : 
-    Description : 
+    Purpose     : Standard/default InjectABL dependency injection kernel.
+    Syntax      :
+    Description :
     @author pjudge
     Created     : Tue Mar 02 12:56:53 EST 2010
-    Notes       : 
+    Notes       :
   ---------------------------------------------------------------------- */
 block-level on error undo, throw.
 
@@ -58,8 +58,8 @@ using Progress.Lang.AppError.
 using Progress.Lang.SysError.
 using Progress.Lang.Object.
 
-class OpenEdge.InjectABL.KernelBase inherits BindingRoot 
-        implements IKernel:        
+class OpenEdge.InjectABL.KernelBase inherits BindingRoot
+        implements IKernel:
     
     define public property Settings as KernelSettings no-undo get. private set.
     
@@ -87,7 +87,7 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
         this-object(new ComponentContainer(this-object),
                     new IInjectionModuleCollection(),
                     new KernelSettings()).
-    end constructor. 
+    end constructor.
     
     constructor public KernelBase(poModules as IInjectionModuleCollection):
         this-object(new ComponentContainer(this-object),
@@ -95,7 +95,7 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
                     new KernelSettings()).
     end constructor.
     
-    constructor protected KernelBase(poComponents as ComponentContainer, 
+    constructor protected KernelBase(poComponents as ComponentContainer,
                                      poModules as IInjectionModuleCollection,
                                      poSettings as KernelSettings):
         Assert:NotNull(poComponents, "components").
@@ -164,7 +164,7 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
     end method.
     
     /* InjectABLModuleLoaderModule */
-    /** Loads IInjectionModules from files matching the pattern. 
+    /** Loads IInjectionModules from files matching the pattern.
         
         @param character A file pattern */
     method protected void Load(input pcFilePattern as character):
@@ -186,7 +186,7 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
             when 1 then cFileBase = pcFilePattern.
             otherwise
             do:
-                cOriginalExtension = entry(iMax, pcFilePattern, '.'). 
+                cOriginalExtension = entry(iMax, pcFilePattern, '.').
                 do iLoop = (iMax - 1) to 1 by -1:
                     cFileBase = entry(iLoop, pcFilePattern, '.')
                               + '.' +
@@ -198,7 +198,7 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
         /* Resolve the working folder into something meaningful, since
            SEARCH() is significantly faster with a fully-qualified path  */
         file-info:file-name = '.'.
-        cPWD = file-info:full-pathname. 
+        cPWD = file-info:full-pathname.
         
         iMax = num-entries(propath).
         do iLoop = 1 to iMax on error undo, throw:
@@ -214,7 +214,7 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
                     cFolder = cPWD + substring(cFolder, 2).
             end.
             
-            /* Always looks for .R. We can write a specialised resolver here if we want 
+            /* Always looks for .R. We can write a specialised resolver here if we want
                to get fancy and look for .r and .p */
             assign cFolderBase = right-trim(cFolder, '/') + '/' + cFileBase
                    cFile = search(cFolderBase + 'r').
@@ -225,22 +225,22 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
             if cFile ne ? then
                 run value(cFile) (input this-object).
             
-            catch eSysErr as SysError:             
+            catch eSysErr as SysError:
                 case eSysErr:GetMessageNum(1):
                 /* Skip cases where we have a parameter mismatch. We cannot be sure that a file on the
-                   propath that matches the file pattern is definitively ours. 
+                   propath that matches the file pattern is definitively ours.
                    
                    Procedure <proc> passed parameters to <proc>, which didn't expect any. (1005) */
                 when 1005 then . /* Ignore these */
-                otherwise undo, throw eSysErr.                                                    
+                otherwise undo, throw eSysErr.
                 end case.
             end catch.
         end.
     end method.
     
-    /** Loads IInjectionModules from files matching the pattern. 
+    /** Loads IInjectionModules from files matching the pattern.
         
-        @param character[] An array of file patterns */    
+        @param character[] An array of file patterns */
     method public void Load(input pcFilePatterns as character extent):
         define variable iLoop as integer no-undo.
         define variable iMax as integer no-undo.
@@ -252,7 +252,7 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
         do iLoop = 1 to iMax:
             this-object:Load(pcFilePatterns[iLoop]).
         end.
-    end method.                    
+    end method.
     
     @todo(task="implement", action="").
     method public void Unload(pcName as character):
@@ -264,14 +264,14 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
     
     method public Object Get(input poService as Progress.Lang.Class,
                              input poArguments as ICollection):
-        return this-object:Get(poService, '', poArguments).                                 
+        return this-object:Get(poService, '', poArguments).
     end method.
     
     /** Instantiates an instance of an object that matches the passed service,
-        as determined by the bindings in a loaded module. 
+        as determined by the bindings in a loaded module.
     
         @param Class A service represented by a Progress.Lang.Class type instance.
-        @param character A name for the service   
+        @param character A name for the service
         @return An instance of the requested service/interface    */
     method public Object Get(input poService as Progress.Lang.Class,
                              input pcName as character):
@@ -282,7 +282,6 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
                                 input pcName as character,
                                 input poArguments as ICollection):
         define variable oBinding as IBinding no-undo.
-        def var oContext as ILifecycleContext no-undo.
         
         Assert:NotNull(poService, 'Service').
         Assert:NotNull(pcName, 'Name').
@@ -295,11 +294,7 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
         if valid-object(poArguments) then
             oBinding:Arguments:AddAll(poArguments).
 
-/*        return CreateContext(oBinding):Resolve().*/
-        /* [PJ] something buggy */        
-        oContext = CreateContext(oBinding).
-        
-        return oContext:Resolve().
+        return CreateContext(oBinding):Resolve().
     end method.
     
     /** Retrieve the binding to use for the service. */
@@ -318,10 +313,10 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
             oBinding = cast(oBindings:Get(1), IBinding).
         else
             /* Always use the first matching binding, since we assume that the bindings
-               are added in PROPATH order, and that the PROPATH is ordered in importance 
+               are added in PROPATH order, and that the PROPATH is ordered in importance
                from left to right.
                
-               If this behaviour is undesirable, then a setting should be added to 
+               If this behaviour is undesirable, then a setting should be added to
                the KernelSettings object to define it, or a BindingSelection component
                created and added to the kernel. */
             oBinding = cast(oBindings:Get(1), IBinding).
@@ -342,19 +337,18 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
                               poArguments as ICollection):
         define variable oBinding as IBinding no-undo.
         define variable oCache as ICache no-undo.
-        define variable oContext as ILifecycleContext no-undo. 
+        define variable oContext as ILifecycleContext no-undo.
         
         Assert:NotNull(poInstance, "instance").
         Assert:NotNull(poArguments, "arguments").
         
-        oContext = cast(Components:Get(get-class(ICache)), ICache)
-                    :TryGetContext(poInstance).
+        oContext = cast(Components:Get(get-class(ICache)), ICache):TryGetContext(poInstance).
         if not valid-object(oContext) then
             oContext = CreateContext(CreateDefaultBinding(poInstance:GetClass())).
           
         // [hb] original: oContext:Binding:Arguments:AddAll(poArguments).
         oContext:Arguments:AddAll(poArguments).
-     
+        
         cast(Components:Get(get-class(IPipeline)), IPipeline)
             :Activate(oContext, poInstance).
     end method.
@@ -366,27 +360,27 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
                 :Release(poInstance).
     end method.
 
-    /** Indicates whether a service is cached or not. 
+    /** Indicates whether a service is cached or not.
         
         @param Class A service represented by a Progress.Lang.Class type instance.
         @param character A name for the service
         @return Logical Returns true if the service is being cached ; false if not in cache.
                 Note that a true return value doesn't mean there isn't a running instance of the service -
-                since transient instances aren't cached - but only that there are no cached instances. */        
+                since transient instances aren't cached - but only that there are no cached instances. */
     method public logical IsCached(input poService as Progress.Lang.Class,
                                    input pcName as character):
         return IsCached(poService, pcName, ?).
     end method.
         
-    /** Indicates whether a service is cached or not. 
+    /** Indicates whether a service is cached or not.
         
         @param Class A service represented by a Progress.Lang.Class type instance.
         @param character A name for the service
         @param ICollection A collection of arguments to add to the bindings for the
-                            object being instantiated.        
-        @return Logical Returns true if the service is being cached ; false if not in cache.        
+                            object being instantiated.
+        @return Logical Returns true if the service is being cached ; false if not in cache.
                 Note that a true return value doesn't mean there isn't a running instance of the service -
-                since transient instances aren't cached - but only that there are no cached instances. */        
+                since transient instances aren't cached - but only that there are no cached instances. */
     method public logical IsCached(input poService as Progress.Lang.Class,
                                    input pcName as character,
                                    input poArguments as ICollection):
@@ -425,32 +419,35 @@ class OpenEdge.InjectABL.KernelBase inherits BindingRoot
         return cast(Components:Get(get-class(IBindingResolver)), IBindingResolver)
                     :Resolve(Bindings, poService, pcName).
     end method.
-
+    
     method protected IBinding CreateDefaultBinding(input poService as Progress.Lang.Class):
         define variable oBinding as IBinding no-undo.
-        define variable oBindings as IList     no-undo.
-        define variable oBuilder as IBindingSyntax no-undo.
+        define variable oBindings as IList no-undo.
         
         if not TypeIsSelfBindable(poService) then
             undo, throw new InvalidValueSpecifiedError(
                                 'default binding',
                                 ': Type ' + poService:TypeName + ' cannot bind to itself').
-       
-        oBuilder = Bind(poService).
-        oBuilder:ToSelf().
-
-        oBindings = GetBindings(poService, '').
-       
-        if oBindings:Size > 0 then
-        oBinding = cast(oBindings:Get(1), IBinding).
-           
-        return oBinding.
         
-    end method. 
+        // this binding will be added as the last binding
+        this-object:Bind(poService):ToSelf().
+        
+        // this duplicates some of SelectBinding() but that method can call CreateDefaultBinding()
+        // and we don't want the recursion
+        oBindings = GetBindings(poService, '':u).
+        
+        // get the last binding added, in case there are already others
+        if oBindings:Size > 0 then
+            oBinding = cast(oBindings:Get(oBindings:Size), IBinding).
+        
+        Assert:NotNull(oBinding, substitute('Default binding for &1', poService:TypeName)).
+        
+        return oBinding.
+    end method.
     
     method override protected IBindingSyntax CreateBindingBuilder(input poBinding as IBinding):
         return new BindingBuilder(poBinding, this-object).
-    end method.    
+    end method.
     
     method protected ILifecycleContext CreateContext(input poBinding as IBinding):
         Assert:NotNull(input poBinding, "binding").

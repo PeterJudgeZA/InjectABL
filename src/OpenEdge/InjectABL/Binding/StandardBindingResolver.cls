@@ -19,11 +19,11 @@
                   service, name and condition requirements. More than one
                   binding may be returned. The decision of which binding to
                   use is done by the InjectABL Kernel.
-    Syntax      : 
-    Description : 
+    Syntax      :
+    Description :
     @author pjudge
     Created     : Tue Mar 09 09:02:30 EST 2010
-    Notes       : 
+    Notes       :
   ---------------------------------------------------------------------- */
 block-level on error undo, throw.
 
@@ -58,15 +58,14 @@ class OpenEdge.InjectABL.Binding.StandardBindingResolver implements IBindingReso
         define variable oIterator as IIterator no-undo.
         define variable oBinding as IBinding no-undo.
         
-        oServiceBindings = cast(poBindings:Get(poService), IList).
+        assign oResolvedBindings = new List()
+               oServiceBindings  = cast(poBindings:Get(poService), IList)
+               .
+        // return an empty set of bindings
         if not valid-object(oServiceBindings) then
-            undo, throw new NotFoundError(
-                    substitute('Service &1', poService:TypeName),
-                    'kernel bindings').
-
-        assign oResolvedBindings = new List().
-               oIterator = oServiceBindings:Iterator().
+            return oResolvedBindings.
         
+        assign oIterator = oServiceBindings:Iterator().
         do while oIterator:HasNext():
             oBinding = cast(oIterator:Next(), IBinding).
             
@@ -103,7 +102,7 @@ class OpenEdge.InjectABL.Binding.StandardBindingResolver implements IBindingReso
         /* Extract the stack since we basically want to stack to be immutable, since we may
            use the binding again. Pop() will clear the stack. */
         oFIFOConditions = cast(poBinding:Condition:Clone(), ObjectStack).
-        /* Invert the stack since we want to work backwards through the stack - FIFO rather than 
+        /* Invert the stack since we want to work backwards through the stack - FIFO rather than
            LIFO - since the conditions are added 'forwards' and we want to read 'em that way. */
         oFIFOConditions:Invert().
 
@@ -114,24 +113,24 @@ class OpenEdge.InjectABL.Binding.StandardBindingResolver implements IBindingReso
             
             case oCondition:
                 /* 'When' starts a new set of evaluations. We treat this as an And (true);
-                   this is necessary for cases where there is only one condition. */ 
+                   this is necessary for cases where there is only one condition. */
                 when OpenEdge.InjectABL.Binding.Conditions.Condition:When then
                     assign oOperator = OpenEdge.InjectABL.Binding.Conditions.Condition:And
                            lSubconditionMet = true.
                 
-                when OpenEdge.InjectABL.Binding.Conditions.Condition:And or 
+                when OpenEdge.InjectABL.Binding.Conditions.Condition:And or
                 when OpenEdge.InjectABL.Binding.Conditions.Condition:Or then
                     oOperator = oCondition.
                 
                 otherwise
                     /* Clauses appear on the stack as Condition, Is/Not, Condition */
                     assign oLHS = oCondition
-                           oClauseOperator = cast(oFIFOConditions:Pop(), ICondition) 
+                           oClauseOperator = cast(oFIFOConditions:Pop(), ICondition)
                            oRHS = cast(oFIFOConditions:Pop(), ICondition)
                            /* Use RHS for resolver, since the RHS is more likely to be more specialised:
                               the LHS might be 'Name' and the RHS refer to a session type or ui type.
                               
-                              The resolver can check the LHS if it chooses to, for type compatability */            
+                              The resolver can check the LHS if it chooses to, for type compatability */
                            lSubconditionMet = oRHS:GetResolver():EvaluateClause(oLHS, oClauseOperator, oRHS).
             end case.
             
