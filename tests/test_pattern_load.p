@@ -11,10 +11,12 @@
     Created     : Mon Dec 13 14:06:46 EST 2010
     Notes       :
   ----------------------------------------------------------------------*/
-block-level on error undo, throw.
-
-using OpenEdge.Core.Assert.
 using OpenEdge.InjectABL.Binding.Modules.IInjectionModuleCollection.
+using OpenEdge.Core.Assert.
+
+/* ***************************  Definitions  ************************** */
+
+block-level on error undo, throw.
 
 function Load return logical (input pcFilePattern as character):
         define variable iLoop as integer no-undo.

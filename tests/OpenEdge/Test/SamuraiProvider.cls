@@ -9,14 +9,16 @@
   ----------------------------------------------------------------------*/
 block-level on error undo, throw.
 
-using OpenEdge.Core.RoutineTypeEnum.
+using OpenEdge.Test.Samurai.
+using OpenEdge.Test.IWeapon.
+using OpenEdge.InjectABL.Lifecycle.ILifecycleContext.
 using OpenEdge.InjectABL.Binding.Parameters.IParameter.
 using OpenEdge.InjectABL.Binding.Parameters.Parameter.
 using OpenEdge.InjectABL.Binding.Parameters.Routine.
-using OpenEdge.InjectABL.Lifecycle.ILifecycleContext.
+using OpenEdge.Core.RoutineTypeEnum.
 using OpenEdge.InjectABL.Lifecycle.StandardProvider.
-using OpenEdge.Test.IWeapon.
-using OpenEdge.Test.Samurai.
+using OpenEdge.Core.Assert.
+using Progress.Lang.Class.
 using Progress.Lang.Object.
 
 class OpenEdge.Test.SamuraiProvider inherits StandardProvider:
