@@ -1,0 +1,7 @@
+# PF for compile/build tasks
+# Supports substitution of tokens
+#    - projectDir
+#    - buildDir
+#    - startupParams (passed in via -PablStartupParams=<val>
+
+${startupParams}

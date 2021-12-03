@@ -1,0 +1,304 @@
+/*
+ * This build script is designed to compile locally and in the TeamCity env.
+ * You must be attached to the Progress VPN to build locally.
+ *
+ * This project requires ablunit to 'test', along with corelib for runtime and compile-time
+ */
+
+import oe.espresso.latte.*
+import java.time.*
+import groovy.io.FileType
+import groovy.json.*
+import org.apache.tools.ant.taskdefs.condition.Os
+
+plugins {
+    id "oe.espresso.latte" version "0.3.1"
+    id "base"
+}
+
+group 'com.openedge.injectabl'
+
+/**
+* These variables are passed in by TeamCity.
+* Please makes sure you set this in your envionment before beginning this build
+*/
+// env.dlcHome
+String dlc = System.getenv('DLC')
+if (dlc == null ) {dlc = (project.hasProperty('dlc') ? project.property('dlc') : null)}
+if (dlc == null ) {throw new GradleException('DLC not set')}
+
+// Determine the compiler options
+// one or more of req-ret-val, req-full-kw, req-full-name, req-fld-qual can be used, in a comma-delimited value
+String[] ablCompOpts = (project.hasProperty('ablCompilerOpts') ? project.property('ablCompilerOpts') : '').split(',')
+
+// Global debug flag
+Boolean dbgProp = (project.hasProperty('dbg') ? project.property('dbg') : 'false').toBoolean()
+
+// Used for prolib dbutil and other commands that are explicitly called
+ext.exeExt = Os.isFamily(Os.FAMILY_WINDOWS) ? '.exe' : ''
+
+// Folder where source code dependencies are kept
+File ablLibs = file("$buildDir/lib")
+def libSrcPaths = []
+
+// Should be in abl.pctTaskArgs but it has to be created first, otherwise we get a 'null' error
+// the dir is created in ResolveOpenEdgeDependancies.doFirst
+File avmTempDir = file("$buildDir/temp")
+
+abl {
+    dlcHome  = file("$dlc")
+    rcodeDir = file("$buildDir/rcode")      // is the default; may not be needed
+    graphicalMode = false
+    pctTaskArgs {
+        cpInternal = 'undefined'
+        cpStream   = 'UTF-8'
+        debugPCT = dbgProp
+        keepXref = true
+        xmlXref  = true
+        requireReturnValues    = ablCompOpts.contains('req-ret-val')
+        requireFullKeywords    = ablCompOpts.contains('req-full-kw')
+        requireFullNames       = ablCompOpts.contains('req-full-names')
+        requireFieldQualifiers = ablCompOpts.contains('req-fld-qual')
+    }
+}
+
+//dependancy repo setup
+repositories {
+    mavenCentral()
+}
+
+//configuration collection so we can act on the collection
+configurations {
+    test
+    compile
+}
+// shove dependancies into the respective collection
+dependencies {
+    // dependencies needed to compile/build the code
+    compile files("${abl.dlcHome}/src/OpenEdge.Core.pl")
+    
+    // dependencies to run tests
+    test    files("${abl.dlcHome}/tty/OpenEdge.Core.pl")
+    test    files("${abl.dlcHome}/tty/ablunit.pl")
+}
+task extractSources() {
+    doFirst {
+        def depCnt = 0
+        // dependencies have a name, which we want to use
+        configurations.compile.dependencies.each { dep ->
+            depCnt++
+            
+            libSrcPaths << file("$ablLibs/dep-${depCnt}")
+            
+            // now get all of the files for that dependency, and extract
+            configurations.compile.fileCollection(dep).each {srcPL ->
+                ant.copy (toDir : "$ablLibs/dep-${depCnt}" ) {
+                    plfileset (src : srcPL.path,
+                               includes : '**/*')
+                }
+            }
+        }
+    }
+}
+task ResolveOpenEdgeDependancies(){
+    dependsOn extractSources
+    doFirst() {
+        avmTempDir.mkdirs()
+    }
+}
+task createManifest(type: RunAbl){
+    dependsOn ResolveOpenEdgeDependancies
+    
+    outputs.file("$buildDir/MANIFEST.MF")
+    
+    tempDir        = avmTempDir.path
+    procedure      = 'bitness.p'
+    baseDir        = "$buildDir"
+    propath        = files('src/main/resources')
+    noErrorOnQuit  = true
+    failOnError    = false
+    resultProperty = "bitness"
+    debugPCT = abl.pctTaskArgs.debugPCT
+    
+    // Need to doLast so that we have the OE version
+    doLast {
+        // resolving this here means that the Ant manifest task behaves
+        def oeVer = "${abl.version.full}"
+        
+        ant.manifest(file: file("$buildDir/MANIFEST.MF")) {
+            ant.attribute( name: "Build-Date", value: OffsetDateTime.now( ZoneOffset.UTC ).format("yyyy-MM-dd'T'HH:mm:ss.SSSX"))
+            ant.attribute( name: "Build-OS",   value: System.getProperty('os.name') + " " + System.getProperty('os.arch') + " " + System.getProperty('os.version'))
+            
+            ant.section(name: "InjectABL") {
+                ant.attribute( name:"InjectABL-Version",     value:"${version}")
+                ant.attribute( name:"InjectABL-Description", value:'OpenEdge InjectABL Library')
+                ant.attribute( name:"Package-Type",          value:"\${packageType}")
+            }
+            ant.section(name: "OpenEdge") {
+                ant.attribute( name:"DLC-Major",          value:"${abl.version.major}")
+                ant.attribute( name:"DLC-Minor",          value:"${abl.version.minor}")
+                ant.attribute( name:"DLC-Revision",       value:"${abl.version.revision}")
+                ant.attribute( name:"DLC-Patch",          value:"${abl.version.patchLevel}")
+                ant.attribute( name:"DLC-RCode-Version",  value:"${abl.version.rcode}")
+                ant.attribute( name:"DLC-Bitness",        value:"${ant.bitness}")
+            }
+        }
+    }
+}
+// this task creates the source pl file
+task packageSourceCode(type: Zip){
+    dependsOn createManifest
+    
+    destinationDirectory = file("$buildDir/dist/")
+    archiveBaseName = "${rootProject.name}"
+    archiveClassifier = "sources"
+    archiveVersion = "$version"
+    archiveExtension = "zip"
+    
+    from('src/main/abl', "$buildDir/MANIFEST.MF")
+    
+    expand(packageType: "sources")
+    include("**/*")
+    exclude("**/*.r")
+}
+task createPF(type: Copy) {
+    outputs.file("$buildDir/resources/main/build.pf")
+    outputs.file("$buildDir/resources/test/build.pf")
+    outputs.file("$buildDir/resources/test/run.pf")
+
+    // in case there are any params passed in and also in the PF
+    String params = project.hasProperty('ablStartupParams') ? project.property('ablStartupParams') : '#none'
+
+    // this "into"'s are relative to the main "into" below
+    from("src/main/resources") { into "main" }
+    from("src/test/resources") { into "test" }
+    include "*.pf"
+    into "$buildDir/resources"
+    expand(startupParams: params,
+           projectDir:    project.projectDir,
+           buildDir:      "$buildDir"        )
+    dirMode  0775
+    fileMode 0775
+}
+// this task compiles the TEST code to verify there are no compiler errors
+task compileTest(type: CompileAblTask) {
+    dependsOn ResolveOpenEdgeDependancies
+    dependsOn createPF
+
+    outputs.dir("$buildDir/tests")
+
+    compileArgs.paramFile  = file("$buildDir/resources/test/build.pf").absolutePath
+    compileArgs.tempDir  = avmTempDir.path
+    destinationDir = file("$buildDir/tests")
+    source('src/test/abl')
+    include('**/*.cls')
+    include('**/*.p')
+    debugPCT = abl.pctTaskArgs.debugPCT
+    
+    doFirst {
+        // set propath here since we only know the source paths at runtime, not evaluation time
+        propath = files('src/test/abl',
+                        'src/main/abl',
+                        libSrcPaths)
+    }
+    doLast() {
+        logWarnings(file("$buildDir/tests/.pct/"), "compileTest")
+    }
+}
+// write compiler warning to the build log
+def logWarnings(File pctDir, String logGrp) {
+    pctDir.traverse(type: FileType.FILES, nameFilter: ~/.*\.warnings/ )
+        { logger.warn("[:$logGrp] " + it.text.trim()) }
+}
+// This task compiles all the source code
+task compileCode(type: CompileAblTask) {
+    dependsOn ResolveOpenEdgeDependancies
+    dependsOn createPF
+    
+    outputs.dir("${abl.rcodeDir}/OpenEdge/InjectABL")
+    
+    compileArgs.paramFile = file("$buildDir/resources/main/build.pf").absolutePath
+    compileArgs.tempDir   = avmTempDir.path
+    debugPCT = abl.pctTaskArgs.debugPCT
+    // we use preprocessed files for doc
+    compileArgs.preprocess    = true
+    compileArgs.preprocessDir = "$buildDir/preprocess"
+    destinationDir            = abl.rcodeDir       // in theory, can leave this to the default; in practice, not
+    source('src/main/abl')
+    
+    include('**/*.cls')
+    include('**/*.p')
+
+    doFirst {
+        // set the propath here, not in the evaluation phase, because the
+        // source PLs are only unzipped now
+        propath = files('src/main/abl',
+                        libSrcPaths)
+    }
+    doLast {
+        logWarnings(file("$buildDir/rcode/.pct/"), "compileCode")
+    }
+}
+// This task creates the rcode procedure library along with the manifest file
+task packageCode(type: CreateProcedureLibrary){
+    dependsOn compileCode
+    dependsOn createManifest
+
+    inputs.dir(abl.rcodeDir)
+    outputs.file("$buildDir/dist/${rootProject.name}-${version}-tty.pl")
+
+    destFile = "$buildDir/dist/${rootProject.name}-${version}-tty.pl"
+    baseDir = abl.rcodeDir.path
+    
+    // the compiler adds r-code for classes that aren't part of this package, so we
+    // need to be explicit about what we include
+    includes   = "OpenEdge/InjectABL/** MANIFEST.MF"
+    encoding   = 'undefined'
+    doFirst {
+        copy {
+            from "$buildDir/MANIFEST.MF"
+            into abl.rcodeDir
+            expand(packageType: 'tty')
+        }
+    }
+}
+task ablTest(type: AblUnit) {
+    dependsOn createPF
+    dependsOn compileTest
+    
+    outputs.file("$buildDir/tests/results.xml")
+    outputs.dir("$buildDir/profiler")
+    
+    profilerOutputDir = file("$buildDir/profiler")
+    coverage          = true
+    
+    tempDir        = avmTempDir.path
+    noErrorOnQuit  = true
+    paramFile      = "$buildDir/resources/test/run.pf"
+    destinationDir = file("$buildDir/tests")
+    
+    cpInternal  = 'UTF-8'
+    cpStream    = 'UTF-8'
+    writeLog    = true
+    failOnError = false
+    
+    debugPCT = abl.pctTaskArgs.debugPCT
+    
+    //OCTA-41348
+    exclude("**/I**.cls")
+    
+    source("src/test/abl")
+    propath = files("src/test/abl",                                         // for other non-code artifacts needed by the tests
+                    "$buildDir/dist/${rootProject.name}-${version}-tty.pl", // project rcode being tested
+                    configurations.test.files                               // other dependencies
+                    )
+    doLast() {
+        if (!file("$buildDir/tests/results.xml").exists() ) {
+            throw new GradleException("ABLUnit results file $buildDir/tests/results.xml not found")
+        }
+        def results = new XmlSlurper().parse( file("$buildDir/tests/results.xml"))
+        logger.info("$buildDir/tests/results.xml: tests=${results.@tests}; errors=${results.@errors}; failures=${results.@failures}; skipped=${results.@skipped}")
+    }
+}
+
+defaultTasks 'packageSourceCode', 'packageCode', 'ablTest'
