@@ -34,7 +34,6 @@ using OpenEdge.InjectABL.Lifecycle.ABLSession.
 
 class OpenEdge.InjectABL.Binding.Conditions.SessionTypeConditionResolver implements IConditionResolver:
     constructor public SessionTypeConditionResolver():
-        assign this-object:CurrentSession = SessionClientTypeEnum:GetEnum(session:client-type).
     end constructor. 
     
     /** Evaluates the provided conditions. 
