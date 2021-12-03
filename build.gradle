@@ -1,7 +1,4 @@
 /*
- * This build script is designed to compile locally and in the TeamCity env.
- * You must be attached to the Progress VPN to build locally.
- *
  * This project requires ablunit to 'test', along with corelib for runtime and compile-time
  */
 
@@ -9,7 +6,6 @@ import oe.espresso.latte.*
 import java.time.*
 import groovy.io.FileType
 import groovy.json.*
-import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
     id "oe.espresso.latte" version "0.3.1"
@@ -33,9 +29,6 @@ String[] ablCompOpts = (project.hasProperty('ablCompilerOpts') ? project.propert
 
 // Global debug flag
 Boolean dbgProp = (project.hasProperty('dbg') ? project.property('dbg') : 'false').toBoolean()
-
-// Used for prolib dbutil and other commands that are explicitly called
-ext.exeExt = Os.isFamily(Os.FAMILY_WINDOWS) ? '.exe' : ''
 
 // Folder where source code dependencies are kept
 File ablLibs = file("$buildDir/lib")
@@ -70,12 +63,12 @@ repositories {
 //configuration collection so we can act on the collection
 configurations {
     test
-    compile
+    buld
 }
 // shove dependancies into the respective collection
 dependencies {
     // dependencies needed to compile/build the code
-    compile files("${abl.dlcHome}/src/OpenEdge.Core.pl")
+    buld files("${abl.dlcHome}/src/OpenEdge.Core.pl")
     
     // dependencies to run tests
     test    files("${abl.dlcHome}/tty/OpenEdge.Core.pl")
@@ -85,13 +78,13 @@ task extractSources() {
     doFirst {
         def depCnt = 0
         // dependencies have a name, which we want to use
-        configurations.compile.dependencies.each { dep ->
+        configurations.buld.dependencies.each { dep ->
             depCnt++
             
             libSrcPaths << file("$ablLibs/dep-${depCnt}")
             
             // now get all of the files for that dependency, and extract
-            configurations.compile.fileCollection(dep).each {srcPL ->
+            configurations.buld.fileCollection(dep).each {srcPL ->
                 ant.copy (toDir : "$ablLibs/dep-${depCnt}" ) {
                     plfileset (src : srcPL.path,
                                includes : '**/*')
