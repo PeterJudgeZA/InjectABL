@@ -1,0 +1,25 @@
+{
+    "name": "InjectABL", // Project name, will be used in the future for dependency management
+    "version": "1.0",    // Project version number, will be used in the future for dependency management
+    "oeversion": "12.8", // Must reference an existing ABL version in Settings -> Extensions -> ABL Configuration -> Runtimes
+    "graphicalMode": false, // True for prowin[32], false for _progres
+    "charset": "utf-8",  // Charset
+    "extraParameters": "", // Extra Progress command line parameters
+    "sonarlintProperties": { // Extra sonarlint properties.
+      // "sonar.oe.preprocessor.process-architecture": "32",
+      // "sonar.oe.proparse.tokenStartChars": "!"
+    },
+    "buildPath": [
+      // Entries can have type 'source' or 'propath'. Path attribute is mandatory. Build attribute is optional (defaults to 'path'). Xref attribute is optional (defaults to 'build/.pct' or '.builder/srcX')
+      { "type": "source", "path": "src/main/abl", "build": "build/rcode" },
+      { "type": "source", "path": "src/test/abl", "build": "build/tests" },
+      //{ "type": "propath", "path": "${DLC}/tty/netlib/OpenEdge.Net.pl", "documentation": "openedge.json" }
+      { "type": "propath", "path": "build/dlc-src" }
+    ],
+    "dbConnections": [ // Unlimited number of connections - Beware of -h
+    ],
+    "numThreads": 2, // Number of OpenEdge sessions handling build
+    "procedures": [
+    ],
+    "profiles": [ /* See section below */ ]
+  }
