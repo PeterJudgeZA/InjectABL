@@ -9,19 +9,11 @@
   ----------------------------------------------------------------------*/
 block-level on error undo, throw.
 
-using OpenEdge.Core.DataTypeEnum.
-using OpenEdge.InjectABL.Binding.Modules.InjectionModule.
-using OpenEdge.InjectABL.Binding.Parameters.IParameter.
-using OpenEdge.InjectABL.Binding.Parameters.Parameter.
-using OpenEdge.InjectABL.Lifecycle.ConstructorInjectionProvider.
-using KernelGet.Test.Gun.
-using KernelGet.Test.IAmmo.
-using KernelGet.Test.IArmor.
-using KernelGet.Test.IWeapon.
-using KernelGet.Test.Kusari.
-using KernelGet.Test.Samurai.
-using KernelGet.Test.Shuriken.
-using KernelGet.Test.WoodBullets.
+using KernelGet.Test.*.
+using OpenEdge.Core.*.
+using OpenEdge.InjectABL.Binding.Modules.*.
+using OpenEdge.InjectABL.Binding.Parameters.*.
+using OpenEdge.InjectABL.Lifecycle.*.
 
 class KernelGet.Test.WarriorModule inherits InjectionModule:
 

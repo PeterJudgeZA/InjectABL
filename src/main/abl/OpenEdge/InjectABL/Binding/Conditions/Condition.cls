@@ -24,13 +24,9 @@
   ----------------------------------------------------------------------*/
 block-level on error undo, throw.
 
-using OpenEdge.Core.Assert.
-using OpenEdge.Core.String.
-using OpenEdge.InjectABL.Binding.Conditions.Condition.
-using OpenEdge.InjectABL.Binding.Conditions.ICondition.
-using OpenEdge.InjectABL.Binding.Conditions.IConditionResolver.
-using OpenEdge.InjectABL.Binding.Conditions.StandardConditionResolver.
-using Progress.Lang.Object.
+using OpenEdge.Core.*.
+using OpenEdge.InjectABL.Binding.Conditions.*.
+using Progress.Lang.*.
 
 class OpenEdge.InjectABL.Binding.Conditions.Condition implements ICondition:
 
@@ -53,12 +49,12 @@ class OpenEdge.InjectABL.Binding.Conditions.Condition implements ICondition:
 
     constructor static Condition():
         define variable oType as Progress.Lang.Class no-undo.
-        
+
         assign OpenEdge.InjectABL.Binding.Conditions.Condition:ConditionResolverType = get-class(StandardConditionResolver)
-               
+
                Condition:And = new Condition('and')
                Condition:Or  = new Condition('or')
-               
+
                Condition:Is   = new Condition('is')
                Condition:When = new Condition('when')
                Condition:Not  = new Condition('not')

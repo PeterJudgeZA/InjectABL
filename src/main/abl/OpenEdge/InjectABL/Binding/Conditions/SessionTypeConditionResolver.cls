@@ -1,12 +1,12 @@
 /** ****************************************************************************
   Copyright 2012 Progress Software Corporation
-  
+
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
-  
+
     http://www.apache.org/licenses/LICENSE-2.0
-  
+
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,20 +24,16 @@
   ---------------------------------------------------------------------- */
 block-level on error undo, throw.
 
-using OpenEdge.Core.SessionClientTypeEnum.
-using OpenEdge.InjectABL.Binding.Conditions.Condition.
-using OpenEdge.InjectABL.Binding.Conditions.ICondition.
-using OpenEdge.InjectABL.Binding.Conditions.IConditionResolver.
-using OpenEdge.InjectABL.Binding.Conditions.SessionTypeCondition.
-using OpenEdge.InjectABL.Lifecycle.ABLSession.
-
+using OpenEdge.Core.*.
+using OpenEdge.InjectABL.Binding.Conditions.*.
+using OpenEdge.InjectABL.Lifecycle.*.
 
 class OpenEdge.InjectABL.Binding.Conditions.SessionTypeConditionResolver implements IConditionResolver:
     constructor public SessionTypeConditionResolver():
     end constructor.
-    
+
     /** Evaluates the provided conditions.
-        
+
         @param ICondition The left-hand side argument for the clauseRdatas
         @param ICondition The clause operator
         @param ICondition The right-hand side argument for the clause
@@ -47,19 +43,19 @@ class OpenEdge.InjectABL.Binding.Conditions.SessionTypeConditionResolver impleme
                                          input poRHS as ICondition):
         define variable lConditionsMet      as logical   no-undo.
         define variable cCurrentSessionType as character no-undo.
-        
+
         case poLHS:
             when OpenEdge.InjectABL.Binding.Conditions.Condition:Type then
             do:
-              
+
                 /* Available SessionConditions: ThinClient, FatClient, Server    */
                 /* ##anb: Rework needed! SessionClientTypeEnum cannot handle     */
                 /* 4GLCLIENT returned by session:client-type !                   */
-                  
+
                 cCurrentSessionType = replace(session:client-type, '4GLCLIENT':U, 'ABLCLIENT':U).
-                
+
                 case poRHS:
-                    
+
                     when SessionTypeCondition:ThinClient then
                         lConditionsMet = SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:ABLClient
                                       or SessionClientTypeEnum:GetEnum(cCurrentSessionType) = SessionClientTypeEnum:WebClient.
@@ -77,12 +73,12 @@ class OpenEdge.InjectABL.Binding.Conditions.SessionTypeConditionResolver impleme
             end.
             when OpenEdge.InjectABL.Binding.Conditions.Condition:Name then lConditionsMet = ABLSession:Instance:Name eq poRHS:ToString().
         end case.
-        
+
         /* If the operator is Not, the flip the evaluation */
         if poOperator:Equals(OpenEdge.InjectABL.Binding.Conditions.Condition:Not) then
             lConditionsMet = not lConditionsMet.
-        
+
         return lConditionsMet.
     end method.
-    
+
 end class.

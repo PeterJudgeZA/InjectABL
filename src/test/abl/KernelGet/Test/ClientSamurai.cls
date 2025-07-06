@@ -1,25 +1,25 @@
- 
+
  /*------------------------------------------------------------------------
     File        : ClientSamurai
-    Purpose     : 
-    Syntax      : 
-    Description : 
+    Purpose     :
+    Syntax      :
+    Description :
     @author pjudge
     Created     : Wed Mar 17 11:28:17 EDT 2010
-    Notes       : 
+    Notes       :
   ----------------------------------------------------------------------*/
 
 using Progress.Lang.*.
-using KernelGet.Test.Samurai.
+using KernelGet.Test.*.
 
 block-level on error undo, throw.
 
-class KernelGet.Test.ClientSamurai inherits Samurai: 
-        
+class KernelGet.Test.ClientSamurai inherits Samurai:
+
     constructor public ClientSamurai ( input poWeapon as KernelGet.Test.IWeapon ):
         super (input poWeapon).
-        
-        message 
+
+        message
           'Client samurai!'
         view-as alert-box.
     end constructor.

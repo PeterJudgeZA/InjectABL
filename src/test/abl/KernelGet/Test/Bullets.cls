@@ -1,27 +1,27 @@
- 
+
  /*------------------------------------------------------------------------
     File        : Bullets
-    Purpose     : 
-    Syntax      : 
-    Description : 
+    Purpose     :
+    Syntax      :
+    Description :
     Author(s)   : Boehme_A
     Created     : Fri Dec 14 12:19:00 CET 2018
-    Notes       : 
+    Notes       :
   ----------------------------------------------------------------------*/
 
 using Progress.Lang.*.
-using KernelGet.Test.IAmmo.
+using KernelGet.Test.*.
 
 block-level on error undo, throw.
 
-class KernelGet.Test.Bullets implements IAmmo: 
-  
+class KernelGet.Test.Bullets implements IAmmo:
+
   method public integer iImpact( ):
-    
+
     return 10.
-    
+
   end method.
-    
+
   method public void Unpack
     (  ):
 

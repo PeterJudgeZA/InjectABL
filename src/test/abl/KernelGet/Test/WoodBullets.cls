@@ -1,28 +1,28 @@
- 
+
  /*------------------------------------------------------------------------
     File        : WoodBullets
-    Purpose     : 
-    Syntax      : 
-    Description : 
+    Purpose     :
+    Syntax      :
+    Description :
     Author(s)   : Boehme_A
     Created     : Fri Dec 14 12:40:58 CET 2018
-    Notes       : 
+    Notes       :
   ----------------------------------------------------------------------*/
 
 using Progress.Lang.*.
-using KernelGet.Test.IAmmo.
+using KernelGet.Test.*.
 
 
 block-level on error undo, throw.
 
-class KernelGet.Test.WoodBullets implements IAmmo: 
-  
+class KernelGet.Test.WoodBullets implements IAmmo:
+
   method public integer iImpact( ):
-    
+
     return 4.
-    
+
   end method.
-    
+
   method public void Unpack
     (  ):
 

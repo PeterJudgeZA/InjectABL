@@ -9,15 +9,11 @@
   ----------------------------------------------------------------------*/
 block-level on error undo, throw.
 
-using KernelGet.Test.IWeapon.
-using KernelGet.Test.Samurai.
-using OpenEdge.Core.RoutineTypeEnum.
-using OpenEdge.InjectABL.Binding.Parameters.IParameter.
-using OpenEdge.InjectABL.Binding.Parameters.Parameter.
-using OpenEdge.InjectABL.Binding.Parameters.Routine.
-using OpenEdge.InjectABL.Lifecycle.ILifecycleContext.
-using OpenEdge.InjectABL.Lifecycle.StandardProvider.
-using Progress.Lang.Object.
+using KernelGet.Test.*.
+using OpenEdge.Core.*.
+using OpenEdge.InjectABL.Binding.Parameters.*.
+using OpenEdge.InjectABL.Lifecycle.*.
+using Progress.Lang.*.
 
 class KernelGet.Test.SamuraiProvider inherits StandardProvider:
 

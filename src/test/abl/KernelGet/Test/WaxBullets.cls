@@ -1,27 +1,27 @@
- 
+
  /*------------------------------------------------------------------------
     File        : WaxBullets
-    Purpose     : 
-    Syntax      : 
-    Description : 
+    Purpose     :
+    Syntax      :
+    Description :
     Author(s)   : Boehme_A
     Created     : Fri Dec 14 12:24:48 CET 2018
-    Notes       : 
+    Notes       :
   ----------------------------------------------------------------------*/
 
 using Progress.Lang.*.
-using KernelGet.Test.IAmmo.
+using KernelGet.Test.*.
 
 block-level on error undo, throw.
 
-class KernelGet.Test.WaxBullets implements IAmmo: 
-  
+class KernelGet.Test.WaxBullets implements IAmmo:
+
   method public integer iImpact( ):
-    
+
     return 1.
-    
+
   end method.
-    
+
   method public void Unpack
     (  ):
 
